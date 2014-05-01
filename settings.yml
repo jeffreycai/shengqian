@@ -1,0 +1,18 @@
+#backend user, username:password
+backend_user:
+  admin: numb3r1
+  
+# pagination
+pagination_range: 5
+record_each_page: 50
+
+# Local database settings
+mysql_host: localhost
+mysql_user: sydneytoday
+mysql_pass: Osdiojoewsefe29)8
+mysql_db: sydneytoday
+
+# Sydney today username and password
+sydneytoday:
+  username: jeangirl186@163.com
+  password: 0172122a

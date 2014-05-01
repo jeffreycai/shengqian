@@ -1,0 +1,48 @@
+routing:
+  index:
+    # url pattern to match
+    path: ^\/$
+    # if this rounting is secure
+    isSecure: 1
+    # which controller should be assigned
+    controller: index
+  login:
+    path: ^\/login$
+    isSecure: 0
+    controller: login
+  logout:
+    path: ^\/logout$
+    isSecure: 0
+    controller: logout
+  
+  sydneytoday:
+    path: ^\/sydneytoday(\/)?$
+    isSecure: 1
+    controller: sydneytoday/index
+  sydneytoday_deal_list:
+    path: ^\/sydneytoday\/deal\/list$
+    isSecure: 1
+    controller: sydneytoday/deal_list
+  sydneytoday_deal_add:
+    path: ^\/sydneytoday\/deal\/add$
+    isSecure: 1
+    controller: sydneytoday/deal_add_edit
+  sydneytoday_deal_add:
+    path: ^\/sydneytoday\/deal\/edit\/(\d+)$
+    isSecure: 1
+    controller: sydneytoday/deal_add_edit
+    
+    
+  dingtie_list:
+    path: ^\/dingtie(\/list)?$
+    isSecure: 1
+    controller: dingtie_list
+  dingtie_create:
+    path: ^\/dingtie\/add\/?$
+    isSecure: 1
+    controller: dingtie_add
+  dingtie_delete:
+    path: ^\/dingtie\/delete\/(\d+)$
+    isSecure: 1
+    controller: dingtie_delete
+    
