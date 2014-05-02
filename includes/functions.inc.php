@@ -128,20 +128,6 @@ function app_requirement_check() {
 }
 
 /**
- * Echo an active class name for navigation
- * 
- * @param type $url
- * @param type $class
- */
-function echo_class_active($url, $class='active') {
-  $tokens = explode('?', $_SERVER['REQUEST_URI']);
-  $path = array_shift($tokens);
-  if ($path == $url) {
-    echo $class;
-  }
-}
-
-/**
 * Update a $_REQUEST parameter value and output the query string
 */
 function update_query_string($input) {
@@ -157,7 +143,12 @@ function update_query_string($input) {
 /**
 * Get current page url
 */
-function get_cur_page_url() {
+function get_cur_page_url($with_domain = false) {
+  global $cur_page_url;
+  if (isset($cur_page_url)) {
+    return $cur_page_url;
+  }
+  
  $pageURL = 'http';
  if (isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
  $pageURL .= "://";
@@ -166,11 +157,11 @@ function get_cur_page_url() {
  } else {
   $pageURL .= $_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
  }
- // a hack for pdrupal production, the $_SERVER["SERVER_NAME"] shows ip address instead of domain in pdrupal box.
- // we replace the ip with domain here
- $pageURL = str_replace('147.200.5.46', 'intranet.transport.nsw.gov.au', $pageURL);
- $pageURL = str_replace('pdrupal', 'intranet.transport.nsw.gov.au', $pageURL);
- return $pageURL;
+ if (!$with_domain) {
+   return preg_replace('/^https?:\/\/[^\/]+/', '', $pageURL);
+ }
+ $cur_page_url = $pageURL;
+ return $cur_page_url;
 }
 
 /**
@@ -193,4 +184,10 @@ function build_query_string($params) {
     $rtn[] = $key.'='.$val;
   }
   return '?'.implode('&', $rtn);
+}
+
+function echo_link_active_class($active_url, $current_url, $class='active') {
+  if (strstr($current_url, $active_url) !== false) {
+    echo " class='$class' ";
+  }
 }

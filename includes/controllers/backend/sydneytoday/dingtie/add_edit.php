@@ -25,20 +25,20 @@ if (isset($_POST['submit'])) {
 //-- otherwise, show the create form
 $html = new HTML();
 
-echo $html->render('html_header', array('title' => 'Create a Dingtie'));
-echo $html->render('header');
+echo $html->render('backend/html_header', array('title' => 'Create a Dingtie'));
+echo $html->render('backend/header');
 
-echo $html->render('sidebar');
+echo $html->render('backend/sydneytoday/sidebar');
 ?>
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <h1 class='page-header'>顶贴</h1>
+  <?php $html->renderOut('backend/sydneytoday/dingtie/nav'); ?>
   <h2 class='sub-header'>创建一个新的顶贴任务</h2>
-  <?php echo $html->render('dingtie_form'); ?>
+  <?php echo $html->render('backend/sydneytoday/dingtie/form'); ?>
 </div>
 
 <?php
 
-echo $html->render('footer');
-echo $html->render('html_footer');
+echo $html->render('backend/footer');
+echo $html->render('backend/html_footer');
 

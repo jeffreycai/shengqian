@@ -7,7 +7,7 @@
 
 <head profile="http://www.w3.org/1999/xhtml/vocab">
   <meta charset="utf-8" />
-  <link rel="shortcut icon" href="/favicon.gif" type="image/vnd.microsoft.icon" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
   <title><?php echo $data->title; ?></title>
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
@@ -21,7 +21,7 @@
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 
-  <script type="text/javascript" src="/<?php echo $data->level; ?>js/script.js"></script>
+  <script type="text/javascript" src="/<?php echo $data->level; ?>js/backend.js"></script>
   <!-- <link rel='stylesheet' href='/<?php echo $data->level; ?>css/reset.css' type='text/css' media='all' /> -->
   <link rel='stylesheet' href='/<?php echo $data->level; ?>css/dashboard.css' type='text/css' media='all' />
   <link rel='stylesheet' href='/<?php echo $data->level; ?>css/style.css' type='text/css' media='all' />

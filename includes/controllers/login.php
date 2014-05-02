@@ -56,7 +56,7 @@ if (!isLogin()) {
       
 // if already login, go to admin home apge
 } else {
-  HTML::forward();
+  HTML::forward('/admin');
 }
 
 

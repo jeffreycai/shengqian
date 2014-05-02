@@ -3,9 +3,39 @@ routing:
     # url pattern to match
     path: ^\/$
     # if this rounting is secure
-    isSecure: 1
+    isSecure: 0
     # which controller should be assigned
-    controller: index
+    controller: frontend/index
+    
+
+  admin:
+    path: ^\/admin(\/)?$
+    isSecure: 1
+    controller: backend/index
+  sydneytoday_dingtie_index:
+    path: ^\/admin\/sydneytoday\/dingtie\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/dingtie/index
+  sydneytoday_dingtie_list:
+    path: ^\/admin\/sydneytoday\/dingtie\/list\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/dingtie/list
+  sydneytoday_dingtie_add:
+    path: ^\/admin\/sydneytoday\/dingtie\/add\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/dingtie/add_edit
+  sydneytoday_dingtie_edit:
+    path: ^\/admin\/sydneytoday\/dingtie\/edit\/(\d+)\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/dingtie/add_edit
+  sydneytoday_dingtie_delete:
+    path: ^\/backend\/sydneytoday\/dingtie\/delete\/(\d+)\/?$
+    isSecure: 1
+    controller: /backend/sydneytoday/dingtie/delete    
+    
+    
+    
+    
   login:
     path: ^\/login$
     isSecure: 0
