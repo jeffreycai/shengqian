@@ -1,11 +1,11 @@
 <?php
 global $conf;
 global $mysqli;
-
+die('dsfds');
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 // get records to display
-$query = "SELECT * FROM `topic` ORDER BY deleted ASC, last_replied ASC LIMIT " . (($page-1) * $conf['record_each_page']) . ', ' . ($conf['record_each_page']);
+$query = "SELECT * FROM `deal` ORDER BY deleted ASC, last_replied ASC LIMIT " . (($page-1) * $conf['record_each_page']) . ', ' . ($conf['record_each_page']);
 $result = $mysqli->query($query);
 $topics = array();
 while ($record = $result->fetch_object()) {
@@ -21,16 +21,16 @@ $total_page = ceil($mysqli->query($query)->num_rows / $conf['record_each_page'])
 
 $html = new HTML();
 
-echo $html->render('html_header', array('title' => 'Dingtie task list'));
-echo $html->render('header');
+echo $html->render('backend/html_header', array('title' => 'Dingtie task list'));
+echo $html->render('backend/header');
 
-echo $html->render('sidebar');
+echo $html->render('backend/sydneytoday/sidebar');
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <h1 class='page-header'>顶贴</h1>
+  <?php $html->renderOut('backend/sydneytoday/dingtie/nav'); ?>
   <h2 class='sub-header'>顶贴任务列表</h2>
   
-  <?php echo $html->render('pagination', array(
+  <?php echo $html->render('components/pagination', array(
       'total_page' => $total_page,
       'page' => $page
   )) ?>
@@ -44,11 +44,14 @@ echo $html->render('sidebar');
         <th>操作</th>
       </tr>
       <?php foreach ($topics as $topic): ?>
-      <tr id="<?php echo $topic->getId(); ?>">
+      <tr id="topic-<?php echo $topic->getId(); ?>">
         <td><?php echo $topic->getId(); ?></td>
         <td><?php echo $topic->getTitle(true); ?></td>
         <td><?php echo $topic->getLastReplied() ?></td>
         <td>
+          <!-- edit -->
+          <button class="btn btn-xs btn-primary edit">Edit</button>
+          <!-- delete -->
           <?php if ($topic->getDeleted()): ?>
           <button class="btn btn-xs btn-danger delete deleted" type="button" data-loading-text="Deleting...">Delete forever</button>
           <?php else: ?>
@@ -60,13 +63,13 @@ echo $html->render('sidebar');
     </tbody>
   </table>
 
-  <?php echo $html->render('pagination', array(
+  <?php echo $html->render('components/pagination', array(
       'total_page' => $total_page,
       'page' => $page
   )) ?>
 
 <?php
 
-echo $html->render('footer');
-echo $html->render('html_footer');
+echo $html->render('backend/footer');
+echo $html->render('backend/html_footer');
 

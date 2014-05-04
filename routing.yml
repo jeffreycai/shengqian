@@ -12,6 +12,10 @@ routing:
     path: ^\/admin(\/)?$
     isSecure: 1
     controller: backend/index
+  backend_delete:
+    path: ^\/backend\/delete\/([^\/]+)\/(\d+)\/?$
+    isSecure: 1
+    controller: /backend/delete
   sydneytoday_dingtie_index:
     path: ^\/admin\/sydneytoday\/dingtie\/?$
     isSecure: 1
@@ -28,12 +32,22 @@ routing:
     path: ^\/admin\/sydneytoday\/dingtie\/edit\/(\d+)\/?$
     isSecure: 1
     controller: backend/sydneytoday/dingtie/add_edit
-  sydneytoday_dingtie_delete:
-    path: ^\/backend\/sydneytoday\/dingtie\/delete\/(\d+)\/?$
+  sydneytoday_deal_index:
+    path: ^\/admin\/sydneytoday\/deal\/?$
     isSecure: 1
-    controller: /backend/sydneytoday/dingtie/delete    
-    
-    
+    controller: backend/sydneytoday/deal/index
+  sydneytoday_deal_list:
+    path: ^\/admin\/sydneytoday\/deal\/list\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/deal/list
+  sydneytoday_deal_add:
+    path: ^\/admin\/sydneytoday\/deal\/add\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/deal/add_edit
+  sydneytoday_deal_edit:
+    path: ^\/admin\/sydneytoday\/deal\/edit\/(\d+)\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/deal/add_edit
     
     
   login:
@@ -44,35 +58,4 @@ routing:
     path: ^\/logout$
     isSecure: 0
     controller: logout
-  
-  sydneytoday:
-    path: ^\/sydneytoday(\/)?$
-    isSecure: 1
-    controller: sydneytoday/index
-  sydneytoday_deal_list:
-    path: ^\/sydneytoday\/deal\/list$
-    isSecure: 1
-    controller: sydneytoday/deal_list
-  sydneytoday_deal_add:
-    path: ^\/sydneytoday\/deal\/add$
-    isSecure: 1
-    controller: sydneytoday/deal_add_edit
-  sydneytoday_deal_add:
-    path: ^\/sydneytoday\/deal\/edit\/(\d+)$
-    isSecure: 1
-    controller: sydneytoday/deal_add_edit
-    
-    
-  dingtie_list:
-    path: ^\/dingtie(\/list)?$
-    isSecure: 1
-    controller: dingtie_list
-  dingtie_create:
-    path: ^\/dingtie\/add\/?$
-    isSecure: 1
-    controller: dingtie_add
-  dingtie_delete:
-    path: ^\/dingtie\/delete\/(\d+)$
-    isSecure: 1
-    controller: dingtie_delete
     

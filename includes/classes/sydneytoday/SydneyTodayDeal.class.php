@@ -88,7 +88,7 @@ class SydneyTodayDeal extends DBObject {
     $this->setDbFieldLast_published($lp);
   }
   public function getLastPublished() {
-    $lp = $this->getDbFieldLast_replied();
+    $lp = $this->getDbFieldLast_published();
     return is_null($lp) ? 'N/A' : date('Y-m-d H:i:s', $lp);
   }
   

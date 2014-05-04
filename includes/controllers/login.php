@@ -32,12 +32,12 @@ if (!isLogin()) {
       /** views **/
       $html = new HTML();
 
-      $html->renderOut('html_header', array(
+      $html->renderOut('backend/html_header', array(
         'title' => 'Login',
       ));
 
       // header
-      $html->renderOut('header');
+      $html->renderOut('backend/header');
 
       // body
       $html->output('<!-- #body -->');
@@ -50,7 +50,7 @@ if (!isLogin()) {
 
       // footer
 //      $html->renderOut('footer');
-      $html->renderOut('html_footer');
+      $html->renderOut('backend/html_footer');
       
       exit;
       

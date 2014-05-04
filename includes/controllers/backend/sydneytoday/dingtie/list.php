@@ -44,11 +44,14 @@ echo $html->render('backend/sydneytoday/sidebar');
         <th>操作</th>
       </tr>
       <?php foreach ($topics as $topic): ?>
-      <tr id="<?php echo $topic->getId(); ?>">
+      <tr id="topic-<?php echo $topic->getId(); ?>">
         <td><?php echo $topic->getId(); ?></td>
         <td><?php echo $topic->getTitle(true); ?></td>
         <td><?php echo $topic->getLastReplied() ?></td>
         <td>
+          <!-- edit -->
+          <button class="btn btn-xs btn-primary edit" onclick="window.location = '/admin/sydneytoday/dingtie/edit/<?php echo $topic->getId();?>';">Edit</button>
+          <!-- delete -->
           <?php if ($topic->getDeleted()): ?>
           <button class="btn btn-xs btn-danger delete deleted" type="button" data-loading-text="Deleting...">Delete forever</button>
           <?php else: ?>

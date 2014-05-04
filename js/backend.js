@@ -8,10 +8,12 @@ jQuery(function ($) {
     
     var btn = $(this);
     var tr = btn.parents('tr').first();
-    var id = tr.attr('id');
+    var tokens = tr.attr('id').split('-');
+    var table = tokens[0];
+    var id = tokens[1];
     btn.button('loading');
     $.ajax({
-      url: "/backend/sydneytoday/dingtie/delete/" + id
+      url: "/backend/delete/"+ table + "/" + id
     }).always(function(data){
       if (data == 'delete completely') {
         tr.fadeOut();

@@ -224,4 +224,19 @@ abstract class DBObject {
       $object->{'db_field_' . $key} = $val;
     }
   }
+  
+  /**
+   * convert a table name to cameral case class name
+   * 
+   * @param type $table_name
+   */
+  static function tableNameToClassName($table_name) {
+    $tokens = explode('_', $table_name);
+    $class_name = '';
+    for ($i = 0; $i < sizeof($tokens); $i++) {
+      $token = ucfirst($tokens[$i]);
+      $class_name .= $token;
+    }
+    return $class_name;
+  }
 }

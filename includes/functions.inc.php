@@ -186,8 +186,16 @@ function build_query_string($params) {
   return '?'.implode('&', $rtn);
 }
 
+/**
+ * echo "active" class for a link according to the current page url
+ * 
+ * @param type $active_url
+ * @param type $current_url
+ * @param type $class
+ */
 function echo_link_active_class($active_url, $current_url, $class='active') {
   if (strstr($current_url, $active_url) !== false) {
     echo " class='$class' ";
   }
 }
+

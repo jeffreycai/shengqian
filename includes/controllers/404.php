@@ -6,7 +6,7 @@ header("HTTP/1.0 404 Not Found");
 
 $html = new HTML();
 
-$html->renderOut('html_header', array(
+$html->renderOut('frontend/html_header', array(
   'title' => 'Page does not exist' . ' :: Phone list :: Transport for NSW',
 ));
 
@@ -27,6 +27,6 @@ $html->output('<!-- /#body -->');
 
 // footer
 //$html->renderOut('footer');
-$html->renderOut('html_footer');
+$html->renderOut('frontend/html_footer');
 
 
