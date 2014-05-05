@@ -1,34 +1,35 @@
 <?php
 global $conf;
 global $mysqli;
-die('dsfds');
+
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 // get records to display
-$query = "SELECT * FROM `deal` ORDER BY deleted ASC, last_replied ASC LIMIT " . (($page-1) * $conf['record_each_page']) . ', ' . ($conf['record_each_page']);
+$query = "SELECT * FROM `sydneytoday_deal` ORDER BY deleted ASC, last_published ASC LIMIT " . (($page-1) * $conf['record_each_page']) . ', ' . ($conf['record_each_page']);
 $result = $mysqli->query($query);
-$topics = array();
+$deals = array();
 while ($record = $result->fetch_object()) {
-  $topic = new Topic();
-  DBObject::importQueryResultToDbObject($record, $topic);
-  $topics[] = $topic;
+  $deal = new SydneyTodayDeal();
+  DBObject::importQueryResultToDbObject($record, $deal);
+  $deals[] = $deal;
 }
 
+
 // get total page number
-$query = "SELECT * FROM `topic`";
+$query = "SELECT * FROM `sydneytoday_deal`";
 $total_page = ceil($mysqli->query($query)->num_rows / $conf['record_each_page']);
 
 
 $html = new HTML();
 
-echo $html->render('backend/html_header', array('title' => 'Dingtie task list'));
+echo $html->render('backend/html_header', array('title' => 'Sydneytoday Deal task list'));
 echo $html->render('backend/header');
 
 echo $html->render('backend/sydneytoday/sidebar');
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-  <?php $html->renderOut('backend/sydneytoday/dingtie/nav'); ?>
-  <h2 class='sub-header'>顶贴任务列表</h2>
+  <?php $html->renderOut('backend/sydneytoday/deal/nav'); ?>
+  <h2 class='sub-header'>折扣列表</h2>
   
   <?php echo $html->render('components/pagination', array(
       'total_page' => $total_page,
@@ -40,19 +41,21 @@ echo $html->render('backend/sydneytoday/sidebar');
       <tr>
         <th>#</th>
         <th>标题</th>
-        <th>最后顶贴时间</th>
+        <th>Groupon link</th>
+        <th>最后发帖时间</th>
         <th>操作</th>
       </tr>
-      <?php foreach ($topics as $topic): ?>
-      <tr id="topic-<?php echo $topic->getId(); ?>">
-        <td><?php echo $topic->getId(); ?></td>
-        <td><?php echo $topic->getTitle(true); ?></td>
-        <td><?php echo $topic->getLastReplied() ?></td>
+      <?php foreach ($deals as $deal): ?>
+      <tr id="sydneytoday_deal-<?php echo $deal->getId(); ?>">
+        <td><?php echo $deal->getId(); ?></td>
+        <td><?php echo $deal->getTitle(true); ?></td>
+        <td><?php echo $deal->getGrouponLink(); ?></td>
+        <td><?php echo $deal->getLastPublished(); ?></td>
         <td>
           <!-- edit -->
-          <button class="btn btn-xs btn-primary edit">Edit</button>
+          <button class="btn btn-xs btn-primary edit" onclick="window.location = '/admin/sydneytoday/deal/edit/<?php echo $deal->getId();?>';">Edit</button>
           <!-- delete -->
-          <?php if ($topic->getDeleted()): ?>
+          <?php if ($deal->getDeleted()): ?>
           <button class="btn btn-xs btn-danger delete deleted" type="button" data-loading-text="Deleting...">Delete forever</button>
           <?php else: ?>
           <button class="btn btn-xs btn-danger delete" type="button" data-loading-text="Deleting...">Delete</button>

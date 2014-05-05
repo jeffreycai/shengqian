@@ -27,12 +27,9 @@ if (isset($_POST['submit'])) {
   }
 } else {
   $id = isset($vars[1]) ? $vars[1] : null;
-  if (is_null($id)) {
-    $html->forward('404');
-  }
-  $topic = Topic::findById($id);
-  if (!$topic) {
-    $html->forward('404');
+  $html = new HTML();
+  if ($id) {
+    $topic = Topic::findById($id);
   }
 }
 

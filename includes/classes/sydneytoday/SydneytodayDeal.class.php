@@ -3,6 +3,7 @@ require_once CLASS_DIR . DS . 'DBObject.class.php';
 
 /**
  * DB fields:
+ * - id
  * - title
  * - contact
  * - hoster
@@ -13,7 +14,7 @@ require_once CLASS_DIR . DS . 'DBObject.class.php';
  * - deleted
  * - last_published
  */
-class SydneyTodayDeal extends DBObject {
+class SydneytodayDeal extends DBObject {
   /**
    * Implement parent abstract functions
    */
@@ -111,7 +112,7 @@ class SydneyTodayDeal extends DBObject {
     global $mysqli;
     $result = $mysqli->query('SELECT * FROM `sydneytoday_deal` WHERE id=' . $id);
     if ($t = $result->fetch_object()) {
-      $deal = new SydneyTodayDeal();
+      $deal = new SydneytodayDeal();
       DBObject::importQueryResultToDbObject($t, $deal);
       return $deal;
     }

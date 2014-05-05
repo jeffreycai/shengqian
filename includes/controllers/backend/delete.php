@@ -9,7 +9,7 @@ if (is_null($table) || is_null($id)) {
 
 global $mysqli;
 
-$class = ucfirst($table);
+$class = DBObject::tableNameToClassName($table);
 
 $instance = $class::findById($id);
 
