@@ -54,6 +54,21 @@ echo $html->render('backend/sydneytoday/sidebar');
         <td>
           <!-- edit -->
           <button class="btn btn-xs btn-primary edit" onclick="window.location = '/admin/sydneytoday/deal/edit/<?php echo $deal->getId();?>';">Edit</button>
+          <!-- create instance -->
+          <div class="btn-group">
+            <button type="button" class="btn btn-xs btn-success publish-deal" data-loading-text="Publishing...">Publish</button>
+            <button type="button" class="btn btn-xs btn-success dropdown-toggle" data-toggle="dropdown">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <?php foreach ($deal->getInstances() as $instance): ?>
+              <li><?php echo $instance->getCreatedAt(); ?></li>
+              <?php endforeach; ?>
+              <li class="divider"></li>
+              <li><a href="#">Instances</a></li>
+            </ul>
+          </div>
           <!-- delete -->
           <?php if ($deal->getDeleted()): ?>
           <button class="btn btn-xs btn-danger delete deleted" type="button" data-loading-text="Deleting...">Delete forever</button>

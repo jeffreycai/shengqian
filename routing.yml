@@ -13,9 +13,9 @@ routing:
     isSecure: 1
     controller: backend/index
   backend_delete:
-    path: ^\/backend\/delete\/([^\/]+)\/(\d+)\/?$
+    path: ^\/admin\/delete\/([^\/]+)\/(\d+)\/?$
     isSecure: 1
-    controller: /backend/delete
+    controller: backend/delete
   sydneytoday_dingtie_index:
     path: ^\/admin\/sydneytoday\/dingtie\/?$
     isSecure: 1
@@ -48,6 +48,10 @@ routing:
     path: ^\/admin\/sydneytoday\/deal\/edit\/(\d+)\/?$
     isSecure: 1
     controller: backend/sydneytoday/deal/add_edit
+  sydneytoday_deal_instance_add:
+    path: ^\/admin\/sydneytoday\/deal\/(\d+)\/instance\/add\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/deal/instance/add
     
     
   login:

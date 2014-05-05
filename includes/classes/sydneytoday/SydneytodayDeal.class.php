@@ -117,6 +117,26 @@ class SydneytodayDeal extends DBObject {
       return $deal;
     }
   }
+  
+  /**
+   * get all instances
+   * 
+   * @global type $mysqli
+   * @return type
+   */
+  public function getInstances($order_by = 'created_at', $sort = 'DESC') {
+    global $mysqli;
+
+    $instances = array();
+    $query = 'SELECT * FROM sydneytoday_deal_instance WHERE did=' . $this->getId() . ' ORDER BY ' . $order_by . ' ' . $sort;
+    $result = $mysqli->query($query);
+    while ($record = $result->fetch_object()) {
+      $instance = new SydneytodayDealInstance();
+      $instance = self::importQueryResultToDbObject($record, $instance);
+      $instances[] = $instance;
+    }
+    return $instances;
+  }
 }
 
 ?>
