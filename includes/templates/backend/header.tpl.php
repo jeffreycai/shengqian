@@ -11,7 +11,7 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/sydneytoday">今日悉尼</a></li>
+        <li><a href="/admin/sydneytoday">今日悉尼</a></li>
         <li><a href="/logout">登出</a></li>
       </ul>
     </div>

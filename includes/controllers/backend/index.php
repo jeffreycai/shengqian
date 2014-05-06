@@ -1,2 +1,2 @@
 <?php
-HTML::forward('/admin/sydneytoday/dingtie');
+HTML::forward('/admin/sydneytoday');

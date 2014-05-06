@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
   $groupon_link = isset($_POST['groupon_link']) ? strip_tags($_POST['groupon_link']) : null;
   $type = isset($_POST['type']) ? strip_tags($_POST['type']) : null;
   $contact = isset($_POST['contact']) ? strip_tags($_POST['contact']) : null;
-  $hoster = isset($_POST['hoster']);
+  $hoster = isset($_POST['hoster']) ? strip_tags($_POST['hoster']) : null;
   
   
   
