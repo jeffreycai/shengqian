@@ -17,6 +17,8 @@ sydneytoday:
   username: jeangirl186@163.com
   password: 0172122a
   loginurl: http://www.sydneytoday.com/do/login.php?f
+  qaptcha_url: http://www.sydneytoday.com/qaptcha/Qaptcha.jquery.php
+  post_url: http://www.sydneytoday.com/post.php?action=postnew
 
 # curl user-agent
 curl:

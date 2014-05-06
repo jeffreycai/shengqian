@@ -7,6 +7,7 @@ if (isset($_POST['submit'])) {
   $title = isset($_POST['title']) ? strip_tags($_POST['title']) : null;
   $details = isset($_POST['details']) ? strip_tags($_POST['details']) : null;
   $image = isset($_POST['image']) ? strip_tags($_POST['image']) : null;
+  $discount = isset($_POST['discount']) ? strip_tags($_POST['discount']) : null;
   $groupon_link = isset($_POST['groupon_link']) ? strip_tags($_POST['groupon_link']) : null;
   $type = isset($_POST['type']) ? strip_tags($_POST['type']) : null;
   $contact = isset($_POST['contact']) ? strip_tags($_POST['contact']) : null;
@@ -24,6 +25,7 @@ if (isset($_POST['submit'])) {
     if (!empty($title)) $deal->setTitle($title);
     if (!empty($details)) $deal->setDetails($details);
     if (!empty($image)) $deal->setImage($image);
+    if (!empty($discount)) $deal->setDiscount($discount);
     if (!empty($groupon_link)) $deal->setGrouponLink($groupon_link);
     if (!empty($type)) $deal->setType($type);
     if (!empty($contact)) $deal->setContact($contact);
@@ -37,7 +39,7 @@ if (isset($_POST['submit'])) {
   $id = isset($vars[1]) ? $vars[1] : null;
   $html = new HTML();
   if ($id) {
-    $deal = SydneyTodayDeal::findById($id);
+    $deal = SydneytodayDeal::findById($id);
   }
 }
 

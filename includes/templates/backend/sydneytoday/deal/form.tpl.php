@@ -16,7 +16,7 @@
   <div class="form-group">
     <label for="details" class="col-sm-3 control-label">说明 <span>*</span></label>
     <div class="col-sm-9">
-      <textarea id="details" class="form-control" placeholder="折扣的中文说明" name="details" required=""><?php if (isset($_POST['details'])) { 
+      <textarea id="details" class="form-control" placeholder="折扣的中文说明" name="details" required="" rows="15"><?php if (isset($_POST['details'])) { 
           echo $_POST['details'];
         } elseif ($deal) {
           echo $deal->getDetails();
@@ -43,6 +43,28 @@
         <?php elseif($deal): ?>
              value="<?php echo $deal->getGrouponLink(); ?>"
         <?php endif; ?> required="" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="contact" class="col-sm-3 control-label">联系人 <span>*</span></label>
+    <div class="col-sm-9">
+      <input id="contact" type="text" class="form-control" placeholder="联系人姓名(optional)" name="contact" 
+        <?php if (isset($_POST['contact'])): ?>
+             value="<?php echo $_POST['contact'] ?>"
+        <?php elseif ($deal): ?>
+             value="<?php echo $deal->getContact(); ?>"
+        <?php endif; ?> required="" />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="image" class="col-sm-3 control-label">折扣</label>
+    <div class="col-sm-9">
+      <input id="image" type="text" class="form-control" placeholder="帖子标题" name="discount" 
+        <?php if (isset($_POST['discount'])): ?>
+             value="<?php echo $_POST['discount'] ?>"
+        <?php elseif ($deal): ?>
+             value="<?php echo $deal->getDiscount(); ?>"
+        <?php endif; ?> />
     </div>
   </div>
   <div class="form-group">
@@ -103,17 +125,6 @@
           <?php endif; ?> />
         其他
       </label>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="contact" class="col-sm-3 control-label">联系人</label>
-    <div class="col-sm-9">
-      <input id="contact" type="text" class="form-control" placeholder="联系人姓名(optional)" name="contact" 
-        <?php if (isset($_POST['contact'])): ?>
-             value="<?php echo $_POST['contact'] ?>"
-        <?php elseif ($deal): ?>
-             value="<?php echo $deal->getContact(); ?>"
-        <?php endif; ?> />
     </div>
   </div>
   <div class="form-group">

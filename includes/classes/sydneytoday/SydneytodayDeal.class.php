@@ -13,6 +13,7 @@ require_once CLASS_DIR . DS . 'DBObject.class.php';
  * - image
  * - deleted
  * - last_published
+ * - discount
  */
 class SydneytodayDeal extends DBObject {
   /**
@@ -103,6 +104,12 @@ class SydneytodayDeal extends DBObject {
     } else {
       return date('Y-m-d H:i:s', $lp);
     }
+  }
+  public function setDiscount($d) {
+    $this->setDbFieldDiscount($d);
+  }
+  public function getDiscount() {
+    return $this->getDbFieldDiscount();
   }
   
   /** ---------------------

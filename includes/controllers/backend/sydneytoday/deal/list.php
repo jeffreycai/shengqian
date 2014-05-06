@@ -49,7 +49,7 @@ echo $html->render('backend/sydneytoday/sidebar');
       <tr id="sydneytoday_deal-<?php echo $deal->getId(); ?>">
         <td><?php echo $deal->getId(); ?></td>
         <td><?php echo $deal->getTitle(true); ?></td>
-        <td><?php echo $deal->getGrouponLink(); ?></td>
+        <td><a href="<?php echo $deal->getGrouponLink(); ?>">link</a></td>
         <td class="last_published"><?php echo $deal->getLastPublished(true); ?></td>
         <td>
           <!-- edit -->
@@ -62,13 +62,12 @@ echo $html->render('backend/sydneytoday/sidebar');
               <span class="sr-only">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu publish" role="menu">
-              <?php foreach ($deal->getInstances() as $instance): ?>
+              <?php $instances = $deal->getInstances(); ?>
+              <?php foreach ($instances as $instance): ?>
               <li class="disabled"><a href="#"><?php echo $instance->getCreatedAt(true); ?></a></li>
               <?php endforeach; ?>
-              <!--
               <li class="divider"></li>
-              <li><a href="#">Instances</a></li>
-              -->
+              <li  class="disabled"><a href="#"><small><strong><?php echo sizeof($instances); ?> records in total.</strong></small></a></li>
             </ul>
           </div>
           <!-- delete -->
