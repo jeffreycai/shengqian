@@ -94,9 +94,15 @@ class SydneytodayDeal extends DBObject {
   public function setLastPublished($lp) {
     $this->setDbFieldLast_published($lp);
   }
-  public function getLastPublished() {
+  public function getLastPublished($time_ago = false) {
     $lp = $this->getDbFieldLast_published();
-    return is_null($lp) ? 'N/A' : date('Y-m-d H:i:s', $lp);
+    if (is_null($lp)) {
+      return 'N/A';
+    } elseif ($time_ago) {
+      return time_ago($lp);
+    } else {
+      return date('Y-m-d H:i:s', $lp);
+    }
   }
   
   /** ---------------------
@@ -132,7 +138,7 @@ class SydneytodayDeal extends DBObject {
     $result = $mysqli->query($query);
     while ($record = $result->fetch_object()) {
       $instance = new SydneytodayDealInstance();
-      $instance = self::importQueryResultToDbObject($record, $instance);
+      SydneytodayDealInstance::importQueryResultToDbObject($record, $instance);
       $instances[] = $instance;
     }
     return $instances;

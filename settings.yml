@@ -16,3 +16,8 @@ mysql_db: sydneytoday
 sydneytoday:
   username: jeangirl186@163.com
   password: 0172122a
+  loginurl: http://www.sydneytoday.com/do/login.php?f
+
+# curl user-agent
+curl:
+  useragent: Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)

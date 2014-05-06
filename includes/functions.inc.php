@@ -199,3 +199,33 @@ function echo_link_active_class($active_url, $current_url, $class='active') {
   }
 }
 
+/**
+ * convert a time stamp to time ago
+ * 
+ * @param type $ptime
+ * @return string
+ */
+function time_ago($ptime) {
+  $etime = time() - $ptime;
+  if ($etime < 1) {
+    return '0 seconds';
+  }
+  $a = array( 12 * 30 * 24 * 60 * 60  =>  '年',
+              30 * 24 * 60 * 60       =>  '月',
+              24 * 60 * 60            =>  '日',
+              60 * 60                 =>  '小时',
+              60                      =>  '分钟',
+              1                       =>  '秒'
+  );
+
+  foreach ($a as $secs => $str) {
+    $d = $etime / $secs;
+    if ($d >= 1)
+    {
+      $r = round($d);
+//      return $r . ' ' . $str . ($r > 1 ? 's' : '') . ' ago';
+      return $r . ' ' . $str . '之前';
+    }
+  }
+}
+

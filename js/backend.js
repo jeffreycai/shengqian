@@ -35,6 +35,8 @@ jQuery(function ($) {
       url: "/admin/sydneytoday/deal/"+id+"/instance/add"
     }).always(function(data){
       btn.button('reset');
+      $('.last_published', tr).html(data);
+      $('.publish', tr).prepend('<li class="disabled"><a href="#">' + data + '</a></li>');
     });
   });
 });

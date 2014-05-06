@@ -35,8 +35,15 @@ class SydneytodayDealInstance extends DBObject {
   public function setCreatedAt($timestamp) {
     $this->setDbFieldCreated_at($timestamp);
   }
-  public function getCreatedAt() {
-    return $this->getDbFieldCreated_at();
+  public function getCreatedAt($time_ago = false) {
+    $ca = $this->getDbFieldCreated_at();
+    if (is_null($ca)) {
+      return 'N/A';
+    } elseif ($time_ago) {
+      return time_ago($ca);
+    } else {
+      return date('Y-m-d H:i:s', $ca);
+    }
   }
   public function setDid($id) {
     $this->setDbFieldDid($id);

@@ -116,6 +116,15 @@ class SydneyTodayDeal extends DBObject {
       return $deal;
     }
   }
+  
+  /**
+   * get the tracking page uri
+   * 
+   * @return type
+   */
+  public function getGrouponAffiliateUrl() {
+    return '/deal/'.$this->getId().'/tracking';
+  }
 }
 
 ?>

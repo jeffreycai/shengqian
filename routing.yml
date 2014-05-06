@@ -6,7 +6,13 @@ routing:
     isSecure: 0
     # which controller should be assigned
     controller: frontend/index
-    
+  
+  
+  groupon_tracking:
+    path: ^\/deal\/(\d+)\/tracking\/?$
+    isSecure: 0
+    controller: frontend/groupon/tracking
+  
 
   admin:
     path: ^\/admin(\/)?$
@@ -16,6 +22,14 @@ routing:
     path: ^\/admin\/delete\/([^\/]+)\/(\d+)\/?$
     isSecure: 1
     controller: backend/delete
+  user_cookie_delete:
+    path: ^\/admin\/sydneytoday\/user\/flush-cookie\/?$
+    isSecure: 1
+    controller: backend/user/cookie_delete
+  sydneytoday_index:
+    path: ^\/admin\/sydneytoday\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/index
   sydneytoday_dingtie_index:
     path: ^\/admin\/sydneytoday\/dingtie\/?$
     isSecure: 1

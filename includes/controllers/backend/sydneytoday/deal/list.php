@@ -9,7 +9,7 @@ $query = "SELECT * FROM `sydneytoday_deal` ORDER BY deleted ASC, last_published 
 $result = $mysqli->query($query);
 $deals = array();
 while ($record = $result->fetch_object()) {
-  $deal = new SydneyTodayDeal();
+  $deal = new SydneytodayDeal();
   DBObject::importQueryResultToDbObject($record, $deal);
   $deals[] = $deal;
 }
@@ -50,7 +50,7 @@ echo $html->render('backend/sydneytoday/sidebar');
         <td><?php echo $deal->getId(); ?></td>
         <td><?php echo $deal->getTitle(true); ?></td>
         <td><?php echo $deal->getGrouponLink(); ?></td>
-        <td><?php echo $deal->getLastPublished(); ?></td>
+        <td class="last_published"><?php echo $deal->getLastPublished(true); ?></td>
         <td>
           <!-- edit -->
           <button class="btn btn-xs btn-primary edit" onclick="window.location = '/admin/sydneytoday/deal/edit/<?php echo $deal->getId();?>';">Edit</button>
@@ -61,12 +61,14 @@ echo $html->render('backend/sydneytoday/sidebar');
               <span class="caret"></span>
               <span class="sr-only">Toggle Dropdown</span>
             </button>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu publish" role="menu">
               <?php foreach ($deal->getInstances() as $instance): ?>
-              <li><?php echo $instance->getCreatedAt(); ?></li>
+              <li class="disabled"><a href="#"><?php echo $instance->getCreatedAt(true); ?></a></li>
               <?php endforeach; ?>
+              <!--
               <li class="divider"></li>
               <li><a href="#">Instances</a></li>
+              -->
             </ul>
           </div>
           <!-- delete -->
