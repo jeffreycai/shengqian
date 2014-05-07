@@ -1,3 +1,7 @@
+#site_url
+site_url: http://sydneytoday.websitesydney.net
+tracking_site_url: http://tracking.hosterdiy.com
+
 #backend user, username:password
 backend_user:
   admin: numb3r1

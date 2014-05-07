@@ -57,6 +57,17 @@
     </div>
   </div>
   <div class="form-group">
+    <label for="contact" class="col-sm-3 control-label">活动截止日期</label>
+    <div class="col-sm-9">
+      <input id="due_date" type="text" class="form-control datepicker" placeholder="活动截止日期(optional)" name="due_date" 
+        <?php if (isset($_POST['due_date'])): ?>
+             value="<?php echo $_POST['due_date'] ?>"
+        <?php elseif ($deal): ?>
+             value="<?php echo $deal->getDueDate(); ?>"
+        <?php endif; ?> />
+    </div>
+  </div>
+  <div class="form-group">
     <label for="image" class="col-sm-3 control-label">折扣</label>
     <div class="col-sm-9">
       <input id="image" type="text" class="form-control" placeholder="帖子标题" name="discount" 

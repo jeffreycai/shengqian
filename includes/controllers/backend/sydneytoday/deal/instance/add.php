@@ -24,8 +24,9 @@ $result = $curl->post(
 
 // post deal on sydneytoday
 $data[] = "postdb[city_id]=1"; // --
-$data[] = "postdb[title]=" . urlencode($deal->getTitle()); // --
+$data[] = "postdb[title]=" . urlencode(mb_convert_encoding($deal->getTitle(), 'GB2312', 'UTF-8')); // --
 $data[] = "postdb[linkman]=" . urlencode($deal->getContact()); // --
+$data[] = "postdb[content]=" . urlencode(mb_convert_encoding($deal->getDetails(), 'GB2312', 'UTF-8')); // --
 $data[] = "postdb[telephone]=";
 $data[] = "postdb[mobphone]=";
 $data[] = "postdb[fax]=";
@@ -34,9 +35,9 @@ $data[] = "postdb[msn]";
 $data[] = "postdb[email]";
 $data[] = "postdb[my_host]=";
 $data[] = "postdb[sortid]=" . urlencode($deal->getType()); // --
-$data[] = "postdb[my_price]=" . urlencode($deal->getDiscount()); // --
+$data[] = "postdb[my_price]=" . urlencode(mb_convert_encoding($deal->getDiscount(), 'GB2312', 'UTF-8')); // --
 $data[] = "postdb[my_time]=";
-$data[] = "postdb[my_expressurl]=" . urlencode($deal->getGrouponLink());
+$data[] = "postdb[my_expressurl]=" . urlencode($deal->getTrackingPageLink());
 $data[] = "titledb[1]=";
 $data[] = "photodb[1]=" . urlencode($deal->getImage());
 $data[] = "local_file1=";
@@ -52,7 +53,18 @@ $result = $curl->post(
         implode('&', $data),
         'http://www.sydneytoday.com/post.php?fid=194'
 );
-die($result);
+
+// deal with error
+$matches = array();
+$text;
+if (preg_match('/alert\(\'(.*)\'\);/', $result, $matches)) {
+  $text = mb_convert_encoding($matches[1], 'UTF-8', 'GB2312');
+  if ($text != '内容正在提交...') {
+    echo $text;
+    exit;
+  }
+}
+
 
 // create instance and update deal
 $deal = SydneytodayDeal::findById($did);
@@ -65,7 +77,8 @@ $instance->save();
 $deal->setLastPublished($now);
 $deal->save();
 
-echo time_ago($now);
-
-$dd = "X9sdz-EbHwgjNZQ6QPSypMqsjy4EwxZ4";
-$jj = "REvtRzn";
+if ($text == '内容正在提交...') {
+  echo $text;
+} else {
+  echo time_ago($now);
+}

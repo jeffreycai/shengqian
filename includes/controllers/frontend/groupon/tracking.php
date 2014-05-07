@@ -9,5 +9,8 @@ if (!$deal) {
 }
 
 $html = new HTML();
-$html->renderOut('frontend/html_header_tracking', array('title' => $deal->getTitle()));
+$html->renderOut('frontend/html_header_tracking', array(
+    'title' => $deal->getTitle(),
+    'redirect_url' => $deal->getGrouponLink()
+));
 $html->renderOut('frontend/html_footer_tracking');

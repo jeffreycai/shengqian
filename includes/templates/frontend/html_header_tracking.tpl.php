@@ -7,7 +7,7 @@
 
 <head profile="http://www.w3.org/1999/xhtml/vocab">
   <meta charset="utf-8" />
-  <meta http-equiv="refresh" content="0; url=http://example.com/">
+  <meta http-equiv="refresh" content="0; url=<?php echo $data->redirect_url; ?>">
   <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
   <title><?php echo $data->title; ?></title>
 </head>
@@ -19,7 +19,7 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-50665711-1', 'websitesydney.net');
+  ga('create', 'UA-50665711-2', 'hosterdiy.com');
   ga('send', 'pageview');
 
 </script>

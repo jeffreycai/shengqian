@@ -12,6 +12,7 @@ if (isset($_POST['submit'])) {
   $type = isset($_POST['type']) ? strip_tags($_POST['type']) : null;
   $contact = isset($_POST['contact']) ? strip_tags($_POST['contact']) : null;
   $hoster = isset($_POST['hoster']) ? strip_tags($_POST['hoster']) : null;
+  $due_date = isset($_POST['due_date']) ? strip_tags($_POST['due_date']) : null;
   
   
   
@@ -30,6 +31,7 @@ if (isset($_POST['submit'])) {
     if (!empty($type)) $deal->setType($type);
     if (!empty($contact)) $deal->setContact($contact);
     if (!empty($hoster)) $deal->setHoster($hoster);
+    if (!empty($due_date)) $deal->setDueDate($due_date);
     $deal->save();
     
     setMsg(MSG_SUCCESS, '折扣信息创建成功！');

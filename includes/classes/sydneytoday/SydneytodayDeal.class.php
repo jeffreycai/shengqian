@@ -111,6 +111,12 @@ class SydneytodayDeal extends DBObject {
   public function getDiscount() {
     return $this->getDbFieldDiscount();
   }
+  public function setDueDate($dd) {
+    $this->setDbFieldDue_date($dd);
+  }
+  public function getDueDate() {
+    return $this->getDbFieldDue_date();
+  }
   
   /** ---------------------
    * Self defined functions
@@ -149,6 +155,23 @@ class SydneytodayDeal extends DBObject {
       $instances[] = $instance;
     }
     return $instances;
+  }
+  
+  public function getTrackingPageLink() {
+    global $conf;
+    return $conf['tracking_site_url'] . '/deal/' . $this->getId() . '/tracking';
+  }
+  
+  public function getGrouponLinkNaked() {
+    $url = $this->getGrouponLink();
+    $matches = array();
+    preg_match('/url=([^&]+)/', $url, $matches);
+    if (isset($matches[1])) {
+      $tokens = explode('?', urldecode($matches[1]));
+      return $tokens[0];
+    } else {
+      return $url;
+    }
   }
 }
 

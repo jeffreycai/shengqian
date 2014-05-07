@@ -1,4 +1,9 @@
 jQuery(function ($) {
+  //-- initialize date picker
+  $('.datepicker').datepicker({
+    format: 'yyyy-mm-dd'
+  });
+  
   //-- delete a topic
   $('.delete').click(function(){
     var r = window.confirm("Are you sure to delete?");

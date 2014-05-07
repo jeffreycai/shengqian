@@ -41,7 +41,8 @@ echo $html->render('backend/sydneytoday/sidebar');
       <tr>
         <th>#</th>
         <th>标题</th>
-        <th>Groupon link</th>
+        <th>Target</th>
+        <th>Due</th>
         <th>最后发帖时间</th>
         <th>操作</th>
       </tr>
@@ -49,7 +50,8 @@ echo $html->render('backend/sydneytoday/sidebar');
       <tr id="sydneytoday_deal-<?php echo $deal->getId(); ?>">
         <td><?php echo $deal->getId(); ?></td>
         <td><?php echo $deal->getTitle(true); ?></td>
-        <td><a href="<?php echo $deal->getGrouponLink(); ?>">link</a></td>
+        <td><a href="<?php echo $deal->getGrouponLinkNaked(); ?>">link</a></td>
+        <td><?php echo $deal->getDueDate(); ?></td>
         <td class="last_published"><?php echo $deal->getLastPublished(true); ?></td>
         <td>
           <!-- edit -->
