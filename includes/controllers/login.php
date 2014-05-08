@@ -19,7 +19,7 @@ if (!isLogin()) {
     if ($authentication_success) {
       login($username);
       
-      HTML::forward();
+      HTML::forward('/admin');
     // if fail
     } else {
       setMsg(MSG_ERROR, 'Username or password incorrect. Please try again.');;

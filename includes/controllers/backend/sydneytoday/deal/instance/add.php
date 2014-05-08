@@ -24,7 +24,7 @@ $result = $curl->post(
 
 // post deal on sydneytoday
 $data[] = "postdb[city_id]=1"; // --
-$data[] = "postdb[title]=" . urlencode(mb_convert_encoding($deal->getTitle(), 'GB2312', 'UTF-8')); // --
+$data[] = "postdb[title]=" . urlencode(mb_convert_encoding($deal->getTitle() . "    " . chr(97 + mt_rand(0, 25)), 'GB2312', 'UTF-8')); // --
 $data[] = "postdb[linkman]=" . urlencode($deal->getContact()); // --
 $data[] = "postdb[content]=" . urlencode(mb_convert_encoding($deal->getDetails(), 'GB2312', 'UTF-8')); // --
 $data[] = "postdb[telephone]=";

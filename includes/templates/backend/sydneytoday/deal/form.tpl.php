@@ -26,7 +26,7 @@
   <div class="form-group">
     <label for="image" class="col-sm-3 control-label">图片 <span>*</span></label>
     <div class="col-sm-9">
-      <input id="image" type="url" class="form-control" placeholder="帖子标题" name="image" 
+      <input id="image" type="url" class="form-control" placeholder="图片" name="image" 
         <?php if (isset($_POST['image'])): ?>
              value="<?php echo $_POST['image'] ?>"
         <?php elseif ($deal): ?>
