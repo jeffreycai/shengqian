@@ -9,6 +9,8 @@ function custom_loader($class) {
     include(CLASS_DIR . DS . $class . '.class.php');
   } elseif (is_file(CLASS_DIR . DS . 'sydneytoday' . DS . $class . '.class.php')) {
     include(CLASS_DIR . DS . 'sydneytoday' . DS . $class . '.class.php');
+  } elseif (is_file(CLASS_DIR . DS . 'deal' . DS . $class . '.class.php')) {
+    include(CLASS_DIR . DS . 'deal' . DS . $class . '.class.php');
   }
 }
 

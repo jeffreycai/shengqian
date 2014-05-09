@@ -21,7 +21,7 @@ class SydneytodayUser {
    * @param type $login_url
    * @return type
    */
-  public function login($login_url) {
+  public function login($login_url, $tor = false) {
     global $conf;
     // if cookie was created less than 30 days, do not redo login
     if ($this->check_cookie()) {
@@ -29,20 +29,14 @@ class SydneytodayUser {
     }
     // otherwise do login
     // username=jeangirl186%40163.com&password=0172122a&cookietime=2592000&step=2&fromurl=http%3A%2F%2Fwww.sydneytoday.com%2F
-    $ch = curl_init($login_url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // whether to print out or not when curl_exec();
-    curl_setopt($ch, CURLOPT_HEADER, 0); // whether to include HEADER in output
-    curl_setopt($ch, CURLOPT_COOKIEFILE, $this->getCookiePath());
-    curl_setopt($ch, CURLOPT_COOKIEJAR, $this->getCookiePath()); // where to put cookie after curl_close()
-    curl_setopt($ch, CURLOPT_USERAGENT, $conf['curl']['useragent']);
-
-    curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "username=" . urlencode($this->getUsername()) . "&password=" . urlencode($this->getPassword()) . "&cookietime=2592000&step=2&fromurl=http%3A%2F%2Fwww.sydneytoday.com%2F");
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // Follow redirect or not
-    curl_setopt($ch, CURLOPT_MAXREDIRS, 5); // Max redirects to follow. Use it along with CURLOPT_FOLLOWLOCATION
-
-    $result = curl_exec($ch);
-    curl_close($ch);
+    
+    $curl = new Curl($this->getCookiePath());
+    $result = $curl->post(
+            $login_url,
+            "username=" . urlencode($this->getUsername()) . "&password=" . urlencode($this->getPassword()) . "&cookietime=2592000&step=2&fromurl=http%3A%2F%2Fwww.sydneytoday.com%2F",
+            'http://www.sydneytoday.com/do/login.php',
+            $tor
+    );
     if (strpos($result, 'history.back(-1);')) {
       die('Sydneytoday login failed.');
     }

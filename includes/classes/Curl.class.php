@@ -23,19 +23,25 @@ class Curl {
   }
 
 
-  public function read($url) {
+  public function read($url, $tor = false) {
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // whether to print out or not when curl_exec();
     curl_setopt($ch, CURLOPT_HEADER, 0); // whether to include HEADER in output
     curl_setopt($ch, CURLOPT_COOKIEJAR, $this->getCookiePath()); // where to put cookie after curl_close()
     curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
+    
+    if ($tor) {
+      curl_setopt($ch, CURLOPT_PROXY, "127.0.0.1:9050");
+      curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+    }
+    
     $result = curl_exec($ch);
     curl_close($ch);
     return $result;
   }
   
   
-  public function post($url, $data, $referer = null) {
+  public function post($url, $data, $referer = null, $tor = false) {
     $cookie_path = $this->getCookiePath();
     $user_agent = $this->getUserAgent();
     
@@ -48,6 +54,10 @@ class Curl {
     
     if ($referer) {
       curl_setopt($ch, CURLOPT_REFERER, $referer);
+    }
+    if ($tor) {
+      curl_setopt($ch, CURLOPT_PROXY, "127.0.0.1:9050");
+      curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
     }
 
     curl_setopt($ch, CURLOPT_POST, 1);

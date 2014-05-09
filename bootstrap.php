@@ -47,3 +47,11 @@ date_default_timezone_set('Australia/Sydney');
 
 //-- session
 session_start();
+
+
+
+
+
+
+// populate db
+// Category::populateDB();

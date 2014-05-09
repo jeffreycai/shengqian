@@ -27,3 +27,10 @@ sydneytoday:
 # curl user-agent
 curl:
   useragent: Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)
+  
+# category // -- see bootstrap.php for initialization
+category:
+  food: 美食
+  goods: 商品
+  travel: 旅游
+  event: 活动

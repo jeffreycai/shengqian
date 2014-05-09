@@ -26,6 +26,9 @@ routing:
     path: ^\/admin\/sydneytoday\/user\/flush-cookie\/?$
     isSecure: 1
     controller: backend/user/cookie_delete
+    
+    
+    
   sydneytoday_index:
     path: ^\/admin\/sydneytoday\/?$
     isSecure: 1
@@ -66,6 +69,25 @@ routing:
     path: ^\/admin\/sydneytoday\/deal\/(\d+)\/instance\/add\/?$
     isSecure: 1
     controller: backend/sydneytoday/deal/instance/add
+    
+    
+    
+  backend_deal_index:
+    path: ^\/admin\/deal\/?$
+    isSecure: 1
+    controller: backend/deal/index
+  backend_deal_list:
+    path: ^\/admin\/deal\/list\/?$
+    isSecure: 1
+    controller: backend/deal/list
+  backend_deal_add:
+    path: ^\/admin\/deal\/add\/?$
+    isSecure: 1
+    controller: backend/deal/add_edit
+  backend_deal_edit:
+    path: ^\/admin\/deal\/edit\/(\d+)\/?$
+    isSecure: 1
+    controller: backend/deal/add_edit
     
     
   login:

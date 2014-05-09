@@ -29,7 +29,7 @@ echo $html->render('backend/sydneytoday/sidebar');
 ?>
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
   <?php $html->renderOut('backend/sydneytoday/deal/nav'); ?>
-  <h2 class='sub-header'>折扣列表</h2>
+  <h2 class='sub-header'>折扣频道帖子列表</h2>
   
   <?php echo $html->render('components/pagination', array(
       'total_page' => $total_page,
