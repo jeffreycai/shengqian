@@ -154,7 +154,28 @@ class Deal extends DBObject {
   }
   
   public function getCategory() {
+    if (!isset($this->category)) {
+      $this->setCategory(Category::findById($this->getCid()));
+    }
     return $this->category;
+  }
+  
+  public function getDueDate($format = 'Y-m-d') {
+    if ($this->getDue()) {
+      return date($format, $this->getDue());
+    }
+    return 'N/A';
+  }
+  
+  public function getCreatedAtDate($format = 'Y-m-d') {
+    return date($format, $this->getCreatedAt());
+  }
+  
+  public function isNew() {
+    if ($this->getDbFieldId()) {
+      return false;
+    }
+    return true;
   }
 }
 

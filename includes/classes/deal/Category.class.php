@@ -43,7 +43,7 @@ class Category extends DBObject {
    ------------------------*/
   static function findById($id) {
     global $mysqli;
-    $result = $mysqli->query('SELECT * FROM `category` WHERE id=' . $id);
+    $result = $mysqli->query('SELECT * FROM `category` WHERE id=' . DBObject::prepare_val_for_sql($id));
     if ($t = $result->fetch_object()) {
       $category = new Category();
       DBObject::importQueryResultToDbObject($t, $category);
@@ -83,7 +83,8 @@ class Category extends DBObject {
           } else {
             // create
             $new = new Category();
-            $new->setName($c);
+            $new->setId($c);
+            $new->setName($name);
             $new->save();
           }
         }
@@ -94,11 +95,16 @@ class Category extends DBObject {
           } else {
             // create
             $new = new Category();
-            $new->setName($cat);
+            $new->setid($cat);
+            $new->setName($name);
             $new->save();
           }
       }
     }
+  }
+  
+  public function __toString() {
+    return $this->getName();
   }
   
 }

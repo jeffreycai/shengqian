@@ -41,6 +41,7 @@ echo $html->render('backend/deal/sidebar');
       <tr>
         <th>#</th>
         <th>标题</th>
+        <th>分类</th>
         <th>Due</th>
         <th>发帖时间</th>
         <th>Published?</th>
@@ -51,8 +52,9 @@ echo $html->render('backend/deal/sidebar');
       <tr id="deal-<?php echo $deal->getId(); ?>">
         <td><?php echo $deal->getId(); ?></td>
         <td><?php echo $deal->getTitle(true); ?></td>
-        <td><?php echo $deal->getDue(); ?></td>
-        <td><?php echo $deal->getCreatedAt(); ?></td>
+        <td><?php echo $deal->getCategory(); ?></td>
+        <td><?php echo $deal->getDueDate(); ?></td>
+        <td><?php echo $deal->getCreatedAtDate(); ?></td>
         <td><span class="glyphicon glyphicon-<?php echo $deal->getPublished() ? 'ok' : 'remove' ?>"></span></td>
         <td><span class="glyphicon glyphicon-<?php echo $deal->getPromoted() ? 'ok' : 'remove' ?>"></span></td>
         <td>

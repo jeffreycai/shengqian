@@ -1,36 +1,42 @@
 <?php 
 $current_url = $data->current_url;
+$site_name = $data->site_name;
+$categories = $data->categories;
 ?> 
-
-        <div class="navbar navbar-default navbar-static-top" role="navigation">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">Project name</a>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="sidemenu-switch"></button>
+          <a class="navbar-brand" href="#"><?php echo $site_name; ?></a>
+          <button type="button" class="top-action"></button>
         </div>
+        <div class="navbar-collapse collapse">
+         <ul class="nav navbar-nav navbar-right">
+           <li<?php echo_link_active_class('/', $current_url); ?>><a href="/">首页</a></li>
+           <li<?php echo_link_active_class('/discounts', $current_url); ?> class="dropdown">
+             <a href="/discounts" class="dropdown-toggle" data-toggle="dropdown">折扣信息 <b class="caret"></b></a>
+             <ul class="dropdown-menu">
+               <li<?php echo_link_active_class('/discounts/highlighted', $current_url); ?>><a href="/discounts/highlighted">精选折扣</a></li>
+               <li class="divider"></li>
+               <li class="dropdown-header">分类折扣</li>
+               <?php foreach ($categories as $key => $name): ?>
+               <li<?php echo_link_active_class("/$key", $current_url); ?>><a href="<?php echo "/$key"; ?>"><?php echo $name; ?></a></li>
+               <?php endforeach; ?>
+             </ul>
+           </li>
+           
+           <li<?php echo_link_active_class('/tips', $current_url); ?>><a href="/tips">省钱小贴士</a></li>
+           <li<?php echo_link_active_class('/contact', $current_url); ?>><a href="/contact">联系我们</a></li>
+          </ul>
+          <!--
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../navbar/">Default</a></li>
+            <li class="active"><a href="./">Static top</a></li>
+            <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+          </ul>
+          -->
+        </div>
+        
+      </div>
+    </div>
+

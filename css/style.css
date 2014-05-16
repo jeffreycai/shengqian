@@ -1,3 +1,63 @@
+/** top nav **/
+.navbar-header {
+  text-align: center;
+}
+.navbar-brand {
+  display: inline-block;
+  float: none;
+}
+.navbar-toggle {
+  float: left;
+}
+.top-action,
+.sidemenu-switch {
+  width: 30px;
+  height: 30px;
+  background-repeat: none;
+  border: none;
+  margin-top: 9px;
+}
+.top-action {
+  background: center center url("/images/top-action.png") no-repeat;
+  float: right;
+}
+.sidemenu-switch {
+  background: center center url("/images/sidemenu-switch.png") no-repeat;
+  float: left;
+}
+.sidemenu {
+  width: 300px;
+  position: fixed;
+  top: 0px;
+  left: -300px;
+  background: #2A2A2A;
+  display: block;
+  height: 100%;
+  z-index: 10;
+}
+.sidemenu .inner {
+  margin-top: 50px;
+}
+.overlay {
+  z-index: -1;
+  background: #2A2A2A;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .top-action, .sidemenu-switch {display: none;}
+  .sidemenu {
+    display: none;
+  }
+  
+}
+
+
+/** Backend **/
 .form-signin {
     margin: 0 auto;
     max-width: 330px;

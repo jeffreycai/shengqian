@@ -4,7 +4,7 @@ $deal = null;
 if (isset($_POST['submit'])) {
   // http://www.sydneytoday.com/bencandy.php?fid=12&id=166758
   $id = isset($_POST['id']) ? $_POST['id'] : null;
-  $cid = isset($_POST['cid']) ? $_POST['cid'] : null;
+  $cat = isset($_POST['cid']) ? $_POST['cid'] : null;
   $title = isset($_POST['title']) ? strip_tags($_POST['title']) : null;
   $url = isset($_POST['url']) ? strip_tags($_POST['url']) : null;
   $coupon_code = isset($_POST['coupon_code']) ? strip_tags($_POST['coupon_code']) : null;
@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
   $discount = isset($_POST['discount']) ? strip_tags($_POST['discount']) : null;
   $published = isset($_POST['published']) ? strip_tags($_POST['published']) : null;
   $promoted = isset($_POST['promoted']) ? strip_tags($_POST['promoted']) : null;
+  $deleted = isset($_POST['deleted']) ? strip_tags($_POST['deleted']) : null;
   $hoster = isset($_POST['hoster']) ? strip_tags($_POST['hoster']) : null;
   $due = isset($_POST['due_date']) ? strip_tags($_POST['due_date']) : null;
   
@@ -26,18 +27,23 @@ if (isset($_POST['submit'])) {
     if ($id) {
       $deal->setId($id);
     }
-    if (!empty($cid)) $deal->setTitle($cid);
+    if (!empty($cat)) $deal->setCategory(Category::findById($cat));
     if (!empty($title)) $deal->setTitle($title);
-    if (!empty($url)) $deal->setTitle($url);
-    if (!empty($coupon_code)) $deal->setTitle($coupon_code);
+    if (!empty($url)) $deal->setUrl($url);
+    if (!empty($coupon_code)) $deal->setCouponCode($coupon_code);
     if (!empty($details)) $deal->setDetails($details);
     if (!empty($image)) $deal->setImage($image);
-    if (!empty($saving)) $deal->setTitle($saving);
+    if (!empty($saving)) $deal->setSaving($saving);
     if (!empty($discount)) $deal->setDiscount($discount);
-    if (!empty($published)) $deal->setGrouponLink($published);
-    if (!empty($promoted)) $deal->setTitle($promoted);
+    if (!empty($published)) $deal->setPublished($published); else $deal->setPublished (0);
+    if (!empty($promoted)) $deal->setPromoted($promoted); else $deal->setPromoted (0);
+    if (!empty($deleted)) $deal->setDeleted ($deleted); else $deal->setDeleted (0);
     if (!empty($hoster)) $deal->setHoster($hoster);
-    if (!empty($due)) $deal->setDueDate($due);
+    if (!empty($due)) $deal->setDue(strtotime($due));
+//_debug($deal);
+    if ($deal->isNew()) {
+      $deal->setCreatedAt(time());
+    }
     $deal->save();
     
     setMsg(MSG_SUCCESS, '折扣信息创建成功！');

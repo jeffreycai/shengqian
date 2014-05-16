@@ -1,6 +1,7 @@
 #site_url
 site_url: http://sydneytoday.websitesydney.net
 tracking_site_url: http://tracking.hosterdiy.com
+site_name: AuSaving 澳洲省钱网
 
 #backend user, username:password
 backend_user:

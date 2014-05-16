@@ -22,7 +22,7 @@
         <input type="radio" name="cid" value="<?php echo $cat; ?>" 
           <?php if (isset($_POST['cid']) && $_POST['cid'] == $cat): ?>
                checked
-          <?php elseif ($deal && $deal->getCategory() == $cat): ?>
+          <?php elseif ($deal && $deal->getCid() == $cat): ?>
                checked
           <?php endif; ?> />
         <?php echo $name; ?>
@@ -102,7 +102,7 @@
         <?php if (isset($_POST['due'])): ?>
              value="<?php echo $_POST['due'] ?>"
         <?php elseif ($deal): ?>
-             value="<?php echo $deal->getDue(); ?>"
+             value="<?php echo $deal->getDueDate(); ?>"
         <?php endif; ?> />
     </div>
   </div>
@@ -110,7 +110,13 @@
     <div class="col-sm-9 col-sm-offset-3">
       <div class="checkbox">
         <label for="published">
-          <input type="checkbox" name="published" /> Publish ?
+          <input type="checkbox" name="published" value="1" id="published"
+            <?php if (isset($_POST['published'])): ?>
+              checked
+            <?php elseif ($deal && $deal->getPublished()): ?>
+              checked
+            <?php endif; ?>
+          /> Publish ?
         </label>
       </div>
     </div>
@@ -119,7 +125,13 @@
     <div class="col-sm-9 col-sm-offset-3">
       <div class="checkbox">
         <label for="promoted">
-          <input type="checkbox" name="promoted" /> Promoted ?
+          <input type="checkbox" name="promoted" value="1" id="promoted"
+            <?php if (isset($_POST['promoted'])): ?>
+              checked
+            <?php elseif ($deal && $deal->getPromoted()): ?>
+              checked
+            <?php endif; ?>
+          /> Promoted ?
         </label>
       </div>
     </div>
@@ -128,7 +140,13 @@
     <div class="col-sm-9 col-sm-offset-3">
       <div class="checkbox">
         <label for="deleted">
-          <input type="checkbox" name="promoted" /> Deleted ?
+          <input type="checkbox" name="deleted" value="1" id="deleted"
+            <?php if (isset($_POST['deleted'])): ?>
+              checked
+            <?php elseif ($deal && $deal->getDeleted()): ?>
+              checked
+            <?php endif; ?>
+          /> Deleted ?
         </label>
       </div>
     </div>
