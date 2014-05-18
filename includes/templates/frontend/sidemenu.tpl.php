@@ -1,6 +1,28 @@
+<?php global $conf; ?>
+
 <div class="sidemenu collapse">
   <div class="inner">
-    <img class="img-thumbnail" style="width: 300px; height: 150px;" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjEwMCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjEzcHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MjAweDIwMDwvdGV4dD48L3N2Zz4=" />
+    <div class="logo">
+      <img src="/images/piggy.jpg" alt="<?php echo $conf['site_name'] ?>" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/">首页</a></li>
+        <li>
+          <a href="#">折扣信息</a>
+          <ul>
+            <li><a href="">今日推荐折扣</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">分类折扣</li>
+            <?php foreach ($conf['category'] as $key => $name): ?>
+            <li><a href="<?php echo "/$key"; ?>"><?php echo $name; ?></a></li>
+            <?php endforeach; ?>
+          </ul>
+        </li>
+        <li><a href="/saving-tips">省钱小贴士</a></li>
+        <li><a href="/contact-us">联系我们</a></li>
+      </ul>
+    </nav>
   </div>
 </div>
 

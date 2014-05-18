@@ -1,13 +1,13 @@
 <?php 
 $current_url = $data->current_url;
-$site_name = $data->site_name;
+$site_name_html = $data->site_name_html;
 $categories = $data->categories;
 ?> 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="sidemenu-switch"></button>
-          <a class="navbar-brand" href="#"><?php echo $site_name; ?></a>
+          <a class="navbar-brand" href="#"><?php echo $site_name_html; ?></a>
           <button type="button" class="top-action"></button>
         </div>
         <div class="navbar-collapse collapse">

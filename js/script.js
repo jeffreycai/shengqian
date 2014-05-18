@@ -20,7 +20,7 @@ $(function($){
       sidemenu.removeClass('collapse').animate({
         left: '0px'
       });
-      overlay.attr('z-index', 5).animate({
+      overlay.css('z-index', 5).animate({
         opacity: 0.7
       });
     } else {
@@ -30,7 +30,7 @@ $(function($){
       overlay.animate({
         opacity: 0
       }, function(){
-        overlay.attr('z-index', -1);
+        overlay.css('z-index', -1);
       });
     }
   }

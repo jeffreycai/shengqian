@@ -177,6 +177,19 @@ class Deal extends DBObject {
     }
     return true;
   }
+  
+  static function getAllPromoted($limit = 6) {
+    global $mysqli;
+    $query = "SELECT * FROM deal WHERE promoted=1 AND published=1 LIMIT $limit";
+    $result = $mysqli->query($query);
+    $rtn = array();
+    while ($d = $result->fetch_object()) {
+      $deal = new Deal();
+      Deal::importQueryResultToDbObject($d, $deal);
+      $rtn[] = $deal;
+    }
+    return $rtn;
+  }
 }
 
 ?>

@@ -1,3 +1,7 @@
+/*body {
+  background-color: #FDFDFD;
+}*/
+
 /** top nav **/
 .navbar-header {
   text-align: center;
@@ -30,13 +34,42 @@
   position: fixed;
   top: 0px;
   left: -300px;
-  background: #2A2A2A;
+  background: #FFF;
   display: block;
   height: 100%;
   z-index: 10;
+  overflow: auto;
 }
 .sidemenu .inner {
   margin-top: 50px;
+}
+.sidemenu .logo {
+  background-color: #F7E8D1;
+  text-align: center;
+}
+.sidemenu .logo img {
+  height: 180px;
+}
+.sidemenu nav ul {
+  list-style: none;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+.sidemenu nav ul li {
+  width: 100%;
+}
+.sidemenu nav ul li a {
+  font-size: 1.1em;
+  display: block;
+  padding: 5px 10px;
+  border-bottom: 1px solid #EEE;
+}
+.sidemenu nav ul li a:hover {
+  background-color: #EEE;
+  text-decoration: none;
+}
+.sidemenu nav ul li ul {
+  margin-left: 1.1em;
 }
 .overlay {
   z-index: -1;
@@ -48,14 +81,31 @@
   height: 100%;
   width: 100%;
 }
+body.home .jumbotron {
+  background-color: #F7E8D1;
+  margin-top: 20px;
+}
+body.home .jumbotron .logo {
+  text-align: center;
+}
+body.home .jumbotron .logo img {
+  display: none;
+}
 @media (min-width: 768px) {
   .top-action, .sidemenu-switch {display: none;}
   .sidemenu {
     display: none;
   }
-  
+  body.home .jumbotron .logo img {
+    display: inline-block;
+    width: 250px;
+  }
 }
-
+@media (min-width: 992px) {
+  body.home .jumbotron .logo img {
+    width: 300px;
+  }
+}
 
 /** Backend **/
 .form-signin {

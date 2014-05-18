@@ -35,5 +35,5 @@
 
 </head>
 
-<body>
+<body <?php echo isset($data->body_class) ? "class='$data->body_class'" : "" ?>>
 
