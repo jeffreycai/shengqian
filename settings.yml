@@ -36,3 +36,7 @@ category:
   goods: 商品
   travel: 旅游
   event: 活动
+  
+# deal
+deal:
+  thumbnail_size: 150x150

@@ -231,3 +231,7 @@ function time_ago($ptime) {
   }
 }
 
+function loadLibraryWideImage() {
+  require_once  WEBROOT . DS . 'includes' . DS . 'libraries' . DS . 'wideimage' . DS . 'lib' . DS . 'WideImage.php';
+}
+

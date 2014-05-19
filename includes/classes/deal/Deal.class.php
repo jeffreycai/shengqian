@@ -148,7 +148,7 @@ class Deal extends DBObject {
     }
   }
   
-  static function getAllPromoted($limit = 6) {
+  static function findAllPromoted($limit = 6) {
     global $mysqli;
     $query = "SELECT * FROM deal WHERE promoted=1 AND published=1 LIMIT $limit";
     $result = $mysqli->query($query);
@@ -191,7 +191,53 @@ class Deal extends DBObject {
     return true;
   }
   
+  private function getThumbnailFolder() {
+    return CACHE_DIR . DS . 'deal';
+  }
+  
+  private function makeThumbnailFilename() {
+    return 'deal_' . $this->getId() . '.jpg';
+  }
+  
+  public function getThumbnail($size, $refill=true) {
+    // get thumbnail width and height
+    $matches = array();
+    if (!preg_match('/^(\d+)x(\d+)$/i', $size, $matches)) {
+      throw new Exception('Thumbnail file size provided not correct.');
+      return null;
+    }
+    $width = intval($matches[1]);
+    $height = intval($matches[2]);
+    
+    global $conf;
+    // create cache folder if not existed
+    $deal_dir = $this->getThumbnailFolder();
+    if (!is_dir($deal_dir)) {
+      mkdir($deal_dir);
+    }
+    // create thumbnail file if not existed
+    $thumbnail = $deal_dir . DS . $this->makeThumbnailFilename();
+    if (!is_file($thumbnail)) {
+      loadLibraryWideImage();
+      $image = WideImage::load($this->getImage());
+      $image = $image->resize($width, $height);
+      if ($refill) {
+        $w = $image->getWidth();
+        $h = $image->getHeight();
+        $bg_color = $image->allocateColor(255, 255, 255);
+        if ($w == $width) {
+          $delta = ($height - $h) / 2;
+          $image = $image->resizeCanvas($width, $height, 0, $delta, $bg_color);
 
+        } else {
+          $delta = ($width - $w) / 2;
+          $image = $image->resizeCanvas($width, $height, $delta, 0, $bg_color);
+        }
+      }
+      $image->saveToFile($thumbnail);
+    }
+    return str_replace(WEBROOT, '', $thumbnail);
+  }
 }
 
 ?>
