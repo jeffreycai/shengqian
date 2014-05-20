@@ -3,7 +3,7 @@ class Curl {
   private $cookie_path;
   private $user_agent;
   
-  public function __construct($cookie_path) {
+  public function __construct($cookie_path = null) {
     global $conf;
     $this->setCookiePath($cookie_path);
     $this->setUserAgent($conf['curl']['useragent']);
@@ -27,7 +27,9 @@ class Curl {
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // whether to print out or not when curl_exec();
     curl_setopt($ch, CURLOPT_HEADER, 0); // whether to include HEADER in output
-    curl_setopt($ch, CURLOPT_COOKIEJAR, $this->getCookiePath()); // where to put cookie after curl_close()
+    if ($this->getCookiePath()) {
+      curl_setopt($ch, CURLOPT_COOKIEJAR, $this->getCookiePath()); // where to put cookie after curl_close()
+    }
     curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
     
     if ($tor) {
@@ -48,8 +50,10 @@ class Curl {
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // whether to print out or not when curl_exec();
     curl_setopt($ch, CURLOPT_HEADER, 0); // whether to include HEADER in output
-    curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_path);
-    curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_path); // where to put cookie after curl_close()
+    if ($cookie_path) {
+      curl_setopt($ch, CURLOPT_COOKIEFILE, $cookie_path);
+      curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_path); // where to put cookie after curl_close()
+    }
     curl_setopt($ch, CURLOPT_USERAGENT, $user_agent);
     
     if ($referer) {

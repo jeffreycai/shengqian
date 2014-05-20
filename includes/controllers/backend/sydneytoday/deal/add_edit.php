@@ -13,8 +13,8 @@ if (isset($_POST['submit'])) {
   $contact = isset($_POST['contact']) ? strip_tags($_POST['contact']) : null;
   $hoster = isset($_POST['hoster']) ? strip_tags($_POST['hoster']) : null;
   $due_date = isset($_POST['due_date']) ? strip_tags($_POST['due_date']) : null;
-  
-  
+  $deleted = isset($_POST['deleted']) ? 1 : 0;
+  $valid = isset($_POST['valid']) ? 1 : 0;
   
   // TODO - validation
   
@@ -32,6 +32,8 @@ if (isset($_POST['submit'])) {
     if (!empty($contact)) $deal->setContact($contact);
     if (!empty($hoster)) $deal->setHoster($hoster);
     if (!empty($due_date)) $deal->setDueDate($due_date);
+    $deal->setDeleted($deleted);
+    $deal->setValid($valid);
     $deal->save();
     
     setMsg(MSG_SUCCESS, '折扣信息创建成功！');

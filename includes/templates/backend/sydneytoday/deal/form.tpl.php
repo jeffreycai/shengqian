@@ -149,6 +149,36 @@
         <?php endif; ?> />
     </div>
   </div>
+  <div class="form-group">
+    <div class="col-sm-9 col-sm-offset-3">
+      <div class="checkbox">
+        <label for="valid">
+          <input type="checkbox" name="valid" value="1" id="valid"
+            <?php if (isset($_POST['valid'])): ?>
+              checked
+            <?php elseif ($deal && $deal->getValid()): ?>
+              checked
+            <?php endif; ?>
+          /> Valid ?
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-9 col-sm-offset-3">
+      <div class="checkbox">
+        <label for="deleted">
+          <input type="checkbox" name="deleted" value="1" id="deleted"
+            <?php if (isset($_POST['deleted'])): ?>
+              checked
+            <?php elseif ($deal && $deal->getDeleted()): ?>
+              checked
+            <?php endif; ?>
+          /> Deleted ?
+        </label>
+      </div>
+    </div>
+  </div>
   
   <?php if ($deal): ?>
   <input name="id" type="hidden" value="<?php echo $deal->getId(); ?>" />

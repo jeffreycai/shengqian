@@ -92,6 +92,12 @@ class SydneytodayDeal extends DBObject {
   public function getDeleted() {
     return $this->getDbFieldDeleted();
   }
+  public function setValid($v) {
+    $this->setDbFieldValid($v);
+  }
+  public function getValid() {
+    return $this->getDbFieldValid();
+  }
   public function setLastPublished($lp) {
     $this->setDbFieldLast_published($lp);
   }
@@ -172,6 +178,26 @@ class SydneytodayDeal extends DBObject {
     } else {
       return $url;
     }
+  }
+  
+  public function checkValid() {
+    global $conf;
+    $curl = new Curl();
+    
+    $result = $curl->read($this->getGrouponLinkNaked());
+    if (strpos($result, 'bodySoldout') == false) {
+      if (!$this->getValid()) {
+        $this->setValid(1);
+        $this->save();
+      }
+      return true;
+    }
+    
+    if ($this->getValid()) {
+      $this->setValid(0);
+      $this->save();
+    }
+    return false;
   }
 }
 

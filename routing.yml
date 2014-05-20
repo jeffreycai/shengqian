@@ -22,6 +22,10 @@ routing:
     path: ^\/admin\/delete\/([^\/]+)\/(\d+)\/?$
     isSecure: 1
     controller: backend/delete
+  backend_valid:
+    path: ^\/admin\/validate\/([^\/]+)\/(\d+)\/?$
+    isSecure: 1
+    controller: backend/validate
   user_cookie_delete:
     path: ^\/admin\/sydneytoday\/user\/flush-cookie\/?$
     isSecure: 1

@@ -44,4 +44,24 @@ jQuery(function ($) {
       $('.publish', tr).prepend('<li class="disabled"><a href="#">' + data + '</a></li>');
     });
   });
+  
+  //--valid a deal
+  $('.validate').click(function(){
+    var btn = $(this);
+    var tr = btn.parents('tr').first();
+    var tokens = tr.attr('id').split('-');
+    var table = tokens[0];
+    var id = tokens[1];
+    btn.button('loading');
+    $.ajax({
+      url: "/admin/validate/" + table + "/" + id
+    }).always(function(data){
+      btn.button('reset');
+      if (data == '1') {
+        $('.valid span', tr).removeClass('glyphicon-remove').addClass('glyphicon-ok').css('color', 'green');
+      } else {
+        $('.valid span', tr).removeClass('glyphicon-ok').addClass('glyphicon-remove').css('color', 'red');
+      }
+    });
+  });
 });
