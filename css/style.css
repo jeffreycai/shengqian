@@ -34,11 +34,12 @@
   position: fixed;
   top: 0px;
   left: -300px;
-  background: #FFF;
+  background: #FBFBFB;
   display: block;
   height: 100%;
   z-index: 10;
   overflow: auto;
+  border-right: 4px solid #444;
 }
 .sidemenu .inner {
   margin-top: 50px;
@@ -46,9 +47,12 @@
 .sidemenu .logo {
   background-color: #F7E8D1;
   text-align: center;
+  border: 4px solid #FFFFFF;
 }
 .sidemenu .logo img {
-  height: 180px;
+  display: inline-block;
+  height: 170px;
+  margin: 10px;
 }
 .sidemenu nav ul {
   list-style: none;
@@ -57,19 +61,54 @@
 }
 .sidemenu nav ul li {
   width: 100%;
+  border-bottom: 1px solid #CCC;
 }
 .sidemenu nav ul li a {
   font-size: 1.1em;
   display: block;
-  padding: 5px 10px;
-  border-bottom: 1px solid #EEE;
+  padding: 15px 10px;
+  font-weight: bold;
+  color: #666;
+  position: relative;
+}
+.sidemenu nav ul li a .glyphicon {
+  margin-right: 15px;
+  font-size: 1.5em;
+  top: 6px;
+}
+.sidemenu .glyphicon-home {
+  color: #388BD1;
+}
+.sidemenu .glyphicon-credit-card {
+  color: #A1DEF8;
+}
+.sidemenu .glyphicon-cutlery {
+  color: #3FBF79;
+}
+.sidemenu .glyphicon-gift {
+  color: #DB6AC5;
+}
+.sidemenu .glyphicon-plane {
+  color: #FEE664;
+}
+.sidemenu .glyphicon-bullhorn {
+  color: #CAD3D0;
+}
+.sidemenu .glyphicon-info-sign {
+  color: #42BDC2;
+}
+.sidemenu .glyphicon-envelope {
+  color: #7FC242;
 }
 .sidemenu nav ul li a:hover {
-  background-color: #EEE;
+  color: #000;
   text-decoration: none;
 }
 .sidemenu nav ul li ul {
-  margin-left: 1.1em;
+  margin-left: 30px;
+}
+.sidemenu nav ul li ul li {
+  border-bottom: none;
 }
 .overlay {
   z-index: -1;
@@ -81,9 +120,14 @@
   height: 100%;
   width: 100%;
 }
+.jumbotron {
+  -webkit-box-shadow: 0 0 20px 15px #cccccc;
+  box-shadow: 0 0 20px 15px #cccccc;
+}
 body.home .jumbotron {
   background-color: #F7E8D1;
   margin-top: 20px;
+  border-bottom: 1px solid #CCC;
 }
 body.home .jumbotron .logo {
   text-align: center;

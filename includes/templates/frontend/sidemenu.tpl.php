@@ -7,20 +7,35 @@
     </div>
     <nav>
       <ul>
-        <li><a href="/">首页</a></li>
+        <li><a href="/"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+        <li><a href=""><span class="glyphicon glyphicon-credit-card"></span> 折扣信息</a></li>
         <li>
-          <a href="#">折扣信息</a>
           <ul>
-            <li><a href="">今日推荐折扣</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">分类折扣</li>
-            <?php foreach ($conf['category'] as $key => $name): ?>
-            <li><a href="<?php echo "/$key"; ?>"><?php echo $name; ?></a></li>
+            <?php 
+              foreach ($conf['category'] as $key => $name): 
+                $class;
+                switch ($key) {
+                  case 'food':
+                    $class = 'cutlery'; break;
+                  case 'goods':
+                    $class = 'gift'; break;
+                  case 'event':
+                    $class = 'bullhorn'; break;
+                  case 'travel':
+                    $class = 'plane'; break;
+                }
+            ?>
+            <li>
+              <a href="<?php echo "/$key"; ?>">
+                <span class="glyphicon glyphicon-<?php echo $class; ?>"></span>
+                <?php echo $name; ?>
+              </a>
+            </li>
             <?php endforeach; ?>
           </ul>
         </li>
-        <li><a href="/saving-tips">省钱小贴士</a></li>
-        <li><a href="/contact-us">联系我们</a></li>
+        <li><a href="/saving-tips"><span class="glyphicon glyphicon-info-sign"></span> 省钱小贴士</a></li>
+        <li><a href="/contact-us"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
       </ul>
     </nav>
   </div>
