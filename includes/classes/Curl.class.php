@@ -31,6 +31,8 @@ class Curl {
       curl_setopt($ch, CURLOPT_COOKIEJAR, $this->getCookiePath()); // where to put cookie after curl_close()
     }
     curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // Follow redirect or not
+    curl_setopt($ch, CURLOPT_MAXREDIRS, 5); // Max redirects to follow. Use it along with CURLOPT_FOLLOWLOCATION
     
     if ($tor) {
       curl_setopt($ch, CURLOPT_PROXY, "127.0.0.1:9050");

@@ -12,6 +12,7 @@ require_once CLASS_DIR . DS . 'DBObject.class.php';
  * - details
  * - image
  * - deleted
+ * - valid
  * - last_published
  * - discount
  */
@@ -185,7 +186,7 @@ class SydneytodayDeal extends DBObject {
     $curl = new Curl();
     
     $result = $curl->read($this->getGrouponLinkNaked());
-    if (strpos($result, 'bodySoldout') == false) {
+    if (stripos($result, 'bodySoldout') == false) {
       if (!$this->getValid()) {
         $this->setValid(1);
         $this->save();
