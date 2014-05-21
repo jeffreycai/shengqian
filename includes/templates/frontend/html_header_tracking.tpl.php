@@ -20,6 +20,7 @@
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-50665711-2', 'hosterdiy.com');
+  ga('require', 'displayfeatures');
   ga('send', 'pageview');
 
 </script>
