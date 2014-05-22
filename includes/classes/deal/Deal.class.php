@@ -224,7 +224,7 @@ class Deal extends DBObject {
       if ($refill) {
         $w = $image->getWidth();
         $h = $image->getHeight();
-        $bg_color = $image->allocateColor(255, 255, 255);
+        $bg_color = $image->allocateColor(0, 0, 0);
         if ($w == $width) {
           $delta = ($height - $h) / 2;
           $image = $image->resizeCanvas($width, $height, 0, $delta, $bg_color);
