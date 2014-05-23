@@ -165,17 +165,33 @@ body.home .jumbotron .logo img {
   background-color: #FFF;
   margin-bottom: 10px;
   padding: 11px;
+  overflow: hidden;
+}
+.card:hover {
+  background-color: #E0E0E0;
+  cursor: pointer;
 }
 .card .tn img {
   width: 100%;
 }
 .card h4 {
   margin: 0px;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: bold;
 }
+.card h4 a {
+  color: #444;
+}
+.card:hover h4 a {
+  color: #000;
+}
+.card h4 a:hover {
+  text-decoration: none;
+}
 @media (min-width: 768px) {
-  
+  .card h4 {
+    margin-top: 7px;
+  }
 }
 
 /** Backend **/

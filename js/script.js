@@ -34,4 +34,13 @@ $(function($){
       });
     }
   }
+  
+  // -- card click
+  $('.card h4 a').click(function(event){
+    event.stopPropagation();
+    return true;
+  });
+  $('.card').click(function(event){
+    window.location.href = $('h4 a', this).attr('href');
+  });
 });
