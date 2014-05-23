@@ -14,7 +14,7 @@
               </div>
             </div>
             <div class="col-xs-7 col-xs-pull-5 col-sm-12 col-sm-pull-0">
-              <h4><?php echo $deal->getTitle(); ?></h4>
+              <h4><a href="<?php echo $deal->getPageUrl(false); ?>"><?php echo $deal->getTitle(); ?></a></h4>
             </div>
           </div>
         </div>

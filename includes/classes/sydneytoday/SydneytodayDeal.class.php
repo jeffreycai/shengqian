@@ -134,6 +134,13 @@ class SydneytodayDeal extends DBObject {
   const TYPE_TECH = 4;
   const TYPE_OTHER = 5;
   
+  /**
+   * Find a deal by 'id'
+   * 
+   * @global type $mysqli
+   * @param type $id
+   * @return \SydneytodayDeal
+   */
   static function findById($id) {
     global $mysqli;
     $result = $mysqli->query('SELECT * FROM `sydneytoday_deal` WHERE id=' . $id);
@@ -142,6 +149,43 @@ class SydneytodayDeal extends DBObject {
       DBObject::importQueryResultToDbObject($t, $deal);
       return $deal;
     }
+  }
+  
+  /**
+   * Find a deal by 'deleted'
+   * 
+   * @global type $mysqli
+   * @param type $p
+   * @return \SydneytodayDeal
+   */
+  static function findAllByDeleted($p) {
+    global $mysqli;
+    $result = $mysqli->query('SELECT * FROM `sydneytoday_deal` WHERE deleted='.DBObject::prepare_val_for_sql($p));
+    $deals = array();
+    while ($result && $t = $result->fetch_object()) {
+      $deal = new SydneytodayDeal();
+      DBObject::importQueryResultToDbObject($t, $deal);
+      $deals[] = $deal;
+    }
+    return $deals;
+  }
+  
+  static function sendInvalidReport(Array $deals) {
+    if (sizeof($deals) == 0) {
+      return;
+    }
+    
+    global $conf;
+    $to = $conf['site_admin_email'];
+    $subject = 'Invalid deals detected.';
+    $message = '';
+    foreach ($deals as $deal) {
+      $message .= $deal->getId() . ' - ' . $deal->getTitle() . "\r\n";
+    }
+    $headers = 'From: jeffreycaizhenyuan@gmail.com' . "\r\n" .
+    'Reply-To: webmaster@example.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+    mail($to, $subject, $message, $headers);
   }
   
   /**
@@ -164,11 +208,22 @@ class SydneytodayDeal extends DBObject {
     return $instances;
   }
   
+  /**
+   * Return the tracking page link
+   * 
+   * @global type $conf
+   * @return type
+   */
   public function getTrackingPageLink() {
     global $conf;
     return $conf['tracking_site_url'] . '/deal/' . $this->getId() . '/tracking';
   }
   
+  /**
+   * Get naked groupon deal page url
+   * 
+   * @return type
+   */
   public function getGrouponLinkNaked() {
     $url = $this->getGrouponLink();
     $matches = array();
@@ -181,6 +236,12 @@ class SydneytodayDeal extends DBObject {
     }
   }
   
+  /**
+   * Check if the groupon deal is still valid
+   * 
+   * @global type $conf
+   * @return boolean
+   */
   public function checkValid() {
     global $conf;
     $curl = new Curl();
@@ -200,6 +261,8 @@ class SydneytodayDeal extends DBObject {
     }
     return false;
   }
+  
+
 }
 
 ?>

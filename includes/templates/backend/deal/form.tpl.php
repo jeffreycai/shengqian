@@ -14,6 +14,17 @@
     </div>
   </div>
   <div class="form-group">
+    <label for="slug" class="col-sm-3 control-label">Url slug</label>
+    <div class="col-sm-9">
+      <input id="title" type="text" class="form-control" placeholder="url字段，小写字母和中横线 -" name="slug" 
+        <?php if (isset($_POST['slug'])): ?>
+             value="<?php echo $_POST['slug'] ?>"
+        <?php elseif ($deal): ?>
+             value="<?php echo $deal->getSlug(); ?>"
+        <?php endif; ?> required="" />
+    </div>
+  </div>
+  <div class="form-group">
     <label class="col-sm-3 control-label">类别</label>
     
     <?php foreach ($conf['category'] as $cat => $name): ?>

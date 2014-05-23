@@ -3,6 +3,7 @@ site_url: http://sydneytoday.websitesydney.net
 tracking_site_url: http://tracking.hosterdiy.com
 site_name: AuSaving.com 澳洲省钱网
 site_name_html: '<span style="color: #F7E8D1">Au</span><span style="color: #D53115">Saving</span> 澳洲省钱网'
+site_admin_email: bluestream186@gmail.com
 
 #backend user, username:password
 backend_user:

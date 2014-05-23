@@ -6,6 +6,7 @@ if (isset($_POST['submit'])) {
   $id = isset($_POST['id']) ? $_POST['id'] : null;
   $cat = isset($_POST['cid']) ? $_POST['cid'] : null;
   $title = isset($_POST['title']) ? strip_tags($_POST['title']) : null;
+  $slug = isset($_POST['slug']) ? strip_tags(trim($_POST['slug'])) : null;
   $url = isset($_POST['url']) ? strip_tags($_POST['url']) : null;
   $coupon_code = isset($_POST['coupon_code']) ? strip_tags($_POST['coupon_code']) : null;
   $details = isset($_POST['details']) ? strip_tags($_POST['details']) : null;
@@ -19,16 +20,19 @@ if (isset($_POST['submit'])) {
   $due = isset($_POST['due_date']) ? strip_tags($_POST['due_date']) : null;
   
   
-  
   // TODO - validation
+  if (!empty($slug) && preg_match('/[^a-z\-0-9]/', $slug)) {
+    setMsg(MSG_ERROR, 'slug 只能是小写或者数字');
+  } else {
   
-  // create / update deal
+    // create / update deal
     $deal = new Deal();
     if ($id) {
       $deal->setId($id);
     }
     if (!empty($cat)) $deal->setCategory(Category::findById($cat));
     if (!empty($title)) $deal->setTitle($title);
+    if (!empty($slug)) $deal->setSlug($slug);
     if (!empty($url)) $deal->setUrl($url);
     if (!empty($coupon_code)) $deal->setCouponCode($coupon_code);
     if (!empty($details)) $deal->setDetails($details);
@@ -40,7 +44,7 @@ if (isset($_POST['submit'])) {
     if (!empty($deleted)) $deal->setDeleted ($deleted); else $deal->setDeleted (0);
     if (!empty($hoster)) $deal->setHoster($hoster);
     if (!empty($due)) $deal->setDue(strtotime($due));
-//_debug($deal);
+
     if ($deal->isNew()) {
       $deal->setCreatedAt(time());
     }
@@ -48,6 +52,8 @@ if (isset($_POST['submit'])) {
     
     setMsg(MSG_SUCCESS, '折扣信息创建成功！');
     HTML::forwardBackToReferer();
+    
+  }
 
 } else {
   $id = isset($vars[1]) ? $vars[1] : null;
@@ -70,7 +76,7 @@ echo $html->render('backend/deal/sidebar');
   <?php $html->renderOut('backend/deal/nav'); ?>
   <h2 class='sub-header'>
     <?php if ($deal): ?>
-    编辑折扣信息：“<?php echo $deal->getTitle(20); ?>”;
+    编辑折扣信息："<?php echo $deal->getTitle(20); ?>";
     <?php else: ?>
     创建一个新的折扣信息
     <?php endif; ?>

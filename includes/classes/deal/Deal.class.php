@@ -6,6 +6,7 @@ require_once CLASS_DIR . DS . 'DBObject.class.php';
  * - id
  * - cid
  * - title
+ * - slug
  * - url
  * - coupon_code
  * - details
@@ -59,6 +60,12 @@ class Deal extends DBObject {
       $title = mb_substr($title, 0, $length, "utf-8") . ' ...';
     }
     return $title;
+  }
+  public function setSlug($s) {
+    $this->setDbFieldSlug($s);
+  }
+  public function getSlug() {
+    return $this->getDbFieldSlug();
   }
   public function setUrl($url) {
     $this->setDbFieldUrl($url);
@@ -237,6 +244,10 @@ class Deal extends DBObject {
       $image->saveToFile($thumbnail);
     }
     return str_replace(WEBROOT, '', $thumbnail);
+  }
+  
+  public function getPageUrl() {
+    return "/deal/" . $this->getCategory()->getName() . "/" . $this->getId();
   }
 }
 
