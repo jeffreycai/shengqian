@@ -247,7 +247,9 @@ class Deal extends DBObject {
   }
   
   public function getPageUrl() {
-    return "/deal/" . $this->getCategory()->getName() . "/" . $this->getId();
+    global $conf;
+    $cats = array_flip($conf['category']);
+    return "/deal/" . $cats[$this->getCategory()->getName()] . "/" . $this->getId();
   }
 }
 

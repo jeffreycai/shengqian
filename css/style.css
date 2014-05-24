@@ -160,12 +160,14 @@ body.home .jumbotron .logo img {
   font-size: 15px;
   font-weight: bold;
   color: #888888;
+  margin-top: 30px;
 }
 .card {
   background-color: #FFF;
   margin-bottom: 10px;
   padding: 11px;
   overflow: hidden;
+  position: relative;
 }
 .card:hover {
   background-color: #E0E0E0;
@@ -188,10 +190,38 @@ body.home .jumbotron .logo img {
 .card h4 a:hover {
   text-decoration: none;
 }
+.card .tags {
+  position: absolute;
+  bottom: 15px;
+  left: 11px;
+}
+.card .label {
+  font-size: 0.9em;
+}
+.card .label-warning {
+  margin-right: 20px;
+}
 @media (min-width: 768px) {
   .card h4 {
     margin-top: 7px;
   }
+  .card {
+    padding-bottom: 48px;
+  }
+  .card .tags {
+    width: 100%;
+  }
+  .card .label-primary {
+    float: right;
+    margin-right: 20px;
+  }
+}
+.footer {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding-top: 50px;
+  border-top: 1px solid #BBB;
+  color: #888;
 }
 
 /** Backend **/
