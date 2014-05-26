@@ -148,22 +148,62 @@ class Deal extends DBObject {
   static function findById($id) {
     global $mysqli;
     $result = $mysqli->query('SELECT * FROM `deal` WHERE id=' . $id);
-    if ($t = $result->fetch_object()) {
+    if ($result && $t = $result->fetch_object()) {
       $deal = new Deal();
       DBObject::importQueryResultToDbObject($t, $deal);
       return $deal;
     }
   }
   
-  static function findAllPromoted($limit = 6) {
+  static function findAllPromoted($limit = 0) {
     global $mysqli;
-    $query = "SELECT * FROM deal WHERE promoted=1 AND published=1 LIMIT $limit";
-    $result = $mysqli->query($query);
     $rtn = array();
+    $query = "SELECT * FROM deal WHERE promoted=1 AND published=1";
+    if ($limit) {
+      $query .= " LIMIT $limit";
+    }
+    $result = $mysqli->query($query);
     while ($d = $result->fetch_object()) {
       $deal = new Deal();
       Deal::importQueryResultToDbObject($d, $deal);
       $rtn[] = $deal;
+    }
+    return $rtn;
+  }
+  
+  static function findAllByCategory($cat, $limit = 0) {
+    global $mysqli;
+    $rtn = array();
+    
+    $query = "SELECT * FROM deal WHERE cid=" . DBObject::prepare_val_for_sql($cat) ." AND published=1";
+    if ($limit) {
+      $query .= " LIMIT $limit";
+    }
+    $result = $mysqli->query($query);
+    
+    while ($d = $result->fetch_object()) {
+      $deal = new Deal();
+      Deal::importQueryResultToDbObject($d, $deal);
+      $rtn[] = $deal;
+    }
+    return $rtn;
+  }
+  
+  static function findBySlug($slug, $cid, $id) {
+    global $mysqli;
+    $query = "SELECT * FROM deal WHERE slug=" . DBObject::prepare_val_for_sql($slug);
+    if ($cid) {
+      $query .= " AND cid=" . DBObject::prepare_val_for_sql($cid);
+    }
+    if ($id) {
+      $query .= " AND id!=" . DBObject::prepare_val_for_sql($id);
+    }
+    $result = $mysqli->query($query);
+    $rtn = null;
+    if ($result && $record = $result->fetch_object()) {
+      $deal = new Deal();
+      Deal::importQueryResultToDbObject($record, $deal);
+      $rtn = $deal;
     }
     return $rtn;
   }
@@ -250,6 +290,18 @@ class Deal extends DBObject {
     global $conf;
     $cats = array_flip($conf['category']);
     return "/deal/" . $cats[$this->getCategory()->getName()] . "/" . $this->getId();
+  }
+  
+  public function getGrouponLinkNaked() {
+    if (preg_match('/^https:\/\/t\.groupon\.com\.au/', $this->getUrl())) {
+      $url = $this->getUrl();
+      $matches = array();
+      preg_match('/url=([^&]+)/', $url, $matches);
+      if (isset($matches[1])) {
+        $tokens = explode('?', urldecode($matches[1]));
+        return $tokens[0];
+      }
+    }
   }
 }
 

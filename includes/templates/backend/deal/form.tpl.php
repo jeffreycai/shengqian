@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class="form-group">
-    <label for="slug" class="col-sm-3 control-label">Url slug</label>
+    <label for="slug" class="col-sm-3 control-label">Url slug <span>*</span></label>
     <div class="col-sm-9">
       <input id="title" type="text" class="form-control" placeholder="url字段，小写字母和中横线 -" name="slug" 
         <?php if (isset($_POST['slug'])): ?>
@@ -50,6 +50,9 @@
         <?php elseif ($deal): ?>
              value="<?php echo $deal->getUrl(); ?>"
         <?php endif; ?> required="" />
+      <?php if ($deal && $link = $deal->getGrouponLinkNaked()): ?>
+        <a href="<?php echo $link ?>" target="_blank">Groupon 源链接</a>
+      <?php endif; ?>
     </div>
   </div>
   <div class="form-group">

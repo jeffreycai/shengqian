@@ -25,9 +25,9 @@ $html = new HTML();
 echo $html->render('backend/html_header', array('title' => 'Sydneytoday Deal task list'));
 echo $html->render('backend/header');
 
-echo $html->render('backend/sydneytoday/sidebar');
+//echo $html->render('backend/sydneytoday/sidebar');
 ?>
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="main">
   <?php $html->renderOut('backend/sydneytoday/deal/nav'); ?>
   <h2 class='sub-header'>折扣频道帖子列表</h2>
   

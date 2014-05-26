@@ -23,7 +23,9 @@ if (isset($_POST['submit'])) {
   // TODO - validation
   if (!empty($slug) && preg_match('/[^a-z\-0-9]/', $slug)) {
     setMsg(MSG_ERROR, 'slug 只能是小写或者数字');
-  } else {
+  } elseif(Deal::findBySlug($slug, $cat, $id)) { 
+    setMsg(MSG_ERROR, '同样的slug已经有了，换个吧');
+  }else {
   
     // create / update deal
     $deal = new Deal();
@@ -34,7 +36,7 @@ if (isset($_POST['submit'])) {
     if (!empty($title)) $deal->setTitle($title);
     if (!empty($slug)) $deal->setSlug($slug);
     if (!empty($url)) $deal->setUrl($url);
-    if (!empty($coupon_code)) $deal->setCouponCode($coupon_code);
+    $deal->setCouponCode($coupon_code);
     if (!empty($details)) $deal->setDetails($details);
     if (!empty($image)) $deal->setImage($image);
     if (!empty($saving)) $deal->setSaving($saving);
@@ -49,8 +51,12 @@ if (isset($_POST['submit'])) {
       $deal->setCreatedAt(time());
     }
     $deal->save();
+    if ($id) {
+      setMsg(MSG_SUCCESS, '折扣信息更新成功！');
+    } else {
+      setMsg(MSG_SUCCESS, '折扣信息创建成功！');
+    }
     
-    setMsg(MSG_SUCCESS, '折扣信息创建成功！');
     HTML::forwardBackToReferer();
     
   }
@@ -69,10 +75,10 @@ $html = new HTML();
 echo $html->render('backend/html_header', array('title' => 'Create a Deal'));
 echo $html->render('backend/header');
 
-echo $html->render('backend/deal/sidebar');
+//echo $html->render('backend/deal/sidebar');
 ?>
 
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="main">
   <?php $html->renderOut('backend/deal/nav'); ?>
   <h2 class='sub-header'>
     <?php if ($deal): ?>

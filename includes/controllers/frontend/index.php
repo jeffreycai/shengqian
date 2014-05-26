@@ -14,9 +14,7 @@ $html->renderOut('frontend/nav/main', array(
 ));
 $html->renderOut('frontend/sidemenu');
 $html->renderOut('frontend/jumbotron/homepage');
-$html->renderOut('frontend/homepage', array(
-    'promoted_deals' => Deal::findAllPromoted()
-));
+$html->renderOut('frontend/homepage');
 $html->renderOut('frontend/footer');
 
 $html->renderOut('frontend/html_footer');

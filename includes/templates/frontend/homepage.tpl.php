@@ -4,7 +4,7 @@
   <h2>折扣信息</h2>
   <h3>今日精选</h3>
   <div class="row">
-    <?php foreach ($data->promoted_deals as $deal): ?>
+    <?php foreach (Deal::findAllPromoted(6) as $deal): ?>
       <div class="col-sm-6 col-md-4">
         <div class="card">
           <div class="row">
@@ -37,8 +37,8 @@
   </div>
   <h3>吃货省钱</h3>
   <div class="row">
-    <?php foreach ($data->promoted_deals as $deal): ?>
-      <div class="col-sm-6 col-md-4">
+    <?php foreach (Deal::findAllByCategory('food', 12) as $deal): ?>
+      <div class="col-sm-4 col-md-3">
         <div class="card">
           <div class="row">
             <div class="col-xs-5 col-xs-push-7 col-sm-12 col-sm-push-0">

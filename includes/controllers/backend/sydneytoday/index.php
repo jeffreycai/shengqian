@@ -3,10 +3,10 @@ $html = new HTML();
 
 $html->renderOut('backend/html_header', array('title' => 'Sydneytoday'));
 $html->renderOut('backend/header');
-$html->renderOut('backend/sydneytoday/sidebar');
+//$html->renderOut('backend/sydneytoday/sidebar');
 ?>
 
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="main">
   <?php $html->renderOut('backend/sydneytoday/nav'); ?>
   <h3 class='sub-header'>功能设置</h3>
   <?php echo renderMsgs(); ?>

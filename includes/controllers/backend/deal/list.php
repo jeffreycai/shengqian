@@ -25,9 +25,9 @@ $html = new HTML();
 echo $html->render('backend/html_header', array('title' => 'Deal list'));
 echo $html->render('backend/header');
 
-echo $html->render('backend/deal/sidebar');
+//echo $html->render('backend/deal/sidebar');
 ?>
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div class="main">
   <?php $html->renderOut('backend/deal/nav'); ?>
   <h2 class='sub-header'>折扣信息列表</h2>
   

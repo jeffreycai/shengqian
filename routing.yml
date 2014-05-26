@@ -97,7 +97,7 @@ routing:
     
     
   frontend_deal_details:
-    path: ^\/deal\/goods\/(\d+)$
+    path: ^\/deal\/([^\/]+)\/(\d+)$
     isSecure: 0
     controller: frontend/deal/details
     

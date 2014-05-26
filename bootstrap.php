@@ -54,4 +54,4 @@ session_start();
 
 
 // populate db
- Category::populateDB();
+// Category::populateDB();

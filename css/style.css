@@ -196,9 +196,10 @@ body.details .body header {
   padding: 11px;
   overflow: hidden;
   position: relative;
+  border: solid 1px #DDD;
 }
 .card:hover {
-  background-color: #E0E0E0;
+  background-color: #DDD;
   cursor: pointer;
 }
 .card .tn img {
@@ -226,22 +227,17 @@ body.details .body header {
 .card .label {
   font-size: 0.9em;
 }
-.card .label-warning {
-  margin-right: 20px;
-}
 @media (min-width: 768px) {
   .card h4 {
     margin-top: 7px;
+    height: 38px;
+    overflow: hidden;
   }
   .card {
     padding-bottom: 48px;
   }
   .card .tags {
     width: 100%;
-  }
-  .card .label-primary {
-    float: right;
-    margin-right: 20px;
   }
 }
 .footer {

@@ -78,7 +78,7 @@ class Category extends DBObject {
       // if is an array, loop
       if (is_array($cat)) {
         foreach ($cat as $c => $name) {
-          if ($instance = self::findByName($c)) {
+          if ($instance = self::findById($c)) {
             // do nothing
           } else {
             // create
@@ -90,7 +90,7 @@ class Category extends DBObject {
         }
       // otherwise
       } else {
-          if ($instance = self::findByName($cat)) {
+          if ($instance = self::findById($cat)) {
             // do nothing
           } else {
             // create
