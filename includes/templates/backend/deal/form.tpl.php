@@ -66,7 +66,7 @@
   <div class="form-group">
     <label for="details" class="col-sm-3 control-label">说明 <span>*</span></label>
     <div class="col-sm-9">
-      <textarea id="details" class="form-control" placeholder="折扣的中文说明" name="details" required="" rows="15"><?php if (isset($_POST['details'])) { 
+      <textarea id="details" class="form-control ckeditor" placeholder="折扣的中文说明" name="details" required="" rows="15"><?php if (isset($_POST['details'])) { 
           echo $_POST['details'];
         } elseif ($deal) {
           echo $deal->getDetails();

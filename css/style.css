@@ -2,6 +2,16 @@ body {
   background-color: #EEE;
   color: #444;
 }
+.divider {
+  display: block;
+  clear: both;
+  border-top: 1px solid #DDD;
+  height: 1px;
+  margin: 15px 0px;
+}
+.divider.dotted {
+  border-top-style: dotted;
+}
 
 /** top nav **/
 .navbar-header {
@@ -135,6 +145,24 @@ body.home .jumbotron .logo {
 }
 body.home .jumbotron .logo img {
   display: none;
+}
+body.details .body {
+  margin-top: 51px;
+  padding-top: 20px;
+}
+body.details .body .content {
+  background-color: #FFF;
+  padding-top: 23px;
+  border: 1px solid #DDD;
+}
+body.details .body .tn img {
+  width: 100%;
+}
+body.details .body h1 {
+  font-size: 24px;
+}
+body.details .body header {
+  margin-bottom: 15px;
 }
 @media (min-width: 768px) {
   .top-action, .sidemenu-switch {display: none;}

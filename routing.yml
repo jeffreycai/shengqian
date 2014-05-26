@@ -94,6 +94,15 @@ routing:
     controller: backend/deal/add_edit
     
     
+    
+    
+  frontend_deal_details:
+    path: ^\/deal\/goods\/(\d+)$
+    isSecure: 0
+    controller: frontend/deal/details
+    
+    
+    
   login:
     path: ^\/login$
     isSecure: 0

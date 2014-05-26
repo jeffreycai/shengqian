@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
   $slug = isset($_POST['slug']) ? strip_tags(trim($_POST['slug'])) : null;
   $url = isset($_POST['url']) ? strip_tags($_POST['url']) : null;
   $coupon_code = isset($_POST['coupon_code']) ? strip_tags($_POST['coupon_code']) : null;
-  $details = isset($_POST['details']) ? strip_tags($_POST['details']) : null;
+  $details = isset($_POST['details']) ? $_POST['details'] : null;
   $image = isset($_POST['image']) ? strip_tags($_POST['image']) : null;
   $saving = isset($_POST['saving']) ? strip_tags($_POST['saving']) : null;
   $discount = isset($_POST['discount']) ? strip_tags($_POST['discount']) : null;

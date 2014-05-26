@@ -107,6 +107,19 @@ class Category extends DBObject {
     return $this->getName();
   }
   
+  public function getRecentDeals($amount) {
+    global $mysqli;
+    $query = "SELECT * FROM deal WHERE cid=" . DBObject::prepare_val_for_sql($this->getId()) . " AND published=1 ORDER BY created_at DESC LIMIT " . $amount;
+    $result = $mysqli->query($query);
+    $rtn = array();
+    while ($result && $record = $result->fetch_object()) {
+      $deal = new Deal();
+      Deal::importQueryResultToDbObject($record, $deal);
+      $rtn[] = $deal;
+    }
+    return $rtn;
+  }
+  
 }
 
 ?>

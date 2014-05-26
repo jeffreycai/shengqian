@@ -24,6 +24,7 @@
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
   <script type="text/javascript" src="/<?php echo $data->level; ?>libraries/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+  <script type="text/javascript" src="/<?php echo $data->level; ?>libraries/ckeditor/ckeditor.js"></script>
   <script type="text/javascript" src="/<?php echo $data->level; ?>js/backend.js"></script>
   <!-- <link rel='stylesheet' href='/<?php echo $data->level; ?>css/reset.css' type='text/css' media='all' /> -->
   <link rel='stylesheet' href='/<?php echo $data->level; ?>css/dashboard.css' type='text/css' media='all' />
