@@ -153,6 +153,8 @@ body.details .body {
 body.details .body .content {
   background-color: #FFF;
   padding-top: 23px;
+  padding-bottom: 23px;
+  margin-bottom: 40px;
   border: 1px solid #DDD;
 }
 body.details .body .tn img {
@@ -160,6 +162,9 @@ body.details .body .tn img {
 }
 body.details .body h1 {
   font-size: 24px;
+}
+body.details .body h2 {
+  font-size: 15px;
 }
 body.details .body header {
   margin-bottom: 15px;
@@ -246,6 +251,15 @@ body.details .body header {
   padding-top: 50px;
   border-top: 1px solid #BBB;
   color: #888;
+}
+.sidebar .block {
+  margin-bottom: 20px;
+}
+.sidebar .search input {
+  width: 100%;
+}
+.sidebar .wechat img {
+  width: 100%;
 }
 
 /** Backend **/

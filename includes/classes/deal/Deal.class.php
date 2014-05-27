@@ -171,17 +171,20 @@ class Deal extends DBObject {
     return $rtn;
   }
   
-  static function findAllByCategory($cat, $limit = 0) {
+  static function findAllByCategory($cat, $limit = 0, $exclude_deal_id = null) {
     global $mysqli;
     $rtn = array();
     
     $query = "SELECT * FROM deal WHERE cid=" . DBObject::prepare_val_for_sql($cat) ." AND published=1";
+    if ($exclude_deal_id) {
+      $query .= " AND id!=" . $exclude_deal_id;
+    }
     if ($limit) {
       $query .= " LIMIT $limit";
     }
     $result = $mysqli->query($query);
     
-    while ($d = $result->fetch_object()) {
+    while ($result && $d = $result->fetch_object()) {
       $deal = new Deal();
       Deal::importQueryResultToDbObject($d, $deal);
       $rtn[] = $deal;
@@ -196,7 +199,7 @@ class Deal extends DBObject {
       $query .= " AND cid=" . DBObject::prepare_val_for_sql($cid);
     }
     if ($id) {
-      $query .= " AND id!=" . DBObject::prepare_val_for_sql($id);
+      $query .= " AND id=" . DBObject::prepare_val_for_sql($id);
     }
     $result = $mysqli->query($query);
     $rtn = null;

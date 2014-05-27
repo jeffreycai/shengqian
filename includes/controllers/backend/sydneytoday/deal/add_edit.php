@@ -36,8 +36,14 @@ if (isset($_POST['submit'])) {
     $deal->setValid($valid);
     $deal->save();
     
-    setMsg(MSG_SUCCESS, '折扣信息创建成功！');
-    HTML::forwardBackToReferer();
+    if ($id) {
+      setMsg(MSG_SUCCESS, '折扣信息更新成功！');
+      HTML::forward('/admin/sydneytoday/deal/list');
+    } else {
+      setMsg(MSG_SUCCESS, '折扣信息创建成功！');
+      HTML::forwardBackToReferer();
+    }
+    
 
 } else {
   $id = isset($vars[1]) ? $vars[1] : null;

@@ -23,7 +23,7 @@ class Curl {
   }
 
 
-  public function read($url, $tor = false) {
+  public function read($url, $tor = false, $redirect_times = 5) {
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); // whether to print out or not when curl_exec();
     curl_setopt($ch, CURLOPT_HEADER, 0); // whether to include HEADER in output
@@ -31,8 +31,11 @@ class Curl {
       curl_setopt($ch, CURLOPT_COOKIEJAR, $this->getCookiePath()); // where to put cookie after curl_close()
     }
     curl_setopt($ch, CURLOPT_USERAGENT, $this->getUserAgent());
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // Follow redirect or not
-    curl_setopt($ch, CURLOPT_MAXREDIRS, 5); // Max redirects to follow. Use it along with CURLOPT_FOLLOWLOCATION
+    
+    if ($redirect_times) {
+      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1); // Follow redirect or not
+      curl_setopt($ch, CURLOPT_MAXREDIRS, $redirect_times); // Max redirects to follow. Use it along with CURLOPT_FOLLOWLOCATION
+    }
     
     if ($tor) {
       curl_setopt($ch, CURLOPT_PROXY, "127.0.0.1:9050");

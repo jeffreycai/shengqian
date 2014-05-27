@@ -20,7 +20,7 @@ require('includes' . DS . 'libraries' . DS . 'spyc' . DS . 'spyc.php');
 // parse yml file
 // $conf will be available globally for all controllers/functions to use
 global $conf;
-$conf = Spyc::YAMLLoad('settings.yml'); // settings
+$conf = Spyc::YAMLLoad(WEBROOT . DS . 'settings.yml'); // settings
 $conf = array_merge($conf, Spyc::YAMLLoad('routing.yml')); // rounting configurations
 
 //-- include functions 

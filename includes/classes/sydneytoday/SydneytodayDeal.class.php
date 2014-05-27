@@ -182,8 +182,8 @@ class SydneytodayDeal extends DBObject {
     foreach ($deals as $deal) {
       $message .= $deal->getId() . ' - ' . $deal->getTitle() . "\r\n";
     }
-    $headers = 'From: jeffreycaizhenyuan@gmail.com' . "\r\n" .
-    'Reply-To: webmaster@example.com' . "\r\n" .
+    $headers = 'From: jeffreycai-sydney@hotmail.com' . "\r\n" .
+    'Reply-To: jeffreycai-sydney@hotmail.com' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
     mail($to, $subject, $message, $headers);
   }
@@ -247,7 +247,7 @@ class SydneytodayDeal extends DBObject {
     $curl = new Curl();
     
     $result = $curl->read($this->getGrouponLinkNaked());
-    if (stripos($result, 'bodySoldout') == false) {
+    if (stripos($result, 'bodySoldout') == false && stripos($result, '<span class="buy disabled">') == false) {
       if (!$this->getValid()) {
         $this->setValid(1);
         $this->save();

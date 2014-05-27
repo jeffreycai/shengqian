@@ -2,8 +2,6 @@
 global $conf;
 $deal = $data->deal;
 $category = $deal->getCategory();
-$recent_deals = $category->getRecentDeals(20);
-shuffle($recent_deals);
 ?>
 
 
@@ -36,9 +34,10 @@ shuffle($recent_deals);
     </ul>
   </div>
   
+  <div class="clearfix"></div>
+  
 </article>
 
-<?php for ($i = 0; $i < min(5, sizeof($recent_deals)); $i++): $deal = $recent_deals[$i]; ?>
-  <p><?php echo $deal->getTitle(); ?></p>
-<?php endfor; ?>
+
+
 

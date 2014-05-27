@@ -31,6 +31,8 @@ echo $html->render('backend/header');
   <?php $html->renderOut('backend/sydneytoday/deal/nav'); ?>
   <h2 class='sub-header'>折扣频道帖子列表</h2>
   
+  <?php echo renderMsgs(); ?>
+  
   <?php echo $html->render('components/pagination', array(
       'total_page' => $total_page,
       'page' => $page

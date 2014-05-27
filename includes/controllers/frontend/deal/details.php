@@ -3,6 +3,10 @@ global $conf;
 
 $id = $vars[2];
 $deal = Deal::findById($id);
+$category = $deal->getCategory();
+$similar_deals = $category->getRecentDeals(20, $id);
+shuffle($similar_deals);
+$similar_deals = array_slice($similar_deals, 0, 6);
 
 if (!$deal) {
   HTML::forward('/404');
@@ -25,7 +29,7 @@ $html->renderOut('frontend/sidemenu');
 
 <div class="container body">
   <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-8 col-md-9">
       <ol class="breadcrumb">
         <li><a href="/">首页</a></li>
         <li><a href="/deals">折扣信息</a></li>
@@ -34,8 +38,12 @@ $html->renderOut('frontend/sidemenu');
       <div class="content">
         <?php $html->renderOut('frontend/deal/details', array('deal' => $deal)); ?>
       </div>
+      <section>
+        <h2>类似省钱折扣</h2>
+        <?php $html->renderOut('components/deal_list_bottom', array('deals' => $similar_deals)); ?>
+      </section>
     </div>
-    <div class="col-sm-4 sidebar">
+    <div class="col-sm-4 col-md-3 sidebar">
       <?php $html->renderOut('frontend/deal/sidebar_left'); ?>
     </div>
   </div>
@@ -43,6 +51,7 @@ $html->renderOut('frontend/sidemenu');
 
 
 <?php
+
 $html->renderOut('frontend/footer');
 
 $html->renderOut('frontend/html_footer');

@@ -53,11 +53,13 @@ if (isset($_POST['submit'])) {
     $deal->save();
     if ($id) {
       setMsg(MSG_SUCCESS, '折扣信息更新成功！');
+      HTML::forward('/admin/deal/list');
     } else {
       setMsg(MSG_SUCCESS, '折扣信息创建成功！');
+      HTML::forwardBackToReferer();
     }
     
-    HTML::forwardBackToReferer();
+    
     
   }
 
