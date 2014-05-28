@@ -249,7 +249,16 @@ class Deal extends DBObject {
     return 'deal_' . $this->getId() . '.jpg';
   }
   
-  public function getThumbnail($size, $refill=false) {
+  public function getThumbnail($size, $refill=true) {
+    // get thumbnail width and height
+    $matches = array();
+    if (!preg_match('/^(\d+)x(\d+)$/i', $size, $matches)) {
+      throw new Exception('Thumbnail file size provided not correct.');
+      return null;
+    }
+    $width = intval($matches[1]);
+    $height = intval($matches[2]);
+    
     global $conf;
     // create cache folder if not existed
     $deal_dir = $this->getThumbnailFolder();
@@ -259,24 +268,13 @@ class Deal extends DBObject {
     // create thumbnail file if not existed
     $thumbnail = $deal_dir . DS . $this->makeThumbnailFilename();
     if (!is_file($thumbnail)) {
-      // get thumbnail width and height
-      $matches = array();
-      if (!preg_match('/^(\d+)x(\d+)$/i', $size, $matches)) {
-        throw new Exception('Thumbnail file size provided not correct.');
-        return null;
-      }
-      $width = intval($matches[1]);
-      $height = intval($matches[2]);
-      
-      // generate
       loadLibraryWideImage();
       $image = WideImage::load($this->getImage());
-      
+      $image = $image->resize($width, $height);
       if ($refill) {
-        $image = $image->resize($width, $height);
         $w = $image->getWidth();
         $h = $image->getHeight();
-        $bg_color = $image->allocateColor(0, 0, 0);
+        $bg_color = $image->allocateColor(255, 255, 255);
         if ($w == $width) {
           $delta = ($height - $h) / 2;
           $image = $image->resizeCanvas($width, $height, 0, $delta, $bg_color);
@@ -285,19 +283,7 @@ class Deal extends DBObject {
           $delta = ($width - $w) / 2;
           $image = $image->resizeCanvas($width, $height, $delta, 0, $bg_color);
         }
-      } else {
-        $image = $image->resize($width, $height, 'outside');
-        $w = $image->getWidth();
-        $h = $image->getHeight();
-        if ($width == $w) {
-          $delta = ($h - $height) / 2;
-          $image = $image->crop(0, $delta, $width, $height);
-        } else {
-          $delta = ($w - $width) / 2;
-          $image = $image->crop($delta, 0, $width, $height);
-        }
       }
-      
       $image->saveToFile($thumbnail);
     }
     return str_replace(WEBROOT, '', $thumbnail);

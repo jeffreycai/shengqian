@@ -11,10 +11,10 @@ $need_dot_on_right = $page + $conf['pagination_range'] < $total ? true : false;
 
 ?>
 
-<?php if ($total > 0): ?>
+<?php if ($total > 1): ?>
 
 <div class="item-list">
-  <ul class="pager" style="text-align: left;">
+  <ul class="pagination" style="text-align: left;">
     <?php if ($need_dot_on_left): ?>
       <li class="pager-first"><a href="<?php echo update_query_string(array('page' =>1)); ?>">&laquo; first</a></li>
       <li class="pager-previous"><a href="<?php echo update_query_string(array('page' => $page - 1)); ?>">&lt; previous</a></li>
@@ -28,7 +28,7 @@ $need_dot_on_right = $page + $conf['pagination_range'] < $total ? true : false;
       <?php endfor; ?>
     <?php endif; ?>
 
-    <li class="pager-current"><?php echo $page; ?></li>
+    <li class="pager-current active"><a href="<?php echo update_query_string(array('page' => $page)); ?>"><?php echo $page; ?></a></li>
 
     <?php if ($need_dot_on_right): ?>
       <?php for ($j = 1; $j <= $conf['pagination_range']; $j++): ?>

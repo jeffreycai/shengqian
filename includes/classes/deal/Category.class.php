@@ -41,6 +41,12 @@ class Category extends DBObject {
   /** ---------------------
    * Self defined functions
    ------------------------*/
+  const COLOUR_ALL = '#A1DEF8';
+  const COLOUR_FOOD = '#3FBF79';
+  const COLOUR_GOODS = '#DB6AC5';
+  const COLOUR_TRAVEL = '#FEE664';
+  const COLOUR_EVENT = '#CAD3D0';
+  
   static function findById($id) {
     global $mysqli;
     $result = $mysqli->query('SELECT * FROM `category` WHERE id=' . DBObject::prepare_val_for_sql($id));

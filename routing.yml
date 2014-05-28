@@ -100,7 +100,15 @@ routing:
     path: ^\/deal\/([^\/]+)\/(\d+)$
     isSecure: 0
     controller: frontend/deal/details
+  fontend_deals:
+    path: ^\/deals\/([^\/]+)$
+    isSecure: 0
+    controller: frontend/deal/list
     
+  search:
+    path: ^\/search\/deal$
+    isSecure: 0
+    controller: frontend/deal/search
     
     
   login:
