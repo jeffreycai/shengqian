@@ -134,24 +134,24 @@ body {
   height: 100%;
   width: 100%;
 }
-.jumbotron {
-  -webkit-box-shadow: 0 0 20px 15px #cccccc;
-  box-shadow: 0 0 20px 15px #cccccc;
-}
-.branding {
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-}
 body.home .jumbotron {
   background-color: #F7E8D1;
   margin-top: 20px;
   border-bottom: 1px solid #CCC;
+  -webkit-box-shadow: 0 0 20px 15px #cccccc;
+  box-shadow: 0 0 20px 15px #cccccc;
 }
 body.home .jumbotron .logo {
   text-align: center;
 }
 body.home .jumbotron .logo img {
   display: none;
+}
+body.deals .jumbotron {
+  padding: 0px;
+}
+body.deals .jumbotron .img-wrapper {
+  padding: 4px; background-color: #FFF;
 }
 .body {
   margin-top: 51px;
@@ -273,6 +273,27 @@ body.home .jumbotron .logo img {
 .sidebar .search input {
   width: 100%;
 }
+body.deals .nav-pills li a {
+  padding: 8px 10px;
+  font-size: 0.9em;
+}
+body.deals .nav-tabs li a {
+  padding: 8px 10px;
+  font-size: 0.9em;
+}
+@media (min-width: 992px) {
+  body.deals .nav-pills li a {
+    padding: 10px 15px;
+    font-size: 1em;
+  }
+}
+@media (min-width: 560px) {
+  body.deals .nav-tabs li a {
+    padding: 10px 15px;
+    font-size: 1em;
+  }
+}
+
 
 /** Backend **/
 .form-signin {
