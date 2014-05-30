@@ -32,7 +32,8 @@ $html->renderOut('frontend/sidemenu');
     <div class="col-sm-8 col-md-9">
       <ol class="breadcrumb">
         <li><a href="/">首页</a></li>
-        <li><a href="/deals">折扣信息</a></li>
+        <li><a href="/deals">省钱折扣</a></li>
+        <li><a href="/deals/<?php echo $category->getId() ?>"><?php echo $category; ?></a></li>
         <li class="active"><?php echo $deal->getTitle(TRUE, 15) ?></li>
       </ol>
       <div class="content">

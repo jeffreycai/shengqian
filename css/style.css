@@ -12,6 +12,9 @@ body {
 .divider.dotted {
   border-top-style: dotted;
 }
+.img-responsive {
+  width: 100%;
+}
 
 /** top nav **/
 .navbar-header {
@@ -154,15 +157,15 @@ body.home .jumbotron .logo img {
   margin-top: 51px;
   padding-top: 20px;
 }
+.home .body {
+  margin-top: 20px;
+}
 .body .content {
   background-color: #FFF;
   padding-top: 23px;
   padding-bottom: 23px;
   margin-bottom: 40px;
   border: 1px solid #DDD;
-}
-.body .tn img {
-  width: 100%;
 }
 .body h1 {
   font-size: 24px;
@@ -211,12 +214,9 @@ body.home .jumbotron .logo img {
   background-color: #DDD;
   cursor: pointer;
 }
-.card .tn img {
-  width: 100%;
-}
 .card h4 {
   margin: 0px;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
 }
 .card h4 a {
@@ -232,15 +232,26 @@ body.home .jumbotron .logo img {
   position: absolute;
   bottom: 15px;
   left: 11px;
+  font-size: 0.9em;
 }
 .card .label {
   font-size: 0.9em;
+}
+@media (min-width: 560px) {
+  .card h4 {
+    font-size: 18px;
+  }
+  .card .tags {
+    font-size: 1em;
+  }
 }
 @media (min-width: 768px) {
   .card h4 {
     margin-top: 7px;
     height: 38px;
     overflow: hidden;
+    font-size: 15px;
+    line-height: 1.3em;
   }
   .card {
     padding-bottom: 48px;
@@ -260,9 +271,6 @@ body.home .jumbotron .logo img {
   margin-bottom: 20px;
 }
 .sidebar .search input {
-  width: 100%;
-}
-.sidebar .wechat img {
   width: 100%;
 }
 

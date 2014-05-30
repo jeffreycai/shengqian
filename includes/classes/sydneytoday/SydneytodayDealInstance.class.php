@@ -51,7 +51,7 @@ class SydneytodayDealInstance extends DBObject {
   public function getDid() {
     return $this->getDbFieldDid();
   }
-  public function setDeal(SydneytodayDeal $deal) {
+  public function setDeal($deal) {
     $this->deal = $deal;
     $this->setDid($deal->getId());
   }

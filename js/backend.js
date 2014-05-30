@@ -28,7 +28,7 @@ jQuery(function ($) {
     });
   });
   
-  //-- publish a deal
+  //-- publish a deal (in Sydneytoday)
   $('.publish-deal').click(function(){
     var btn = $(this);
     var tr = btn.parents('tr').first();
@@ -42,6 +42,22 @@ jQuery(function ($) {
       btn.button('reset');
       $('.last_published', tr).html(data);
       $('.publish', tr).prepend('<li class="disabled"><a href="#">' + data + '</a></li>');
+    });
+  });
+  
+  //-- publish a deal (in Sydneytoday)
+  $('.publish-sydneytoday-deal').click(function(){
+    var btn = $(this);
+    var tr = btn.parents('tr').first();
+    var tokens = tr.attr('id').split('-');
+    var table = tokens[0];
+    var id = tokens[1];
+    btn.button('loading');
+    $.ajax({
+      url: "/admin/deal/"+id+"/sydneytoday/discount_deal/instance/add"
+    }).always(function(data){
+      btn.button('reset');
+      $('.last_published', tr).html(data);
     });
   });
   

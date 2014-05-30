@@ -3,7 +3,7 @@ global $conf;
 global $mysqli;
 
 // get category if it is not "all"
-$cid = $vars[1];
+$cid = isset($vars[2]) ? $vars[2] : 'all';
 $category = null; // set null if category is "all"
 if ($cid != 'all' && $cid != 'promoted') {
   $category = Category::findById($cid);
@@ -36,6 +36,8 @@ while ($record = $result->fetch_object()) {
 $query = "SELECT * FROM `deal`";
 if ($category) {
   $query .= " WHERE cid=" . DBObject::prepare_val_for_sql($cid);
+} else if ($cid == 'promoted') {
+  $query .= " WHERE promoted=1";
 }
 $total = $mysqli->query($query)->num_rows;
 $total_page = ceil($total / $record_per_page);
@@ -64,17 +66,19 @@ $html->renderOut('frontend/sidemenu');
     <div class="col-sm-8 col-md-9">
       <ol class="breadcrumb">
         <li><a href="/">首页</a></li>
-        <li><a href="/deals">折扣消息</a></li>
+        <li><a href="/deals">省钱折扣</a></li>
         <?php if($cid == 'promoted'): ?>
           <li class="active">精选</li>
         <?php elseif ($cid != 'all'): ?>
           <li class="active"><?php echo $category; ?></li>
+        <?php else: ?>
+          <li class="active">全部</li>
         <?php endif; ?>
       </ol>
       
       <?php $html->renderOut('frontend/jumbotron/deal', array('category' => $category, 'cid' => $cid)); ?>
       
-      <h1><?php echo $category ? $category : '全部' ?>折扣</h1>
+      <h1><?php echo $category ? $category : ($cid == 'all' ? '全部' : '精选') ?>折扣</h1>
         
       <p><br /><span class="label label-default">共找到<?php echo $total ?>条记录</span></p>
 

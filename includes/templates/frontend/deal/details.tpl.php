@@ -8,7 +8,7 @@ $category = $deal->getCategory();
 <article>
 
   <div class="tn col-md-6">
-    <img src="<?php echo $deal->getThumbnail($conf['deal']['thumbnail_size']); ?>" alt="<?php echo $deal->getTitle(); ?>" />
+    <img class="img-responsive" src="<?php echo $deal->getThumbnail($conf['deal']['thumbnail_size']); ?>" alt="<?php echo $deal->getTitle(); ?>" />
   </div>
   <div class="col-md-6">
     <header>

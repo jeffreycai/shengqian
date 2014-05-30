@@ -196,7 +196,8 @@ function build_query_string($params) {
  * @param type $class
  */
 function echo_link_active_class($active_url, $current_url, $class='active') {
-  if (strstr($current_url, $active_url) !== false) {
+  global $conf;
+  if ($conf['site_url'] . "$active_url" == $current_url) {
     echo " class='$class' ";
   }
 }

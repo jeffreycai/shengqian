@@ -7,20 +7,21 @@ $categories = $data->categories;
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="sidemenu-switch"></button>
-          <a class="navbar-brand" href="#"><?php echo $site_name_html; ?></a>
+          <a class="navbar-brand" href="/"><?php echo $site_name_html; ?></a>
           <button type="button" class="top-action"></button>
         </div>
         <div class="navbar-collapse collapse">
          <ul class="nav navbar-nav navbar-right">
            <li<?php echo_link_active_class('/', $current_url); ?>><a href="/">首页</a></li>
-           <li<?php echo_link_active_class('/discounts', $current_url); ?> class="dropdown">
-             <a href="/discounts" class="dropdown-toggle" data-toggle="dropdown">折扣信息 <b class="caret"></b></a>
+           <li<?php echo_link_active_class('/deals', $current_url); ?> class="dropdown">
+             <a href="/deals" class="dropdown-toggle" data-toggle="dropdown">省钱折扣 <b class="caret"></b></a>
              <ul class="dropdown-menu">
-               <li<?php echo_link_active_class('/discounts/highlighted', $current_url); ?>><a href="/discounts/highlighted">精选折扣</a></li>
+               <li<?php echo_link_active_class('/deals', $current_url); ?>><a href="/deals">全部折扣</a></li>
+               <li<?php echo_link_active_class('/deals/promoted', $current_url); ?>><a href="/deals/promoted">精选折扣</a></li>
                <li class="divider"></li>
                <li class="dropdown-header">分类折扣</li>
                <?php foreach ($categories as $key => $name): ?>
-               <li<?php echo_link_active_class("/$key", $current_url); ?>><a href="<?php echo "/$key"; ?>"><?php echo $name; ?></a></li>
+               <li<?php echo_link_active_class("/deals/$key", $current_url); ?>><a href="<?php echo "/deals/$key"; ?>"><?php echo $name; ?></a></li>
                <?php endforeach; ?>
              </ul>
            </li>

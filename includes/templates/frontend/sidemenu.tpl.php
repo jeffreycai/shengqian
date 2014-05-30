@@ -8,7 +8,7 @@
     <nav>
       <ul>
         <li><a href="/"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
-        <li><a href=""><span class="glyphicon glyphicon-credit-card"></span> 折扣信息</a></li>
+        <li><a href="/deals"><span class="glyphicon glyphicon-credit-card"></span> 折扣信息</a></li>
         <li>
           <ul>
             <?php 
@@ -26,7 +26,7 @@
                 }
             ?>
             <li>
-              <a href="<?php echo "/$key"; ?>">
+              <a href="<?php echo "/deals/$key"; ?>">
                 <span class="glyphicon glyphicon-<?php echo $class; ?>"></span>
                 <?php echo $name; ?>
               </a>

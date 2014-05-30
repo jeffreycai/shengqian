@@ -10,7 +10,7 @@ $deals = $data->deals;
           <div class="row">
             <div class="col-xs-5 col-xs-push-7 col-sm-12 col-sm-push-0">
               <div class="tn">
-                <img src="<?php echo $deal->getThumbnail($conf['deal']['thumbnail_size']) ?>" alt="<?php echo html_entity_decode($deal->getTitle()); ?>" />
+                <img class="img-responsive" src="<?php echo $deal->getThumbnail($conf['deal']['thumbnail_size']) ?>" alt="<?php echo html_entity_decode($deal->getTitle()); ?>" />
               </div>
             </div>
             <div class="col-xs-7 col-xs-pull-5 col-sm-12 col-sm-pull-0">

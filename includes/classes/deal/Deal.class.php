@@ -306,6 +306,57 @@ class Deal extends DBObject {
       }
     }
   }
+  
+  public function isGroupon() {
+    return stripos($this->getUrl(), 'groupon') ? true : false;
+  }
+  
+  public function checkValid() {
+    global $conf;
+    $curl = new Curl();
+    
+    if ($this->isGroupon()) {
+      $result = $curl->read($this->getGrouponLinkNaked());
+      if (stripos($result, 'bodySoldout') == false && stripos($result, '<span class="buy disabled">') == false) {
+        if (!$this->getValid()) {
+          $this->setValid(1);
+          $this->save();
+        }
+        return true;
+      }
+
+      if ($this->getValid()) {
+        $this->setValid(0);
+        $this->save();
+      }
+      return false;
+    }
+    
+    return false;
+  }
+  
+  public function getVendor() {
+    if ($this->isGroupon()) {
+      return 'Groupon';
+    }
+  }
+  
+  public function getLastPublished($time_ago = false) {
+    global $mysqli;
+    $query = "SELECT * FROM sydneytoday_deal_instance WHERE did=" . $this->getId() . " ORDER BY created_at DESC LIMIT 1";
+    $result = $mysqli->query($query);
+    if ($result && $record = $result->fetch_object()) {
+      $lp = $record->created_at;
+      if (is_null($lp)) {
+        return 'N/A';
+      } elseif ($time_ago) {
+        return time_ago($lp);
+      } else {
+        return date('Y-m-d H:i:s', $lp);
+      }
+    }
+    return 'N/A';
+  }
 }
 
 ?>

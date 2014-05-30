@@ -36,30 +36,43 @@ echo $html->render('backend/header');
       'page' => $page
   )) ?>
   
-  <table class="table table-striped">
+  <div class="table-responsive">
+  <table class="table table-striped table-hover">
     <tbody>
       <tr>
         <th>#</th>
         <th>标题</th>
+        <th>Vendor</th>
         <th>分类</th>
         <th>Due</th>
-        <th>发帖时间</th>
-        <th>Published?</th>
-        <th>Promoted?</th>
+        <th>创建时间</th>
+        <th>Last Ding</th>
+        <th>Pub?</th>
+        <th>Pro?</th>
+        <th>Vad?</th>
         <th>操作</th>
       </tr>
       <?php foreach ($deals as $deal): ?>
       <tr id="deal-<?php echo $deal->getId(); ?>">
         <td><?php echo $deal->getId(); ?></td>
         <td><?php echo $deal->getTitle(true); ?></td>
+        <td><?php echo $deal->getVendor(); ?></td>
         <td><?php echo $deal->getCategory(); ?></td>
         <td><?php echo $deal->getDueDate(); ?></td>
         <td><?php echo $deal->getCreatedAtDate(); ?></td>
+        <td class="last_published"><?php echo $deal->getLastPublished(true); ?></td>
         <td><span class="glyphicon glyphicon-<?php echo $deal->getPublished() ? 'ok' : 'remove' ?>"></span></td>
         <td><span class="glyphicon glyphicon-<?php echo $deal->getPromoted() ? 'ok' : 'remove' ?>"></span></td>
+        <td class="valid"><span class="glyphicon glyphicon-<?php echo $deal->getValid() ? 'ok' : 'remove' ?>"></span></td>
         <td>
           <!-- edit -->
-          <button class="btn btn-xs btn-primary edit" onclick="window.location = '/admin/deal/edit/<?php echo $deal->getId();?>';">Edit</button>
+          <a class="btn btn-xs btn-primary edit" href='/admin/deal/edit/<?php echo $deal->getId();?>'>Edit</a>
+          <!-- validate -->
+          <?php if ($deal->isGroupon()): ?>
+            <button class="btn btn-xs btn-warning validate">Validate</button>
+          <?php endif; ?>
+          <!-- publish -->
+          <button type="button" class="btn btn-xs btn-success publish-sydneytoday-deal" data-loading-text="Publishing...">Publish</button>
           <!-- delete -->
           <?php if ($deal->getDeleted()): ?>
           <button class="btn btn-xs btn-danger delete deleted" type="button" data-loading-text="Deleting...">Delete forever</button>
@@ -71,6 +84,7 @@ echo $html->render('backend/header');
       <?php endforeach; ?>
     </tbody>
   </table>
+  </div>
 
   <?php echo $html->render('components/pagination', array(
       'total_page' => $total_page,
