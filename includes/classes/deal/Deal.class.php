@@ -289,10 +289,14 @@ class Deal extends DBObject {
     return str_replace(WEBROOT, '', $thumbnail);
   }
   
-  public function getPageUrl() {
+  public function getPageUrl($full = false) {
     global $conf;
     $cats = array_flip($conf['category']);
-    return "/deal/" . $cats[$this->getCategory()->getName()] . "/" . $this->getId();
+    $url = "/deal/" . $cats[$this->getCategory()->getName()] . "/" . $this->getId();
+    if ($full) {
+      $url .= $conf['site_url'] . $url;
+    }
+    return $url;
   }
   
   public function getGrouponLinkNaked() {
@@ -356,6 +360,14 @@ class Deal extends DBObject {
       }
     }
     return 'N/A';
+  }
+  
+  public function getTrackingUrl() {
+    return "http://www.hosterdiy.com/deal_tracking.php?url=" . urlencode($this->getPageUrl(true));
+  }
+  
+  public function getGoToLink() {
+    return "/go/to/deal/" . $this->getId();
   }
 }
 

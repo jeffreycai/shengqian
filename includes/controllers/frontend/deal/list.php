@@ -80,7 +80,7 @@ $html->renderOut('frontend/sidemenu');
       
       <h1><?php echo $category ? $category : ($cid == 'all' ? '全部' : '精选') ?>折扣</h1>
         
-      <p><br /><span class="label label-default">共找到<?php echo $total ?>条记录</span></p>
+      <p><span class="label label-default">共找到<?php echo $total ?>条记录</span></p>
 
       <?php $html->renderOut('components/pagination', array(
         'total_page' => $total_page,

@@ -34,7 +34,7 @@
             <?php endforeach; ?>
           </ul>
         </li>
-        <li><a href="/saving-tips"><span class="glyphicon glyphicon-info-sign"></span> 省钱小贴士</a></li>
+<!--        <li><a href="/saving-tips"><span class="glyphicon glyphicon-info-sign"></span> 省钱小贴士</a></li>-->
         <li><a href="/contact-us"><span class="glyphicon glyphicon-envelope"></span> 联系我们</a></li>
       </ul>
     </nav>

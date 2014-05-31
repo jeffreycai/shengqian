@@ -166,9 +166,12 @@ body.deals .jumbotron .img-wrapper {
   padding-bottom: 23px;
   margin-bottom: 40px;
   border: 1px solid #DDD;
+
 }
 .body h1 {
   font-size: 24px;
+  margin-top: 0px;
+  margin-bottom: 20px;
 }
 .body h2 {
   font-size: 15px;
@@ -292,6 +295,14 @@ body.deals .nav-tabs li a {
     padding: 10px 15px;
     font-size: 1em;
   }
+}
+.btn.goto {
+  width: 100%;
+  font-size: 18px;
+}
+.tell-friend p {
+  font-size: 0.8em;
+  color: #666;
 }
 
 

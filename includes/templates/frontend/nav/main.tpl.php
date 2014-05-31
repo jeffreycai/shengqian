@@ -7,7 +7,7 @@ $categories = $data->categories;
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="sidemenu-switch"></button>
-          <a class="navbar-brand" href="/"><?php echo $site_name_html; ?></a>
+          <a class="navbar-brand" href="/"><span style="color: #F7E8D1">Au</span><span style="color: #D53115">Saving</span> 澳洲省钱网</a>
           <button type="button" class="top-action"></button>
         </div>
         <div class="navbar-collapse collapse">
@@ -26,8 +26,8 @@ $categories = $data->categories;
              </ul>
            </li>
            
-           <li<?php echo_link_active_class('/tips', $current_url); ?>><a href="/tips">省钱小贴士</a></li>
-           <li<?php echo_link_active_class('/contact', $current_url); ?>><a href="/contact">联系我们</a></li>
+<!--           <li<?php echo_link_active_class('/tips', $current_url); ?>><a href="/tips">省钱小贴士</a></li>-->
+           <li<?php echo_link_active_class('/contact-us', $current_url); ?>><a href="/contact-us">联系我们</a></li>
           </ul>
           <!--
           <ul class="nav navbar-nav navbar-right">

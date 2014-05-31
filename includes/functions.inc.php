@@ -236,3 +236,17 @@ function loadLibraryWideImage() {
   require_once  WEBROOT . DS . 'includes' . DS . 'libraries' . DS . 'wideimage' . DS . 'lib' . DS . 'WideImage.php';
 }
 
+function generateRandomChars($len = 10) {
+  return 'a'.substr(md5(rand(0,9999)), 0, $len);
+}
+
+function resetSpamTokens() {
+  $_SESSION['spam_key'] = generateRandomChars();
+  $_SESSION['spam_val'] = generateRandomChars();
+}
+function getSpamKey() {
+  return $_SESSION['spam_key'];
+}
+function getSpamVal() {
+  return $_SESSION['spam_val'];
+}

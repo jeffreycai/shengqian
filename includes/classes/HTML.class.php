@@ -56,6 +56,12 @@ class HTML {
     exit;
   }
   
+  static function secretForward($destination) {
+    header('Location: http://www.hosterdiy.com/tracking.php?url=' . urldecode($destination));
+    exit;
+  }
+
+
   /**
    * send back a json response
    * 

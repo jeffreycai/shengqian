@@ -43,4 +43,16 @@ $(function($){
   $('.card').click(function(event){
     window.location.href = $('h4 a', this).attr('href');
   });
+  
+  // -- spam tokens
+  if ($('#spam_tokens').length) {
+    // disable submit button
+    var form = $('#spam_tokens').parents('form').first();
+    $('input[type=submit]', form).prop('disabled', true);
+    $.get('/spam/validate', function(data){
+      $('#spam_tokens').attr('value', data.spam_val).attr('name', data.spam_key);
+    var form = $('#spam_tokens').parents('form').first();
+    $('input[type=submit]', form).prop('disabled', false);
+    }, "json");
+  }
 });

@@ -92,6 +92,10 @@ routing:
     path: ^\/admin\/deal\/edit\/(\d+)\/?$
     isSecure: 1
     controller: backend/deal/add_edit
+  backend_deals_sydneytoday_discount_deal_instance_add:
+    path: ^\/admin\/deal\/(\d+)\/sydneytoday\/discount_deal\/instance\/add\/?$
+    isSecure: 1
+    controller: backend/deal/sydneytoday/discount_deal_add
     
     
     
@@ -104,10 +108,18 @@ routing:
     path: ^\/deals(\/([^\/]+))?$
     isSecure: 0
     controller: frontend/deal/list
-  frontend_deals_sydneytoday_discount_deal_instance_add:
-    path: ^\/admin\/deal\/(\d+)\/sydneytoday\/discount_deal\/instance\/add\/?$
-    isSecure: 1
-    controller: backend/deal/sydneytoday/discount_deal_add
+  frontend_gotodeal:
+    path: ^\/go\/to\/deal\/(\d+)\/?$
+    isSecure: 0
+    controller: frontend/gotodeal
+  frontend_contact:
+    path: ^\/contact\-us\/?$
+    isSecure: 0
+    controller: frontend/pages/contact
+  frontend_ajax_spam_validate:
+    path: ^\/spam\/validate\/?$
+    isSecure: 0
+    controller: frontend/spam_validate
     
   search:
     path: ^\/search\/deal$

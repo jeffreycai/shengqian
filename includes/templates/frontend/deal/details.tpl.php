@@ -2,6 +2,7 @@
 global $conf;
 $deal = $data->deal;
 $category = $deal->getCategory();
+$html = new HTML();
 ?>
 
 
@@ -32,6 +33,21 @@ $category = $deal->getCategory();
       <li><span>折扣有效日期：</span><?php echo $deal->getDueDate(); ?></li>
       <li><span>折扣创建日期：</span><?php echo $deal->getCreatedAtDate(); ?></li>
     </ul>
+    <div class="tell-friend"><br />
+      <p>分享给小伙伴们，一起省钱~！</p>
+      <?php $html->renderOut('/components/sharebtns', array(
+          'share_text' => "分享好东西：" . str_replace('"', '\"', $deal->getTitle(true, 60)) . " ". $conf['site_url'] . $deal->getPageUrl(),
+          'share_img' => $deal->getImage()
+      )); ?>
+    </div>
+    
+    <div class="divider dotted"></div>
+    
+    <div class="row">
+      <div class="col-xs-12">
+        <a href="<?php echo $deal->getGoToLink(); ?>" class="btn btn-danger btn-sm goto">去看看！</a>
+      </div>
+    </div>
   </div>
   
   <div class="clearfix"></div>
