@@ -147,6 +147,15 @@ body.home .jumbotron .logo {
 body.home .jumbotron .logo img {
   display: none;
 }
+body.home h3 {
+  position: relative;
+}
+body.home h3 span {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  font-size: 0.7em;
+}
 body.deals .jumbotron {
   padding: 0px;
 }
@@ -219,8 +228,10 @@ body.deals .jumbotron .img-wrapper {
 }
 .card h4 {
   margin: 0px;
+  margin-bottom: 30px;
   font-size: 15px;
   font-weight: bold;
+  height: auto;
 }
 .card h4 a {
   color: #444;
@@ -251,6 +262,7 @@ body.deals .jumbotron .img-wrapper {
 @media (min-width: 768px) {
   .card h4 {
     margin-top: 7px;
+    margin-bottom: 0px;
     height: 38px;
     overflow: hidden;
     font-size: 15px;

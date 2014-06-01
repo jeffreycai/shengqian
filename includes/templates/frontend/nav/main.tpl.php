@@ -1,14 +1,21 @@
 <?php 
+global $conf;
+
 $current_url = $data->current_url;
 $site_name_html = $data->site_name_html;
 $categories = $data->categories;
+
+$html = new HTML();
 ?> 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="sidemenu-switch"></button>
-          <a class="navbar-brand" href="/"><span style="color: #F7E8D1">Au</span><span style="color: #D53115">Saving</span> 澳洲省钱网</a>
-          <button type="button" class="top-action"></button>
+          <a class="navbar-brand" href="/"><?php echo $conf['site_name_html'] ?></a>
+          
+          <!-- Button trigger modal -->
+          <button type="button" class="top-action" data-toggle="modal" data-target="#follow-us"></button>
+
         </div>
         <div class="navbar-collapse collapse">
          <ul class="nav navbar-nav navbar-right">
@@ -41,3 +48,29 @@ $categories = $data->categories;
       </div>
     </div>
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="follow-us" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">欢迎您订阅我们的微信，第一时间抢占省钱高地！</h4>
+      </div>
+      <div class="modal-body">
+        <p>亲，欢迎您光临 <strong><?php echo $conf['site_name_html'] ?>！</strong></p>
+        <p>我们的微信号是： <strong>ausaving</strong>, 或者扫描我们的二维码，立马订阅！！</p>
+        <p><img class="img-responsive" alt="AuSaving.com 微信二维码" src="/images/wechat-logo.jpg" /></p>
+        <p>分享给更多的小伙伴</p>
+        <?php $html->renderOut('components/sharebtns', array(
+          'share_text' => "发现一个好资源，里面挺多有用的信息，分享一下。" . $conf['site_url'],
+          'share_img' => $conf['site_url'] . "/images/wechat-logo.jpg"
+        )); ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">知道了</button>
+      </div>
+    </div>
+  </div>
+</div>

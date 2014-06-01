@@ -55,4 +55,19 @@ $(function($){
     $('input[type=submit]', form).prop('disabled', false);
     }, "json");
   }
+  
+  // scroll to on homepage
+  $('body.home .jumbotron .btn').click(function(event){
+    event.preventDefault();
+    $('html, body').animate({
+        scrollTop: $(".body").offset().top - 30
+    }, 500);
+  });
+  $('body.home h3 span a').click(function(event){
+    event.preventDefault();
+    var id = $(this).attr('data-goto');
+    $('html, body').animate({
+        scrollTop: $("#"+id).offset().top - 65
+    }, 500);
+  });
 });

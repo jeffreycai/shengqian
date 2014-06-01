@@ -10,6 +10,7 @@ $html = new HTML();
 
   <div class="tn col-md-6">
     <img class="img-responsive" src="<?php echo $deal->getThumbnail($conf['deal']['thumbnail_size']); ?>" alt="<?php echo $deal->getTitle(); ?>" />
+    <br />
   </div>
   <div class="col-md-6">
     <header>
@@ -36,7 +37,7 @@ $html = new HTML();
     <div class="tell-friend"><br />
       <p>分享给小伙伴们，一起省钱~！</p>
       <?php $html->renderOut('/components/sharebtns', array(
-          'share_text' => "分享好东西：" . str_replace('"', '\"', $deal->getTitle(true, 60)) . " ". $conf['site_url'] . $deal->getPageUrl(),
+          'share_text' => "发现一个好东西：" . str_replace('"', '\"', $deal->getTitle(true, 60)),
           'share_img' => $deal->getImage()
       )); ?>
     </div>

@@ -3,7 +3,7 @@ global $conf;
 
 $html = new HTML();
 $html->renderOut('frontend/html_header', array(
-    'title' => 'Homepage',
+    'title' => 'AuSaving 澳洲省钱网是全澳大利亚最大、最全的折扣信息、省钱攻略以及优惠消息发布集散地',
     'body_class' => 'home'
 ));
 
