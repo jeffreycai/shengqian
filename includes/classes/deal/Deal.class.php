@@ -15,7 +15,7 @@ require_once CLASS_DIR . DS . 'DBObject.class.php';
  * - discount
  * - published
  * - created_at
- * - deleted
+ * - valid
  * - promoted
  * - hoster
  * - due
@@ -127,11 +127,11 @@ class Deal extends DBObject {
   public function getCreatedAt() {
     return $this->getDbFieldCreated_at();
   }
-  public function setDeleted($d) {
-    $this->setDbFieldDeleted($d);
+  public function setValid($d) {
+    $this->setDbFieldValid($d);
   }
-  public function getDeleted() {
-    return $this->getDbFieldDeleted();
+  public function getValid() {
+    return $this->getDbFieldValid();
   }
   public function setPromoted($p) {
     $this->setDbFieldPromoted($p);
@@ -158,7 +158,7 @@ class Deal extends DBObject {
   static function findAllPromoted($limit = 0) {
     global $mysqli;
     $rtn = array();
-    $query = "SELECT * FROM deal WHERE promoted=1 AND published=1";
+    $query = "SELECT * FROM deal WHERE promoted=1 AND valid=1 AND published=1 ORDER BY created_at DESC ";
     if ($limit) {
       $query .= " LIMIT $limit";
     }
@@ -175,7 +175,7 @@ class Deal extends DBObject {
     global $mysqli;
     $rtn = array();
     
-    $query = "SELECT * FROM deal WHERE cid=" . DBObject::prepare_val_for_sql($cat) ." AND published=1";
+    $query = "SELECT * FROM deal WHERE cid=" . DBObject::prepare_val_for_sql($cat) ." AND published=1 AND valid=1 ORDER BY created_at DESC";
     if ($exclude_deal_id) {
       $query .= " AND id!=" . $exclude_deal_id;
     }
@@ -192,14 +192,14 @@ class Deal extends DBObject {
     return $rtn;
   }
   
-  static function findBySlug($slug, $cid, $id) {
+  static function findBySlug($slug, $cid, $id=null) {
     global $mysqli;
     $query = "SELECT * FROM deal WHERE slug=" . DBObject::prepare_val_for_sql($slug);
     if ($cid) {
       $query .= " AND cid=" . DBObject::prepare_val_for_sql($cid);
     }
     if ($id) {
-      $query .= " AND id=" . DBObject::prepare_val_for_sql($id);
+      $query .= " AND id!=" . $id;
     }
     $result = $mysqli->query($query);
     $rtn = null;
@@ -207,6 +207,21 @@ class Deal extends DBObject {
       $deal = new Deal();
       Deal::importQueryResultToDbObject($record, $deal);
       $rtn = $deal;
+    }
+    return $rtn;
+  }
+  
+  static function findAllGrouponDealByValid($valid, $published=1) {
+    global $mysqli;
+    $rtn = array();
+    
+    $query = "SELECT * FROM deal WHERE valid=$valid AND published=$published AND url LIKE 'https://t.groupon.com.au%' ORDER BY created_at DESC";
+    $result = $mysqli->query($query);
+    
+    while ($result && $d = $result->fetch_object()) {
+      $deal = new Deal();
+      Deal::importQueryResultToDbObject($d, $deal);
+      $rtn[] = $deal;
     }
     return $rtn;
   }
@@ -246,7 +261,11 @@ class Deal extends DBObject {
   }
   
   private function makeThumbnailFilename() {
-    return 'deal_' . $this->getId() . '.jpg';
+    if ($this->getValid()) {
+      return 'deal_' . $this->getId() . '.jpg';
+    } else {
+      return 'deal_' . $this->getId() . '_expired.jpg';
+    }
   }
   
   public function getThumbnail($size, $refill=true) {
@@ -283,6 +302,9 @@ class Deal extends DBObject {
           $delta = ($width - $w) / 2;
           $image = $image->resizeCanvas($width, $height, $delta, 0, $bg_color);
         }
+      }
+      if (!$this->getValid()) {
+        $image = $image->applyFilter(IMG_FILTER_GRAYSCALE);
       }
       $image->saveToFile($thumbnail);
     }

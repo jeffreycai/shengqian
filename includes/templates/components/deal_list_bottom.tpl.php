@@ -18,13 +18,13 @@ $deals = $data->deals;
             </div>
           </div>
           <div class="tags">
+            <span class="label label-primary"><?php echo $deal->getCategory(); ?></span>
             <?php if ($deal->getSaving()): ?>
               <span class="label label-danger">省<?php echo $deal->getSaving(); ?></span>
             <?php endif; ?>
             <?php if ($deal->getDiscount()): ?>
               <span class="label label-warning"><?php echo $deal->getDiscount(); ?>折扣</span>
             <?php endif; ?>
-            <span class="label label-primary"><?php echo $deal->getCategory(); ?></span>
           </div>
         </div>
       </div>

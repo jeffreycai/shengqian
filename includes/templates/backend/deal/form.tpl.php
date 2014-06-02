@@ -153,14 +153,14 @@
   <div class="form-group">
     <div class="col-sm-9 col-sm-offset-3">
       <div class="checkbox">
-        <label for="deleted">
-          <input type="checkbox" name="deleted" value="1" id="deleted"
-            <?php if (isset($_POST['deleted'])): ?>
+        <label for="valid">
+          <input type="checkbox" name="valid" value="1" id="valid"
+            <?php if (isset($_POST['valid'])): ?>
               checked
-            <?php elseif ($deal && $deal->getDeleted()): ?>
+            <?php elseif ($deal && $deal->getValid()): ?>
               checked
             <?php endif; ?>
-          /> Deleted ?
+          /> Valid ?
         </label>
       </div>
     </div>

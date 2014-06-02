@@ -1,4 +1,5 @@
 <?php
+
 $did = isset($vars[1]) ? strip_tags($vars[1]) : null;
 if (is_null($did)) {
   HTML::forward('/404');
@@ -8,6 +9,7 @@ if (!$deal) {
   HTML::forward('/404');
 }
 
+//_debug(html_to_text($deal->getDetails()));
 
 global $conf;
 // login to sydneytoday first
@@ -51,7 +53,7 @@ switch ($deal->getCategory()->getId()) {
 $data[] = "postdb[city_id]=1"; // --
 $data[] = "postdb[title]=" . $title; // --
 $data[] = "postdb[linkman]=" . urlencode('Groupon'); // --
-$data[] = "postdb[content]=" . urlencode(mb_convert_encoding($deal->getDetails(), 'GB2312', 'UTF-8')); // --
+$data[] = "postdb[content]=" . urlencode(mb_convert_encoding(html_to_text($deal->getDetails()), 'GB2312', 'UTF-8')); // --
 $data[] = "postdb[telephone]=";
 $data[] = "postdb[mobphone]=";
 $data[] = "postdb[fax]=";
@@ -65,6 +67,8 @@ $data[] = "postdb[my_time]=";
 $data[] = "postdb[my_expressurl]=" . urlencode($conf['site_url'] . $deal->getPageUrl());
 $data[] = "titledb[1]=";
 $data[] = "photodb[1]=" . urlencode($deal->getImage());
+$data[] = "photodb[2]=" . $conf['site_url'] . '/images/advertisement.jpg';
+$data[] = "photodb[3]=" . $conf['site_url'] . '/images/wechat-logo.jpg';
 $data[] = "local_file1=";
 $data[] = "ftype[1]=out";
 $data[] = "nums=1";

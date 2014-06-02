@@ -136,3 +136,8 @@ routing:
     isSecure: 0
     controller: logout
     
+    
+  api_wechat:
+    path: ^\/api\/wechat$
+    isSecure: 0
+    controller: api/wechat

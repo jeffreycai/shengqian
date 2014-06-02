@@ -15,7 +15,7 @@ if ($keyword == '') {
   setMsg(MSG_ERROR, '请输入搜索关键字');
 } else {
   // get records to display
-  $query = "SELECT * FROM `deal` WHERE title LIKE '%" . addslashes($keyword) . "%' ORDER BY created_at DESC LIMIT " . (($page-1) * $record_per_page) . ', ' . ($record_per_page);
+  $query = "SELECT * FROM `deal` WHERE title LIKE '%" . addslashes($keyword) . "%' OR details LIKE '%" . addslashes($keyword) . "%' ORDER BY created_at DESC LIMIT " . (($page-1) * $record_per_page) . ', ' . ($record_per_page);
   $result = $mysqli->query($query);
   while ($record = $result->fetch_object()) {
     $deal = new Deal();

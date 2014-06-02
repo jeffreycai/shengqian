@@ -70,4 +70,12 @@ $(function($){
         scrollTop: $("#"+id).offset().top - 65
     }, 500);
   });
+  
+  // scroll to on invalid deal details page
+  $('.jump-to-similar').click(function(event){
+    event.preventDefault();
+    $('html, body').animate({
+        scrollTop: $(".similar").offset().top - 65
+    }, 500);
+  });
 });

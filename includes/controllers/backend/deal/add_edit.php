@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
   $discount = isset($_POST['discount']) ? strip_tags($_POST['discount']) : null;
   $published = isset($_POST['published']) ? strip_tags($_POST['published']) : null;
   $promoted = isset($_POST['promoted']) ? strip_tags($_POST['promoted']) : null;
-  $deleted = isset($_POST['deleted']) ? strip_tags($_POST['deleted']) : null;
+  $valid = isset($_POST['valid']) ? strip_tags($_POST['valid']) : 0;
   $hoster = isset($_POST['hoster']) ? strip_tags($_POST['hoster']) : null;
   $due = isset($_POST['due_date']) ? strip_tags($_POST['due_date']) : null;
   
@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
     if (!empty($discount)) $deal->setDiscount($discount);
     if (!empty($published)) $deal->setPublished($published); else $deal->setPublished (0);
     if (!empty($promoted)) $deal->setPromoted($promoted); else $deal->setPromoted (0);
-    if (!empty($deleted)) $deal->setDeleted ($deleted); else $deal->setDeleted (0);
+    $deal->setValid ($valid);
     if (!empty($hoster)) $deal->setHoster($hoster);
     if (!empty($due)) $deal->setDue(strtotime($due));
 

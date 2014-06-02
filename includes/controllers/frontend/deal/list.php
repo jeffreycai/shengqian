@@ -17,11 +17,11 @@ $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 $record_per_page = 24;
 
 // get records to display
-$query = "SELECT * FROM `deal`";
+$query = "SELECT * FROM `deal` WHERE valid=1 ";
 if ($category) {
-  $query .= " WHERE cid=" . DBObject::prepare_val_for_sql($cid);
+  $query .= " AND cid=" . DBObject::prepare_val_for_sql($cid);
 } else if ($cid == 'promoted') {
-  $query .= " WHERE promoted=1";
+  $query .= " AND promoted=1";
 }
 $query .= " ORDER BY created_at DESC LIMIT " . (($page-1) * $record_per_page) . ', ' . ($record_per_page);
 $result = $mysqli->query($query);
@@ -33,11 +33,11 @@ while ($record = $result->fetch_object()) {
 }
 
 // get total page number
-$query = "SELECT * FROM `deal`";
+$query = "SELECT * FROM `deal` WHERE valid=1 ";
 if ($category) {
-  $query .= " WHERE cid=" . DBObject::prepare_val_for_sql($cid);
+  $query .= " AND cid=" . DBObject::prepare_val_for_sql($cid);
 } else if ($cid == 'promoted') {
-  $query .= " WHERE promoted=1";
+  $query .= " AND promoted=1";
 }
 $total = $mysqli->query($query)->num_rows;
 $total_page = ceil($total / $record_per_page);

@@ -250,3 +250,18 @@ function getSpamKey() {
 function getSpamVal() {
   return $_SESSION['spam_val'];
 }
+
+function html_to_text($html) {
+  $rtn = preg_replace('/<\/?p([^>]+)?>/', '', $html);
+  $rtn = preg_replace('/<\/?a([^>]+)?>/', '', $rtn);
+  $rtn = preg_replace('/<img[^>]+\/?>/', '', $rtn);
+  $rtn = preg_replace('/<br ?\/?>/', "\n", $rtn);
+  $rtn = preg_replace('/<\/?strong>/', '', $rtn);
+  $rtn = preg_replace('/<\/?blockquote>/', '', $rtn);
+
+  
+  $rtn = preg_replace('/<\/?[u|o]l>/', '', $rtn);
+  $rtn = preg_replace('/<li>/', '- ', $rtn);
+  $rtn = preg_replace('/<\/li>/', '', $rtn);
+  return $rtn;
+}

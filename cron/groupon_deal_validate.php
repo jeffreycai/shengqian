@@ -7,7 +7,7 @@ if (PHP_SAPI != 'cli') {
 
 require_once __DIR__ . '/../bootstrap.php';
 
-$group_deals = SydneytodayDeal::findAllByDeleted(0);
+$group_deals = Deal::findAllGrouponDealByValid(1);
 $report = array();
 foreach ($group_deals as $deal) {
   $deal->checkValid();

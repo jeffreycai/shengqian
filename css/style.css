@@ -184,6 +184,8 @@ body.deals .jumbotron .img-wrapper {
 }
 .body h2 {
   font-size: 15px;
+  font-weight: bold;
+  color: #666666;
 }
 .body header {
   margin-bottom: 15px;
@@ -202,11 +204,6 @@ body.deals .jumbotron .img-wrapper {
   body.home .jumbotron .logo img {
     width: 300px;
   }
-}
-.body h2 {
-  font-size: 20px;
-  font-weight: bold;
-  color: #666666;
 }
 .body h3 {
   font-size: 15px;

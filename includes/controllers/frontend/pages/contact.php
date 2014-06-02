@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
   } else if (!preg_match('/[^@]+@.+/', $email)) {
     setMsg(MSG_ERROR, '请帖写合法的邮箱地址');
   } else if ($spam_val != getSpamVal()) {
-    setMsg(MSG_ERROR, '本站严禁使用机器人自动提交表单！可耻~~');
+    setMsg(MSG_ERROR, '本站严禁使用机器人自动提交表单！做人要厚道啊，亲~~');
   } else {
     mail(
             $conf['site_admin_email'], 
@@ -39,7 +39,7 @@ if ($error_flag == 0) {
 
 $html = new HTML();
 $html->renderOut('frontend/html_header', array(
-    'title' => '联系澳洲省钱网',
+    'title' => '联系我们',
     'body_class' => 'contact'
 ));
 
@@ -66,8 +66,8 @@ $html->renderOut('frontend/sidemenu');
           <div class="col-lg-6">
             <h1>联系我们</h1>
             <blockquote>
-              <p>良药苦口利于病，忠言逆耳逆于心。</p>
-              <footer>西汉·司马迁<cite title="史记·留侯世家">《史记·留侯世家》</cite></footer>
+              <p>团结海外华人，互帮互助一同省钱致富！</p>
+              <footer>《<strong><?php echo $conf['site_name_html'] ?></strong>》  <cite>众小编</cite></footer>
             </blockquote>
             <p>您的意见和建议是我们进步的动力。</p>
             <p>我们的网站还在建站的初级阶段，有很多地方做的不够，我们在不断的完善网站的信息资源以及各项功能。希望通过您的反馈以及我们不懈的努力，<strong><span style="color: #3C7E9E;">Au</span><span style="color: #D53115">Saving</span> 澳洲省钱网</strong> 将成为您生活中的得力小助手，帮你在海外的生活中节省开销。</p>

@@ -14,13 +14,6 @@ $class = DBObject::tableNameToClassName($table);
 $instance = $class::findById($id);
 
 // delete completely if this record is marked as "deleted"
-if ($instance->getDeleted()) {
-  $query = 'DELETE FROM '.$table.' WHERE id=' . $id;
-  $mysqli->query($query);
-  echo "delete completely";
-} else {
-  $query = 'UPDATE '.$table.' SET deleted = 1 WHERE id=' . strip_tags($id);
-  $mysqli->query($query);
-  echo "marked as deleted";
-}
+$instance->delete();
+echo "delete completely";
 exit;

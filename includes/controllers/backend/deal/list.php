@@ -5,10 +5,10 @@ global $mysqli;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 // get records to display
-$query = "SELECT * FROM `deal` ORDER BY deleted ASC, created_at DESC LIMIT " . (($page-1) * $conf['record_each_page']) . ', ' . ($conf['record_each_page']);
+$query = "SELECT * FROM `deal` ORDER BY created_at DESC LIMIT " . (($page-1) * $conf['record_each_page']) . ', ' . ($conf['record_each_page']);
 $result = $mysqli->query($query);
 $deals = array();
-while ($record = $result->fetch_object()) {
+while ($result && $record = $result->fetch_object()) {
   $deal = new Deal();
   DBObject::importQueryResultToDbObject($record, $deal);
   $deals[] = $deal;
@@ -30,6 +30,11 @@ echo $html->render('backend/header');
 <div class="main">
   <?php $html->renderOut('backend/deal/nav'); ?>
   <h2 class='sub-header'>折扣信息列表</h2>
+  <?php echo renderMsgs(); ?>
+  <?php echo $html->render('components/pagination', array(
+      'total_page' => $total_page,
+      'page' => $page
+  )) ?>
   
   <?php echo $html->render('components/pagination', array(
       'total_page' => $total_page,

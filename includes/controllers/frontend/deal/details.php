@@ -39,9 +39,12 @@ $html->renderOut('frontend/sidemenu');
       <div class="content">
         <?php $html->renderOut('frontend/deal/details', array('deal' => $deal)); ?>
       </div>
-      <section>
+      <section class="similar">
         <h2>类似省钱折扣</h2>
         <?php $html->renderOut('components/deal_list_bottom', array('deals' => $similar_deals)); ?>
+        <ul class="pager">
+          <li class="next"><a href="/deals/<?php echo $category->getId() ?>">更多<?php echo $category; ?>折扣 &RightArrow;</a></li>
+        </ul>
       </section>
     </div>
     <div class="col-sm-4 col-md-3 sidebar">
