@@ -68,7 +68,7 @@ $data[] = "postdb[my_expressurl]=" . urlencode($conf['site_url'] . $deal->getPag
 $data[] = "titledb[1]=";
 $data[] = "photodb[1]=" . urlencode($deal->getImage());
 $data[] = "photodb[2]=" . $conf['site_url'] . '/images/advertisement.jpg';
-$data[] = "photodb[3]=" . $conf['site_url'] . '/images/wechat-logo.jpg';
+$data[] = "photodb[3]=" . $conf['site_url'] . '/images/wechat-logo-with-text.jpg';
 $data[] = "local_file1=";
 $data[] = "ftype[1]=out";
 $data[] = "nums=1";

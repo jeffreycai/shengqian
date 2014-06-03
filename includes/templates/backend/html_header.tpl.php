@@ -33,5 +33,5 @@
 
 </head>
 
-<body>
+<body class="admin <?php if (isset($data->body_class)) {echo $data->body_class; }?>">
 

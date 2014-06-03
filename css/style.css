@@ -327,6 +327,13 @@ body.deals .nav-tabs li a {
   left: auto;
   right: 7px;
 }
+body.admin .placeholder a {
+  padding: 20px 13px;
+  background: #FFF;
+  border: 1px solid #DDD;
+  display: block;
+  text-align: center;
+}
 
 /** Backend **/
 .form-signin {
