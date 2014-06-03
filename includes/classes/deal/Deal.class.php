@@ -256,7 +256,7 @@ class Deal extends DBObject {
     return true;
   }
   
-  private function getThumbnailFolder() {
+  public function getThumbnailFolder() {
     return CACHE_DIR . DS . 'deal';
   }
   

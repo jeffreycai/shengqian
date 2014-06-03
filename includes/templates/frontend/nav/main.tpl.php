@@ -7,6 +7,7 @@ $categories = $data->categories;
 
 $html = new HTML();
 ?> 
+
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -33,7 +34,6 @@ $html = new HTML();
              </ul>
            </li>
            
-<!--           <li<?php echo_link_active_class('/tips', $current_url); ?>><a href="/tips">省钱小贴士</a></li>-->
            <li<?php echo_link_active_class('/contact-us', $current_url); ?>><a href="/contact-us">联系我们</a></li>
           </ul>
           <!--
@@ -48,8 +48,6 @@ $html = new HTML();
       </div>
     </div>
 
-
-
 <!-- Modal -->
 <div class="modal fade" id="follow-us" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -62,11 +60,6 @@ $html = new HTML();
         <p>亲，欢迎您光临 <strong><?php echo $conf['site_name_html'] ?>！</strong></p>
         <p>我们的微信号是： <strong>ausaving</strong>, 或者扫描我们的二维码，立马订阅！！</p>
         <p><img class="img-responsive" alt="AuSaving.com 微信二维码" src="/images/wechat-logo.jpg" /></p>
-        <p>分享给更多的小伙伴</p>
-        <?php $html->renderOut('components/sharebtns', array(
-          'share_text' => "发现一个好资源，里面挺多有用的信息，分享一下。" . $conf['site_url'],
-          'share_img' => $conf['site_url'] . "/images/wechat-logo.jpg"
-        )); ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">知道了</button>

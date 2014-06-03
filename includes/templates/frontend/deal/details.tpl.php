@@ -20,13 +20,13 @@ $html = new HTML();
   <div class="col-md-6">
     <header>
       <h1><?php echo $deal->getTitle(); ?></h1>
+      <span class="label label-primary"><?php echo $category; ?></span>
       <?php if ($deal->getSaving()): ?>
         <span class="label label-danger">省<?php echo $deal->getSaving(); ?></span>
       <?php endif; ?>
       <?php if ($deal->getDiscount()): ?>
         <span class="label label-warning"><?php echo $deal->getDiscount(); ?>折扣</span>
       <?php endif; ?>
-      <span class="label label-primary"><?php echo $category; ?></span>
     </header>
     <?php echo $deal->getDetails(); ?>
     

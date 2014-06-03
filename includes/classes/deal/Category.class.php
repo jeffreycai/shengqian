@@ -115,7 +115,7 @@ class Category extends DBObject {
   
   public function getRecentDeals($amount, $exclude_deal_id = null) {
     global $mysqli;
-    $query = "SELECT * FROM deal WHERE cid=" . DBObject::prepare_val_for_sql($this->getId()) . " AND published=1";
+    $query = "SELECT * FROM deal WHERE cid=" . DBObject::prepare_val_for_sql($this->getId()) . " AND published=1 AND valid=1";
     if ($exclude_deal_id) {
       $query .= " AND id!=" . $exclude_deal_id;
     }

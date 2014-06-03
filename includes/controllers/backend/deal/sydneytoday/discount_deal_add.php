@@ -87,27 +87,20 @@ $result = $curl->post(
 // deal with error
 $matches = array();
 $text;
+$now = time();
 if (preg_match('/alert\(\'(.*)\'\);/', $result, $matches)) {
   $text = mb_convert_encoding($matches[1], 'UTF-8', 'GB2312');
   if ($text != '内容正在提交...') {
     echo $text;
     exit;
+  } else {
+    $instance = new SydneytodayDealInstance();
+    $instance->setDeal($deal);
+    $instance->setCreatedAt($now);
+    $instance->save();
+    echo $text;
+    exit;
   }
-}
-
-
-// create instance and update deal
-$now = time();
-
-$instance = new SydneytodayDealInstance();
-$instance->setDeal($deal);
-$instance->setCreatedAt($now);
-$instance->save();
-//$deal->setLastPublished($now);
-//$deal->save();
-
-if ($text == '内容正在提交...') {
-  echo $text;
 } else {
-  echo time_ago($now);
+  echo 'Something goes wrong...';die($result);;
 }

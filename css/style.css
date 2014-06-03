@@ -313,7 +313,20 @@ body.deals .nav-tabs li a {
   font-size: 0.8em;
   color: #666;
 }
-
+.wechat-share {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 280px;
+  z-index: 1040;
+}
+.wechat-share .popover {
+  display: block;
+}
+.wechat-share .popover.bottom > .arrow {
+  left: auto;
+  right: 7px;
+}
 
 /** Backend **/
 .form-signin {

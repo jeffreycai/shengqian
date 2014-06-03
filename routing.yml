@@ -120,6 +120,10 @@ routing:
     path: ^\/spam\/validate\/?$
     isSecure: 0
     controller: frontend/spam_validate
+  frontend_ajax_wechat_share_confirm:
+    path: ^\/wechat\/share_confirm?$
+    isSecure: 0
+    controller: frontend/wechat/share_confirm
     
   search:
     path: ^\/search\/deal$

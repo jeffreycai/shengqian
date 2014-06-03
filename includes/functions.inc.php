@@ -265,3 +265,31 @@ function html_to_text($html) {
   $rtn = preg_replace('/<\/li>/', '', $rtn);
   return $rtn;
 }
+
+/**
+ * Check if the request comes from wechat
+ * 
+ * @return boolean
+ */
+function comeFromWechat() {
+  $flag = isset($_SESSION['come_from_wechat']) ? $_SESSION['come_from_wechat'] : false;
+  // if flag already set, return true
+  if ($flag) {
+    return true;
+  // if flag not set, check referer, if wechat, set to true
+  } else {
+    if (strpos($_SERVER['HTTP_REFERER'], 'mp.weixin.qq.com')) {
+      $_SESSION['come_from_wechat'] = true;
+      return true;
+    }
+    return false;
+  }
+}
+
+function setWechatShareConfirmed() {
+  $_SESSION['wechat_share_confirmed'] = true;
+}
+
+function getWechatShareConfirmed() {
+  return isset($_SESSION['wechat_share_confirmed']) ? $_SESSION['wechat_share_confirmed'] : false;
+}
