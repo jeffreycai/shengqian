@@ -1,3 +1,18 @@
+# password protection only when it's dev site
+AuthUserFile /var/webs/.htpasswd
+AuthName "Please log in"
+AuthType Basic
+require valid-user
+
+SetEnvIf Host dev.ausaving.com secure_content
+
+Order Allow,Deny
+Allow from all
+Deny from env=secure_content
+
+Satisfy Any
+
+
 # redirect all trafice to www
  <IfModule mod_rewrite.c>
    RewriteEngine on
