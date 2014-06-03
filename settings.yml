@@ -19,6 +19,13 @@ mysql_user: sydneytoday
 mysql_pass: Osdiojoewsefe29)8
 mysql_db: sydneytoday
 
+mysql_host_dev: localhost
+mysql_user_dev: dev-ausaving
+mysql_pass_dev: DZs7a9WNyUn7QZWc
+mysql_db_dev: dev-ausaving
+
+
+
 # Sydney today username and password
 sydneytoday:
   username: jeangirl186@163.com

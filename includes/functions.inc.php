@@ -294,3 +294,10 @@ function setWechatShareConfirmed() {
 function getWechatShareConfirmed() {
   return isset($_SESSION['wechat_share_confirmed']) ? $_SESSION['wechat_share_confirmed'] : false;
 }
+
+function is_dev() {
+  if (strpos(WEBROOT, 'dev-ausaving')) {
+    return true;
+  }
+  return false;
+}

@@ -36,10 +36,18 @@ app_requirement_check();
 //-- initialize MySQL
 // $mysqli will be available globally for all controllers/ function s to use
 global $mysqli;
-$mysqli = new mysqli($conf['mysql_host'], $conf['mysql_user'], $conf['mysql_pass'], $conf['mysql_db']);
-if ($mysqli->connect_errno) {
-  printf("Connect failed: %s", $mysqli->connect_error);
-  exit;
+if (is_dev()) {
+  $mysqli = new mysqli($conf['mysql_host_dev'], $conf['mysql_user_dev'], $conf['mysql_pass_dev'], $conf['mysql_db_dev']);
+  if ($mysqli->connect_errno) {
+    printf("Connect failed: %s", $mysqli->connect_error);
+    exit;
+  }
+} else {
+  $mysqli = new mysqli($conf['mysql_host'], $conf['mysql_user'], $conf['mysql_pass'], $conf['mysql_db']);
+  if ($mysqli->connect_errno) {
+    printf("Connect failed: %s", $mysqli->connect_error);
+    exit;
+  }
 }
 
 //-- default timezone
