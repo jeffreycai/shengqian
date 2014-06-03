@@ -101,9 +101,13 @@ routing:
     
     
   frontend_deal_details:
-    path: ^\/deal\/([^\/]+)\/(\d+)$
+    path: ^\/deal\/([^\/]+)\/(\d+)\/?$
     isSecure: 0
     controller: frontend/deal/details
+  frontend_deal_img_crop:
+    path: ^\/deal\/([^\/]+)\/(\d+)\/crop(\/refill)?$
+    isSecure: 1
+    controller: frontend/img_crop
   frontend_deals:
     path: ^\/deals(\/([^\/]+))?$
     isSecure: 0

@@ -3,14 +3,17 @@ global $conf;
 
 $id = $vars[2];
 $deal = Deal::findById($id);
+
+if (!$deal) {
+  HTML::forward('/404');
+}
+
 $category = $deal->getCategory();
 $similar_deals = $category->getRecentDeals(20, $id);
 shuffle($similar_deals);
 $similar_deals = array_slice($similar_deals, 0, 6);
 
-if (!$deal) {
-  HTML::forward('/404');
-}
+
 
 $html = new HTML();
 $html->renderOut('frontend/html_header', array(

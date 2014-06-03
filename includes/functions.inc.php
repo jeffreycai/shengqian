@@ -273,12 +273,13 @@ function html_to_text($html) {
  */
 function comeFromWechat() {
   $flag = isset($_SESSION['come_from_wechat']) ? $_SESSION['come_from_wechat'] : false;
+  $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
   // if flag already set, return true
   if ($flag) {
     return true;
   // if flag not set, check referer, if wechat, set to true
   } else {
-    if (strpos($_SERVER['HTTP_REFERER'], 'mp.weixin.qq.com')) {
+    if (strpos($referer, 'mp.weixin.qq.com')) {
       $_SESSION['come_from_wechat'] = true;
       return true;
     }

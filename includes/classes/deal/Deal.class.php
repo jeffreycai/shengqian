@@ -153,6 +153,7 @@ class Deal extends DBObject {
       DBObject::importQueryResultToDbObject($t, $deal);
       return $deal;
     }
+    return null;
   }
   
   static function findAllPromoted($limit = 0) {

@@ -10,15 +10,17 @@ $refill = isset($vars[3]);
     $width = 300;
     $height = 300;
     
-    global $conf;
     // create cache folder if not existed
     $deal_dir = $deal->getThumbnailFolder();
-    if (!is_dir($deal_dir)) {
+    if (!is_dir($deal_dir)) {_debug($deal->getThumbnailFolder());
       mkdir($deal_dir);
     }
     // create thumbnail file if not existed
     $thumbnail = $deal_dir . DS . 'deal_' . $deal->getId() . '_square.jpg';
-    if (!is_file($thumbnail)) {
+    if (is_file($thumbnail)) {
+      unlink($thumbnail);
+    }
+
       loadLibraryWideImage();
       $image = WideImage::load($deal->getImage());
       if ($refill) {
@@ -48,5 +50,5 @@ $refill = isset($vars[3]);
         $image = $image->applyFilter(IMG_FILTER_GRAYSCALE);
       }
       $image->saveToFile($thumbnail);
-    }
-    HTML::forward(str_replace(WEBROOT, '', $thumbnail));
+
+    HTML::forward(str_replace(WEBROOT, '', $thumbnail), true);
