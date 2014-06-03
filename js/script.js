@@ -78,4 +78,11 @@ $(function($){
         scrollTop: $(".similar").offset().top - 65
     }, 500);
   });
+  // scroll to top
+  $('.gototop').click(function(event){
+    event.preventDefault();
+    $('html, body').animate({
+        scrollTop: 0
+    }, 600);
+  });
 });

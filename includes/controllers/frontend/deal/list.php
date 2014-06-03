@@ -93,12 +93,11 @@ $html->renderOut('frontend/sidemenu');
         'total_page' => $total_page,
         'page' => $page
       )) ?>
-      <!--
-      <section>
-        <h2>类似省钱折扣</h2>
-        <?php // $html->renderOut('components/deal_list_bottom', array('deals' => $similar_deals)); ?>
-      </section>
-      -->
+
+      <ul class="pager">
+        <li class="next"><a href="#" class="gototop">看看其他分类折扣 &RightArrow;</a></li>
+      </ul>
+      
     </div>
     <div class="col-sm-4 col-md-3 sidebar">
       <?php $html->renderOut('frontend/deal/sidebar_left'); ?>

@@ -60,7 +60,7 @@ echo $html->render('backend/header');
       <?php foreach ($deals as $deal): ?>
       <tr id="deal-<?php echo $deal->getId(); ?>">
         <td><?php echo $deal->getId(); ?></td>
-        <td><?php echo $deal->getTitle(true); ?></td>
+        <td><a href="<?php echo $deal->getPageUrl() ?>" target="_blank"><?php echo $deal->getTitle(true); ?></a></td>
         <td><?php echo $deal->getVendor(); ?></td>
         <td><?php echo $deal->getCategory(); ?></td>
         <td><?php echo $deal->getDueDate(); ?></td>
