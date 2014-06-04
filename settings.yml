@@ -1,5 +1,6 @@
 #site_url
 site_url: http://www.ausaving.com
+site_url_dev: http://dev.ausaving.com
 tracking_site_url: http://tracking.hosterdiy.com
 site_name: AuSaving.com 澳洲省钱网
 site_name_html: '<span style="color: #3C7E9E">Au</span><span style="color: #D53115">Saving</span> 澳洲省钱网'

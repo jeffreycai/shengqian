@@ -40,11 +40,11 @@ if ($error_flag == 0) {
 $html = new HTML();
 $html->renderOut('frontend/html_header', array(
     'title' => '联系我们',
-    'body_class' => 'contact'
+    'body_class' => 'page contact'
 ));
 
 $html->renderOut('frontend/nav/main', array(
-    'current_url' => get_cur_page_url(true),
+    'current_url' => get_cur_page_url(),
     'site_name_html' => $conf['site_name_html'],
     'categories' => $conf['category']
 ));

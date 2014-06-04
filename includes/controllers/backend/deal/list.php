@@ -36,10 +36,6 @@ echo $html->render('backend/header');
       'page' => $page
   )) ?>
   
-  <?php echo $html->render('components/pagination', array(
-      'total_page' => $total_page,
-      'page' => $page
-  )) ?>
   
   <div class="table-responsive">
   <table class="table table-striped table-hover">
@@ -51,7 +47,6 @@ echo $html->render('backend/header');
         <th>分类</th>
         <th>Due</th>
         <th>创建时间</th>
-        <th>Last Ding</th>
         <th>Pub?</th>
         <th>Pro?</th>
         <th>Vad?</th>
@@ -65,24 +60,21 @@ echo $html->render('backend/header');
         <td><?php echo $deal->getCategory(); ?></td>
         <td><?php echo $deal->getDueDate(); ?></td>
         <td><?php echo $deal->getCreatedAtDate(); ?></td>
-        <td class="last_published"><?php echo $deal->getLastPublished(true); ?></td>
         <td><span class="glyphicon glyphicon-<?php echo $deal->getPublished() ? 'ok' : 'remove' ?>"></span></td>
         <td><span class="glyphicon glyphicon-<?php echo $deal->getPromoted() ? 'ok' : 'remove' ?>"></span></td>
         <td class="valid"><span class="glyphicon glyphicon-<?php echo $deal->getValid() ? 'ok' : 'remove' ?>"></span></td>
         <td>
           <!-- edit -->
           <a class="btn btn-xs btn-primary edit" href='/admin/deal/edit/<?php echo $deal->getId();?>'>Edit</a>
-          <!-- validate -->
-          <?php if ($deal->isGroupon()): ?>
-            <button class="btn btn-xs btn-warning validate">Validate</button>
-          <?php endif; ?>
-          <!-- publish -->
-          <button type="button" class="btn btn-xs btn-success publish-sydneytoday-deal" data-loading-text="Publishing...">Publish</button>
           <!-- delete -->
           <?php if ($deal->getDeleted()): ?>
           <button class="btn btn-xs btn-danger delete deleted" type="button" data-loading-text="Deleting...">Delete forever</button>
           <?php else: ?>
           <button class="btn btn-xs btn-danger delete" type="button" data-loading-text="Deleting...">Delete</button>
+          <?php endif; ?>
+          <!-- validate -->
+          <?php if ($deal->isGroupon()): ?>
+            <button class="btn btn-xs btn-warning validate">Validate</button>
           <?php endif; ?>
         </td>
       </tr>

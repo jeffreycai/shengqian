@@ -5,90 +5,71 @@ global $mysqli;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 
 // get records to display
-$query = "SELECT * FROM `sydneytoday_deal` ORDER BY deleted ASC, valid ASC, deleted ASC, last_published ASC LIMIT " . (($page-1) * $conf['record_each_page']) . ', ' . ($conf['record_each_page']);
+$query = "SELECT d.id, s.created_at FROM deal as d LEFT JOIN sydneytoday_deal_instance as s ON d.id=s.did WHERE d.valid=1 GROUP BY d.id ORDER BY s.created_at ASC LIMIT " . (($page-1) * $conf['record_each_page']) . ', ' . ($conf['record_each_page']);
 $result = $mysqli->query($query);
 $deals = array();
-while ($record = $result->fetch_object()) {
-  $deal = new SydneytodayDeal();
+while ($result && $record = $result->fetch_object()) {
+  $deal = Deal::findById($record->id);
   DBObject::importQueryResultToDbObject($record, $deal);
+  $deal->last_updated = $record->created_at;
   $deals[] = $deal;
 }
-
+//_debug($deals);
 
 // get total page number
-$query = "SELECT * FROM `sydneytoday_deal`";
+$query = "SELECT d.id, s.created_at FROM deal as d LEFT JOIN sydneytoday_deal_instance as s ON d.id=s.did WHERE d.valid=1 GROUP BY d.id";
 $total_page = ceil($mysqli->query($query)->num_rows / $conf['record_each_page']);
 
 
 $html = new HTML();
 
-echo $html->render('backend/html_header', array('title' => 'Sydneytoday Deal task list'));
+echo $html->render('backend/html_header', array('title' => 'Deal list'));
 echo $html->render('backend/header');
 
-//echo $html->render('backend/sydneytoday/sidebar');
+//echo $html->render('backend/deal/sidebar');
 ?>
 <div class="main">
-  <?php $html->renderOut('backend/sydneytoday/deal/nav'); ?>
-  <h2 class='sub-header'>折扣频道帖子列表</h2>
-  
+  <?php $html->renderOut('backend/sydneytoday/nav'); ?>
+  <h2 class='sub-header'>折扣发帖列表</h2>
   <?php echo renderMsgs(); ?>
-  
   <?php echo $html->render('components/pagination', array(
       'total_page' => $total_page,
       'page' => $page
   )) ?>
   
-  <table class="table table-striped">
+  <div class="table-responsive">
+  <table class="table table-striped table-hover">
     <tbody>
       <tr>
         <th>#</th>
         <th>标题</th>
+        <th>Thumbnail</th>
+        <th>Last Ding</th>
         <th>Valid?</th>
-        <th>Target</th>
-        <th>Due</th>
-        <th>最后发帖时间</th>
         <th>操作</th>
       </tr>
       <?php foreach ($deals as $deal): ?>
-      <tr id="sydneytoday_deal-<?php echo $deal->getId(); ?>">
+      <tr id="deal-<?php echo $deal->getId(); ?>">
         <td><?php echo $deal->getId(); ?></td>
-        <td><?php echo $deal->getTitle(true); ?></td>
+        <td><a href="<?php echo $deal->getPageUrl() ?>" target="_blank"><?php echo $deal->getTitle(true); ?></a></td>
+        <td><img src="<?php echo $deal->getThumbnail($conf['deal']['thumbnail_size']); ?>" width="100px;" /></td>
+        <td class="last_published"><?php echo time_ago($deal->last_updated); ?></td>
         <td class="valid"><span class="glyphicon glyphicon-<?php echo $deal->getValid() ? 'ok' : 'remove' ?>"></span></td>
-        <td><a href="<?php echo $deal->getGrouponLinkNaked(); ?>">link</a></td>
-        <td><?php echo $deal->getDueDate(); ?></td>
-        <td class="last_published"><?php echo $deal->getLastPublished(true); ?></td>
         <td>
           <!-- edit -->
-          <button class="btn btn-xs btn-primary edit" onclick="window.location = '/admin/sydneytoday/deal/edit/<?php echo $deal->getId();?>';">Edit</button>
-          <!-- create instance -->
-          <div class="btn-group">
-            <button type="button" class="btn btn-xs btn-success publish-deal" data-loading-text="Publishing...">Publish</button>
-            <button type="button" class="btn btn-xs btn-success dropdown-toggle" data-toggle="dropdown">
-              <span class="caret"></span>
-              <span class="sr-only">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu publish" role="menu">
-              <?php $instances = $deal->getInstances(); ?>
-              <?php foreach ($instances as $instance): ?>
-              <li class="disabled"><a href="#"><?php echo $instance->getCreatedAt(true); ?></a></li>
-              <?php endforeach; ?>
-              <li class="divider"></li>
-              <li  class="disabled"><a href="#"><small><strong><?php echo sizeof($instances); ?> records in total.</strong></small></a></li>
-            </ul>
-          </div>
-          <!-- delete -->
-          <?php if ($deal->getDeleted()): ?>
-          <button class="btn btn-xs btn-danger delete deleted" type="button" data-loading-text="Deleting...">Delete forever</button>
-          <?php else: ?>
-          <button class="btn btn-xs btn-danger delete" type="button" data-loading-text="Deleting...">Delete</button>
+          <a class="btn btn-xs btn-primary edit" href='/admin/deal/edit/<?php echo $deal->getId();?>'>Edit</a>
+          <!-- publish -->
+          <button type="button" class="btn btn-xs btn-success publish-sydneytoday-deal" data-loading-text="Posting...">Post</button>
+          <!-- validate -->
+          <?php if ($deal->isGroupon()): ?>
+            <button class="btn btn-xs btn-warning validate" data-loading-text="Validating">Validate</button>
           <?php endif; ?>
-          <!-- valid -->
-          <button class="btn btn-xs btn-warning validate" type="button" data-loading-text="Valitating...">Validate</button>
         </td>
       </tr>
       <?php endforeach; ?>
     </tbody>
   </table>
+  </div>
 
   <?php echo $html->render('components/pagination', array(
       'total_page' => $total_page,

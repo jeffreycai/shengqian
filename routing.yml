@@ -26,53 +26,6 @@ routing:
     path: ^\/admin\/validate\/([^\/]+)\/(\d+)\/?$
     isSecure: 1
     controller: backend/validate
-  user_cookie_delete:
-    path: ^\/admin\/sydneytoday\/user\/flush-cookie\/?$
-    isSecure: 1
-    controller: backend/user/cookie_delete
-    
-    
-    
-  sydneytoday_index:
-    path: ^\/admin\/sydneytoday\/?$
-    isSecure: 1
-    controller: backend/sydneytoday/index
-  sydneytoday_dingtie_index:
-    path: ^\/admin\/sydneytoday\/dingtie\/?$
-    isSecure: 1
-    controller: backend/sydneytoday/dingtie/index
-  sydneytoday_dingtie_list:
-    path: ^\/admin\/sydneytoday\/dingtie\/list\/?$
-    isSecure: 1
-    controller: backend/sydneytoday/dingtie/list
-  sydneytoday_dingtie_add:
-    path: ^\/admin\/sydneytoday\/dingtie\/add\/?$
-    isSecure: 1
-    controller: backend/sydneytoday/dingtie/add_edit
-  sydneytoday_dingtie_edit:
-    path: ^\/admin\/sydneytoday\/dingtie\/edit\/(\d+)\/?$
-    isSecure: 1
-    controller: backend/sydneytoday/dingtie/add_edit
-  sydneytoday_deal_index:
-    path: ^\/admin\/sydneytoday\/deal\/?$
-    isSecure: 1
-    controller: backend/sydneytoday/deal/index
-  sydneytoday_deal_list:
-    path: ^\/admin\/sydneytoday\/deal\/list\/?$
-    isSecure: 1
-    controller: backend/sydneytoday/deal/list
-  sydneytoday_deal_add:
-    path: ^\/admin\/sydneytoday\/deal\/add\/?$
-    isSecure: 1
-    controller: backend/sydneytoday/deal/add_edit
-  sydneytoday_deal_edit:
-    path: ^\/admin\/sydneytoday\/deal\/edit\/(\d+)\/?$
-    isSecure: 1
-    controller: backend/sydneytoday/deal/add_edit
-  sydneytoday_deal_instance_add:
-    path: ^\/admin\/sydneytoday\/deal\/(\d+)\/instance\/add\/?$
-    isSecure: 1
-    controller: backend/sydneytoday/deal/instance/add
     
     
     
@@ -96,6 +49,23 @@ routing:
     path: ^\/admin\/deal\/(\d+)\/sydneytoday\/discount_deal\/instance\/add\/?$
     isSecure: 1
     controller: backend/deal/sydneytoday/discount_deal_add
+    
+  backend_sydneytoday:
+    path: ^\/admin\/sydneytoday\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/index
+  backend_sydneytoday_user_cookie_delete:
+    path: ^\/admin\/sydneytoday\/user\/flush-cookie\/?$
+    isSecure: 1
+    controller: backend/user/cookie_delete
+  backend_sydneytoday_deal:
+    path: ^\/admin\/sydneytoday\/deal\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/deal/index
+  backend_sydneytoday_deal_list:
+    path: ^\/admin\/sydneytoday\/deal\/list\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/deal/list
     
     
     

@@ -41,7 +41,7 @@ $html->renderOut('frontend/html_header', array(
 ));
 
 $html->renderOut('frontend/nav/main', array(
-    'current_url' => get_cur_page_url(true),
+    'current_url' => get_cur_page_url(),
     'site_name_html' => $conf['site_name_html'],
     'categories' => $conf['category']
 ));
