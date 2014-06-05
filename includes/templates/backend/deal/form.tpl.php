@@ -11,6 +11,10 @@
         <?php elseif ($deal): ?>
              value="<?php echo $deal->getTitle(); ?>"
         <?php endif; ?> required="" />
+      
+      <?php if ($link = $deal->getPageUrl()): ?>
+      <a href="<?php echo $link; ?>" target="_blank">前端页面</a>
+      <?php endif; ?>
     </div>
   </div>
   <div class="form-group">
@@ -52,6 +56,8 @@
         <?php endif; ?> required="" />
       <?php if ($deal && $link = $deal->getGrouponLinkNaked()): ?>
         <a href="<?php echo $link ?>" target="_blank">Groupon 源链接</a>
+      <?php elseif ($link = $deal->getUrl()): ?>
+        <a href="<?php echo $link ?>" target="_blank">源链接</a>
       <?php endif; ?>
     </div>
   </div>

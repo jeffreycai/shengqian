@@ -36,8 +36,8 @@ $html = new HTML();
       <?php if ($hoster = $deal->getHoster()): ?>
         <li><span>服务提供商:</span><?php echo $hoster; ?></li>
       <?php endif; ?>
-      <li><span>折扣有效日期：</span><?php echo $deal->getDueDate(); ?></li>
-      <li><span>折扣创建日期：</span><?php echo $deal->getCreatedAtDate(); ?></li>
+      <li><span>折扣有效日期： </span><?php echo $deal->getDueDate(); ?></li>
+      <!--<li><span>折扣创建日期：</span><?php echo $deal->getCreatedAtDate(); ?></li>-->
     </ul>
     
     <?php if ($deal->getValid()): ?>
@@ -57,7 +57,7 @@ $html = new HTML();
         <?php if ($deal->getValid()): ?>
           <a href="<?php echo $deal->getGoToLink(); ?>" class="btn btn-danger btn-sm goto">去看看！</a>
         <?php else: ?>
-          <a href="<?php echo $deal->getGoToLink(); ?>" class="btn btn-default btn-sm goto" disabled="disabled">亲，这条折扣信息过期了哦</a>
+          <a href="<?php echo $deal->getGoToLink(); ?>" class="btn btn-default btn-sm goto" disabled="disabled" style="cursor:not-allowed">亲，这条折扣信息过期了哦</a>
         <?php endif; ?>
       </div>
     </div>

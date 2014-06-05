@@ -4,11 +4,30 @@ global $conf;
 $id = $vars[2];
 $deal = Deal::findById($id);
 
+// validate url
 if (!$deal) {
   HTML::forward('/404');
 }
 
 $category = $deal->getCategory();
+
+if ($category->getId() != $vars[1]) {
+  HTML::forward('/404');
+}
+
+// check valid
+if ($deal->getValid()) {
+  // unset valid if expired
+  $due = $deal->getDue();
+  if (!empty($due)) {
+    if (time() > $due) {
+      $deal->setValid(0);
+      $deal->save();
+    }
+  }
+}
+
+// get similar deals
 $similar_deals = $category->getRecentDeals(20, $id);
 shuffle($similar_deals);
 $similar_deals = array_slice($similar_deals, 0, 6);
@@ -18,8 +37,7 @@ $similar_deals = array_slice($similar_deals, 0, 6);
 $html = new HTML();
 $html->renderOut('frontend/html_header', array(
     'title' => $deal->getTitle(),
-    'body_class' => 'deal details',
-    'wechat_share_image' => comeFromWechat() ? $deal->getThumbnail('320x320') : null
+    'body_class' => 'deal details'
 ));
 
 $html->renderOut('frontend/nav/main', array(
