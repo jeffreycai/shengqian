@@ -7,7 +7,7 @@ header("HTTP/1.0 404 Not Found");
 $html = new HTML();
 
 $html->renderOut('frontend/html_header', array(
-  'title' => 'Page does not exist' . ' :: Phone list :: Transport for NSW',
+  'title' => '页面没有找到',
 ));
 
 // header

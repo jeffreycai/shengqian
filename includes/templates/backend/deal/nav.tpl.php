@@ -2,9 +2,6 @@
 
 <div class="row">
   <div class="col-xs-3 placeholder">
-    <a href="http://www.sydneytoday.com/list.php?fid=194" target="_blank">今日悉尼折扣</a>
-  </div>
-  <div class="col-xs-3 placeholder">
     <a href="https://partner-int.groupon.com/login" target="_blank">GO 联盟营销</a>
   </div>
   <div class="col-xs-3 placeholder">

@@ -18,7 +18,7 @@ $user->login($conf['sydneytoday']['loginurl'], true);
 
 // post qaptcha_key first
 $curl = new Curl($user->getCookiePath());
-$qaptcha_key = "tbBd%23ZA63m3VukNdmw_US9uwPsMj5-Gz";
+$qaptcha_key = "NXtpbh65RQugNqPqfGdUDJX7G267D8XK";
 $result = $curl->post(
         $conf['sydneytoday']['qaptcha_url'], 
         "action=qaptcha&qaptcha_key=" . $qaptcha_key,
@@ -41,30 +41,31 @@ $title = mb_convert_encoding($title, 'GB2312', 'UTF-8');
 $type;
 switch ($deal->getCategory()->getId()) {
   case 'food':
-    $type = 3; break;
+    $type = '烟酒食品'; break;
   case 'event':
-    $type = 5; break;
+    $type = '游戏娱乐'; break;
   case 'goods':
-    $type = 5; break;
+    $type = '家居用品'; break;
   case 'travel':
-    $type = 3; break;
+    $type = '游戏娱乐'; break;
 }
 
-$data[] = "postdb[city_id]=1"; // --
+
 $data[] = "postdb[title]=" . $title; // --
 $data[] = "postdb[linkman]=" . urlencode('AuSaving.com'); // --
-$data[] = "postdb[content]=" . urlencode(mb_convert_encoding(html_to_text($deal->getDetails()), 'GB2312', 'UTF-8')); // --
 $data[] = "postdb[telephone]=";
 $data[] = "postdb[mobphone]=";
 $data[] = "postdb[fax]=";
 $data[] = "postdb[oicq]=";
 $data[] = "postdb[msn]=";
 $data[] = "postdb[email]=";
-$data[] = "postdb[my_host]=" . urlencode('Groupon');
-$data[] = "postdb[sortid]=" . urlencode($type); // --
-$data[] = "postdb[my_price]=" . urlencode(mb_convert_encoding($deal->getDiscount(), 'GB2312', 'UTF-8')); // --
-$data[] = "postdb[my_time]=";
-$data[] = "postdb[my_expressurl]=" . urlencode($conf['site_url'] . $deal->getPageUrl());
+$data[] = "postdb[zone_id]=";
+$data[] = "postdb[city_id]=1"; // --
+$data[] = "postdb[my_790gq]=" . urlencode(mb_convert_encoding("出售", 'GB2312', 'UTF-8')); // -- sale or require
+$data[] = "postdb[my_697shsm]=" . urlencode(mb_convert_encoding("否", 'GB2312', 'UTF-8')); // -- deliver or not
+$data[] = "postdb[my_781xf]=" . urlencode(mb_convert_encoding(mb_convert_encoding($type, 'GB2312', 'UTF-8'), 'GB2312', 'UTF-8')); // -- type
+$data[] = "postdb[my_price]="; // --
+$data[] = "postdb[content]=" . urlencode(mb_convert_encoding(($deal->getDetails()), 'GB2312', 'UTF-8')); // --
 $data[] = "titledb[1]=";
 $data[] = "photodb[1]=" . urlencode($deal->getImage());
 $data[] = "photodb[2]=" . $conf['site_url'] . '/images/advertisement.jpg';
@@ -74,13 +75,18 @@ $data[] = "ftype[1]=out";
 $data[] = "nums=1";
 $data[] = $qaptcha_key . "=";
 $data[] = "submit=提 交";
-$data[] = "fid=194";
+$data[] = "fid=23";
 $data[] = "id=0";
+
+
+
+
+
 
 $result = $curl->post(
         $conf['sydneytoday']['post_url'], 
         implode('&', $data),
-        'http://www.sydneytoday.com/post.php?fid=194',
+        'http://www.sydneytoday.com/post.php?fid=23',
         true
 );
 
@@ -94,7 +100,7 @@ if (preg_match('/alert\(\'(.*)\'\);/', $result, $matches)) {
     echo $text;
     exit;
   } else {
-    $instance = new SydneytodayDealInstance();
+    $instance = new SydneytodayNewproductInstance();
     $instance->setDeal($deal);
     $instance->setCreatedAt($now);
     $instance->save();

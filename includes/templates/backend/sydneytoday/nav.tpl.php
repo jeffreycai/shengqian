@@ -11,7 +11,8 @@
 
 <div class="row placeholders">
   <ul class="nav nav-pills">
+    <li <?php echo_link_active_class('/admin/sydneytoday', get_cur_page_url()); ?>><a href="/admin/sydneytoday">主控板</a></li>
     <li <?php echo_link_active_class('/admin/sydneytoday/deal/list', get_cur_page_url()); ?>><a href="/admin/sydneytoday/deal/list">折扣发帖</a></li>
-    <li <?php echo_link_active_class('/admin/sydneytoday/newproduct', get_cur_page_url()); ?>><a href="/admin/sydneytoday/newproduct">新品发帖</a></li>
+    <li <?php echo_link_active_class('/admin/sydneytoday/newproduct/list', get_cur_page_url()); ?>><a href="/admin/sydneytoday/newproduct">新品发帖</a></li>
   </ul>
 </div>

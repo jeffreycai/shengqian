@@ -49,6 +49,10 @@ routing:
     path: ^\/admin\/deal\/(\d+)\/sydneytoday\/discount_deal\/instance\/add\/?$
     isSecure: 1
     controller: backend/deal/sydneytoday/discount_deal_add
+  backend_deals_sydneytoday_newproduct_deal_instance_add:
+    path: ^\/admin\/deal\/(\d+)\/sydneytoday\/newproduct\/instance\/add\/?$
+    isSecure: 1
+    controller: backend/deal/sydneytoday/newproduct_deal_add
     
   backend_sydneytoday:
     path: ^\/admin\/sydneytoday\/?$
@@ -58,6 +62,7 @@ routing:
     path: ^\/admin\/sydneytoday\/user\/flush-cookie\/?$
     isSecure: 1
     controller: backend/user/cookie_delete
+    
   backend_sydneytoday_deal:
     path: ^\/admin\/sydneytoday\/deal\/?$
     isSecure: 1
@@ -66,6 +71,14 @@ routing:
     path: ^\/admin\/sydneytoday\/deal\/list\/?$
     isSecure: 1
     controller: backend/sydneytoday/deal/list
+  backend_sydneytoday_newproduct:
+    path: ^\/admin\/sydneytoday\/newproduct\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/newproduct/index
+  backend_sydneytoday_newproduct_list:
+    path: ^\/admin\/sydneytoday\/newproduct\/list\/?$
+    isSecure: 1
+    controller: backend/sydneytoday/newproduct/list
     
     
     
