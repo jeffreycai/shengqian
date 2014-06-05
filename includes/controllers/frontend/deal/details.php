@@ -18,7 +18,8 @@ $similar_deals = array_slice($similar_deals, 0, 6);
 $html = new HTML();
 $html->renderOut('frontend/html_header', array(
     'title' => $deal->getTitle(),
-    'body_class' => 'deal details'
+    'body_class' => 'deal details',
+    'wechat_share_image' => $deal->getImage()
 ));
 
 $html->renderOut('frontend/nav/main', array(
