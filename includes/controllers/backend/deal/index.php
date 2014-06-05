@@ -1,2 +1,2 @@
 <?php
-HTML::forward('/admin/sydneytoday/deal/list');
+HTML::forward('/admin/deal/list');

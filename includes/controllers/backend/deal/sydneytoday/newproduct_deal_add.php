@@ -65,7 +65,7 @@ $data[] = "postdb[my_790gq]=" . urlencode(mb_convert_encoding("出售", 'GB2312'
 $data[] = "postdb[my_697shsm]=" . urlencode(mb_convert_encoding("否", 'GB2312', 'UTF-8')); // -- deliver or not
 $data[] = "postdb[my_781xf]=" . urlencode(mb_convert_encoding(mb_convert_encoding($type, 'GB2312', 'UTF-8'), 'GB2312', 'UTF-8')); // -- type
 $data[] = "postdb[my_price]="; // --
-$data[] = "postdb[content]=" . urlencode(mb_convert_encoding(($deal->getDetails()), 'GB2312', 'UTF-8')); // --
+$data[] = "postdb[content]=" . urlencode(mb_convert_encoding($deal->getDetails() . "<p><br />详情请见链接： <a href='".$deal->getPageUrl(true)."'>".$deal->getPageUrl(false)."</a></p>", 'GB2312', 'UTF-8')); // --
 $data[] = "titledb[1]=";
 $data[] = "photodb[1]=" . urlencode($deal->getImage());
 $data[] = "photodb[2]=" . $conf['site_url'] . '/images/advertisement.jpg';
