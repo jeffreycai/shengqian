@@ -19,7 +19,7 @@ $html = new HTML();
 $html->renderOut('frontend/html_header', array(
     'title' => $deal->getTitle(),
     'body_class' => 'deal details',
-    'wechat_share_image' => $deal->getThumbnail($conf['deal']['thumbnail_size'])
+    'wechat_share_image' => comeFromWechat() ? $deal->getThumbnail('320x320') : null
 ));
 
 $html->renderOut('frontend/nav/main', array(
