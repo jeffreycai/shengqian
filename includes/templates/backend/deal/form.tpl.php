@@ -56,7 +56,7 @@
         <?php endif; ?> required="" />
       <?php if ($deal && $link = $deal->getGrouponLinkNaked()): ?>
         <a href="<?php echo $link ?>" target="_blank">Groupon 源链接</a>
-      <?php elseif ($link = $deal->getUrl()): ?>
+      <?php elseif ($deal && $link = $deal->getUrl()): ?>
         <a href="<?php echo $link ?>" target="_blank">源链接</a>
       <?php endif; ?>
     </div>
