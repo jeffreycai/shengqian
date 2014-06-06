@@ -12,7 +12,7 @@
              value="<?php echo $deal->getTitle(); ?>"
         <?php endif; ?> required="" />
       
-      <?php if ($link = $deal->getPageUrl()): ?>
+      <?php if ($deal && $link = $deal->getPageUrl()): ?>
       <a href="<?php echo $link; ?>" target="_blank">前端页面</a>
       <?php endif; ?>
     </div>
