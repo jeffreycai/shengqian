@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
   $promoted = isset($_POST['promoted']) ? strip_tags($_POST['promoted']) : null;
   $valid = isset($_POST['valid']) ? strip_tags($_POST['valid']) : 0;
   $hoster = isset($_POST['hoster']) ? strip_tags($_POST['hoster']) : null;
-  $due = isset($_POST['due']) ? strip_tags($_POST['due']) : null;
+  $due = isset($_POST['due']) && $_POST['due'] != 'N/A' && !empty($_POST['due']) ? strip_tags($_POST['due']) : null;
   
   
   // TODO - validation
@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
     // create / update deal
     $deal = new Deal();
     if ($id) {
-      $deal->setId($id);
+      $deal->setId(intval($id));
     }
     if (!empty($cat)) $deal->setCategory(Category::findById($cat));
     if (!empty($title)) $deal->setTitle($title);
