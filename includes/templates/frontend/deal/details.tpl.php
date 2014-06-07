@@ -40,7 +40,7 @@ $html = new HTML();
       <!--<li><span>折扣创建日期：</span><?php echo $deal->getCreatedAtDate(); ?></li>-->
     </ul>
     
-    <?php if ($deal->getValid()): ?>
+    <?php if ($deal->getValid() && !comeFromWechat()): ?>
       <div class="tell-friend"><br />
         <p>分享给小伙伴们，一起省钱~！</p>
         <?php $html->renderOut('/components/sharebtns', array(
@@ -55,7 +55,7 @@ $html = new HTML();
     <div class="row">
       <div class="col-xs-12">
         <?php if ($deal->getValid()): ?>
-          <a href="<?php echo $deal->getGoToLink(); ?>" class="btn btn-danger btn-sm goto">去看看！</a>
+          <a href="<?php echo $deal->getGoToLink(); ?>" class="btn btn-danger btn-sm goto" target="_blank">去看看！</a>
         <?php else: ?>
           <a href="<?php echo $deal->getGoToLink(); ?>" class="btn btn-default btn-sm goto" disabled="disabled" style="cursor:not-allowed">亲，这条折扣信息过期了哦</a>
         <?php endif; ?>

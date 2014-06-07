@@ -50,6 +50,3 @@
 </script>
 <?php endif; ?>
 
-<?php if (isset($data->wechat_share_image)): ?>
-<img src="<?php echo $data->wechat_share_image ?>" style="display: none;" />
-<?php endif; ?>

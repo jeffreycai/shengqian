@@ -4,7 +4,7 @@
   <h2>省钱折扣</h2>
   <h3 id="promoted">今日精选 <span><a href="#" role="button" data-goto="food">&raquo; 美食</a> <a href="#" role="button" data-goto="goods">&raquo; 商品</a> <a href="#" role="button" data-goto="travel">&raquo; 旅游</a> <a href="#" role="button" data-goto="event">&raquo; 活动</a></span></h3>
   <div class="row">
-    <?php foreach (Deal::findAllPromoted(6) as $deal): ?>
+    <?php foreach (Deal::findAllPromoted(9) as $deal): ?>
       <div class="col-sm-6 col-md-4">
         <div class="card">
           <div class="row">
