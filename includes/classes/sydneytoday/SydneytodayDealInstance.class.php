@@ -26,6 +26,24 @@ class SydneytodayDealInstance extends DBObject {
   /** ---------------------------------
    * Setters and getters for DB fields
     ----------------------------------*/
+  static function sendInvalidReport(Array $deals) {
+    if (sizeof($deals) == 0) {
+      return;
+    }
+    
+    global $conf;
+    $to = $conf['site_admin_email'];
+    $subject = 'Invalid deals detected.';
+    $message = '';
+    foreach ($deals as $deal) {
+      $message .= $deal->getId() . ' - ' . $deal->getTitle() . "\r\n";
+    }
+    $headers = 'From: jeffreycai-sydney@hotmail.com' . "\r\n" .
+    'Reply-To: jeffreycai-sydney@hotmail.com' . "\r\n" .
+    'X-Mailer: PHP/' . phpversion();
+    mail($to, $subject, $message, $headers);
+  }
+  
   public function setId($id) {
     $this->setDbFieldId($id);
   }

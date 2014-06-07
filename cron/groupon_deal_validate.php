@@ -16,4 +16,6 @@ foreach ($group_deals as $deal) {
   }
 }
 
-SydneytodayDeal::sendInvalidReport($report);
+SydneytodayDealInstance::sendInvalidReport($report);
+
+echo "Success!\n";
