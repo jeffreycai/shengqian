@@ -20,7 +20,7 @@ if ($deal->getValid()) {
   // unset valid if expired
   $due = $deal->getDue();
   if (!empty($due)) {
-    if (time() > $due) {
+    if (time() > $due + (24 * 60 * 60)) {
       $deal->setValid(0);
       $deal->save();
     }
