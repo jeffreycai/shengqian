@@ -36,6 +36,7 @@ $title.= mb_substr($deal->getTitle(), $split_point, $rest_length, 'UTF-8');
 for ($i = 0; $i < rand(0, 4); $i++) {
   $title.= ' ';
 }
+$title = preg_replace('/【.+】 ?/', '', $title);
 $title = mb_convert_encoding($title, 'GB2312', 'UTF-8');
 
 $type;
