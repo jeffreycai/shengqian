@@ -28,9 +28,9 @@ if ($deal->getValid()) {
 }
 
 // get similar deals
-$similar_deals = $category->getRecentDeals(20, $id);
+$similar_deals = $category->getRecentDeals(50, $id);
 shuffle($similar_deals);
-$similar_deals = array_slice($similar_deals, 0, 6);
+$similar_deals = array_slice($similar_deals, 0, 18);
 
 
 
