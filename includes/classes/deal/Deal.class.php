@@ -227,6 +227,24 @@ class Deal extends DBObject {
     return $rtn;
   }
   
+  static function findAllValid($limit = null) {
+    global $mysqli;
+    $rtn = array();
+    
+    $query = "SELECT * FROM deal WHERE valid=1 AND published=1 ORDER BY created_at DESC";
+    if (is_int($limit)) {
+      $query .= " LIMIT $limit";
+    }
+    $result = $mysqli->query($query);
+    
+    while ($result && $d = $result->fetch_object()) {
+      $deal = new Deal();
+      Deal::importQueryResultToDbObject($d, $deal);
+      $rtn[] = $deal;
+    }
+    return $rtn;
+  }
+  
   public function setCategory(Category $category) {
     $this->category = $category;
     $this->setCid($category->getId());

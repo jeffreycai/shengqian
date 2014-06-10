@@ -2,13 +2,22 @@
 
 <div class="row">
   <div class="col-xs-3 placeholder">
-    <a href="https://partner-int.groupon.com/login" target="_blank">GO 联盟营销</a>
+    <a href="https://partner-int.groupon.com/login" target="_blank">GroupOn</a>
+  </div>
+  <div class="col-xs-3 placeholder">
+    <a href="https://auth.zanox.com/login" target="_blank">Zanox</a>
+  </div>
+  <div class="col-xs-3 placeholder">
+    <a href="https://www.dgmperformance.com.au/login.user" target="_blank">DGM</a>
   </div>
   <div class="col-xs-3 placeholder">
     <a href="https://mp.weixin.qq.com/" target="_blank">微信公众平台</a>
   </div>
   <div class="col-xs-3 placeholder">
     <a href="http://analytics.google.com/" target="_blank">Google Analytics</a>
+  </div>
+  <div class="col-xs-3 placeholder">
+    <a href="https://www.google.com/adsense" target="_blank">Google AdSense</a>
   </div>
 </div>
 

@@ -48,7 +48,7 @@ class Curl {
   }
   
   
-  public function post($url, $data, $referer = null, $tor = false) {
+  public function post($url, $data, $referer = null, $tor = false, $ssl = false) {
     $cookie_path = $this->getCookiePath();
     $user_agent = $this->getUserAgent();
     
@@ -67,6 +67,10 @@ class Curl {
     if ($tor) {
       curl_setopt($ch, CURLOPT_PROXY, "127.0.0.1:9050");
       curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+    }
+    if ($ssl) {
+      curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY); // The HTTP authentication method(s) to use.
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // FALSE to stop cURL from verifying the peer's certificate.
     }
 
     curl_setopt($ch, CURLOPT_POST, 1);

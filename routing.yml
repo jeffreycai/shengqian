@@ -28,7 +28,7 @@ routing:
     controller: backend/validate
     
     
-    
+# deal
   backend_deal_index:
     path: ^\/admin\/deal\/?$
     isSecure: 1
@@ -53,7 +53,7 @@ routing:
     path: ^\/admin\/deal\/(\d+)\/sydneytoday\/newproduct\/instance\/add\/?$
     isSecure: 1
     controller: backend/deal/sydneytoday/newproduct_deal_add
-    
+# sydneytoday
   backend_sydneytoday:
     path: ^\/admin\/sydneytoday\/?$
     isSecure: 1
@@ -79,7 +79,19 @@ routing:
     path: ^\/admin\/sydneytoday\/newproduct\/list\/?$
     isSecure: 1
     controller: backend/sydneytoday/newproduct/list
-    
+# wechat
+  backend_wechat:
+    path: ^\/admin\/wechat\/?$
+    isSecure: 1
+    controller: backend/wechat/index
+  backend_wechat_imgtxt-msg-create:
+    path: ^\/admin\/wechat\/imgtxt-msg-create\/?$
+    isSecure: 1
+    controller: backend/wechat/imgtxt_msg_create
+  backend_wechat_user_flush-cookie:
+    path: ^\/admin\/wechat\/user\/flush-cookie\/?$
+    isSecure: 1
+    controller: backend/wechat/cookie_delete
     
     
     
