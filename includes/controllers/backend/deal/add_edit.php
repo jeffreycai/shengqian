@@ -6,7 +6,7 @@ if (isset($_POST['submit'])) {
   $id = isset($_POST['id']) ? $_POST['id'] : null;
   $cat = isset($_POST['cid']) ? $_POST['cid'] : null;
   $title = isset($_POST['title']) ? strip_tags($_POST['title']) : null;
-  $slug = isset($_POST['slug']) ? strip_tags(trim($_POST['slug'])) : null;
+//  $slug = isset($_POST['slug']) ? strip_tags(trim($_POST['slug'])) : null;
   $url = isset($_POST['url']) ? strip_tags($_POST['url']) : null;
   $coupon_code = isset($_POST['coupon_code']) ? strip_tags($_POST['coupon_code']) : null;
   $details = isset($_POST['details']) ? $_POST['details'] : null;
@@ -21,11 +21,11 @@ if (isset($_POST['submit'])) {
   
   
   // TODO - validation
-  if (!empty($slug) && preg_match('/[^a-z\-0-9]/', $slug)) {
-    setMsg(MSG_ERROR, 'slug 只能是小写或者数字');
-  } elseif(Deal::findBySlug($slug, $cat, $id)) { 
-    setMsg(MSG_ERROR, '同样的slug已经有了，换个吧');
-  }else {
+//  if (!empty($slug) && preg_match('/[^a-z\-0-9]/', $slug)) {
+//    setMsg(MSG_ERROR, 'slug 只能是小写或者数字');
+//  } elseif(Deal::findBySlug($slug, $cat, $id)) { 
+//    setMsg(MSG_ERROR, '同样的slug已经有了，换个吧');
+//  }else {
   
     // create / update deal
     $deal = new Deal();
@@ -59,7 +59,7 @@ if (isset($_POST['submit'])) {
     HTML::forwardBackToReferer();
     
     
-  }
+//  }
 
 } else {
   $id = isset($vars[1]) ? $vars[1] : null;

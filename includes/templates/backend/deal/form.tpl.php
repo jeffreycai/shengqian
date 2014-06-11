@@ -17,6 +17,7 @@
       <?php endif; ?>
     </div>
   </div>
+  <!--
   <div class="form-group">
     <label for="slug" class="col-sm-3 control-label">Url slug <span>*</span></label>
     <div class="col-sm-9">
@@ -28,6 +29,7 @@
         <?php endif; ?> required="" />
     </div>
   </div>
+  -->
   <div class="form-group">
     <label class="col-sm-3 control-label">类别</label>
     

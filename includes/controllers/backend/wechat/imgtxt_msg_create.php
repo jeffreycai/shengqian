@@ -15,7 +15,8 @@ if (isset($_POST['submit'])) {
       } else {
         $deals[] = $deal;
         $wechat = new Wechat();
-        $wechat->login();
+        $token = $wechat->login();
+        _debug($token . '');
       }
     }
   }

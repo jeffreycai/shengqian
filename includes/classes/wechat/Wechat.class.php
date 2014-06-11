@@ -11,9 +11,9 @@ class Wechat {
   public function login($tor = false) {
     $login_url = 'https://mp.weixin.qq.com/cgi-bin/login?lang=zh_CN';
     // if cookie was created less than 30 days, do not redo login
-    if ($this->check_cookie()) {
-      return;
-    }
+//    if ($this->check_cookie()) {
+//      return;
+//    }
     // otherwise do login
     // username=jeffreycaizhenyuan%40gmail.com&pwd=2ff8a4badc2e1bfab7eadbf8247d563c&imgcode=&f=json
     
@@ -27,6 +27,11 @@ class Wechat {
     );
     if (strpos($result, '"err_msg":"ok"') == FALSE) {
       die('login to wechat failed.');
+    } else {
+      $tokens = array();
+      preg_match('/token=(\d+)/', $result, $tokens);
+      $token = isset($tokens[1]) ? $tokens[1] : null;
+      return $token;
     }
   }
   
