@@ -53,7 +53,7 @@ switch ($deal->getCategory()->getId()) {
 
 $data[] = "postdb[city_id]=1"; // --
 $data[] = "postdb[title]=" . $title; // --
-$data[] = "postdb[linkman]="; // --
+$data[] = "postdb[linkman]=" . urlencode(' '); // --
 $data[] = "postdb[content]=" . urlencode(mb_convert_encoding(html_to_text($deal->getDetails()), 'GB2312', 'UTF-8')); // --
 $data[] = "postdb[telephone]=";
 $data[] = "postdb[mobphone]=";
