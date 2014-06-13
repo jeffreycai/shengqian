@@ -128,7 +128,24 @@ routing:
     path: ^\/search\/deal$
     isSecure: 0
     controller: frontend/deal/search
-    
+
+# page
+  backend_page_index:
+    path: ^\/admin\/page\/?$
+    isSecure: 1
+    controller: backend/page/index
+  backend_page_list:
+    path: ^\/admin\/page\/list\/?$
+    isSecure: 1
+    controller: backend/page/list
+  backend_page_add:
+    path: ^\/admin\/page\/add\/?$
+    isSecure: 1
+    controller: backend/page/add_edit
+  backend_page_edit:
+    path: ^\/admin\/page\/edit\/(\d+)\/?$
+    isSecure: 1
+    controller: backend/page/add_edit
     
   login:
     path: ^\/login$
@@ -144,3 +161,15 @@ routing:
     path: ^\/api\/wechat$
     isSecure: 0
     controller: api/wechat
+    
+# 404
+  404:
+    path: ^\/404\/?$
+    isSecure: 0
+    controller: 404
+    
+# page front, last rule to catch all
+  page_frontend:
+    path: ^\/(.+)$
+    isSecure: 0
+    controller: frontend/pages/general

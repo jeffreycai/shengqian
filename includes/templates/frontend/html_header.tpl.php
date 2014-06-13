@@ -1,3 +1,5 @@
+<?php global $conf; ?>
+
 <!DOCTYPE html>
 <!--[if IEMobile 7]><html class="iem7"  lang="en" dir="ltr"><![endif]-->
 <!--[if lte IE 6]><html class="lt-ie9 lt-ie8 lt-ie7"  lang="en" dir="ltr"><![endif]-->
@@ -11,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="AUSaving content delivery team">
   <link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
-  <title><?php echo $data->title; ?></title>
+  <title><?php echo $data->title; ?> :: <?php echo $conf['site_name'] ?></title>
   
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   

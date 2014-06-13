@@ -14,6 +14,7 @@
         <li><a href="/admin/deal">折扣信息</a></li>
         <li><a href="/admin/wechat">微信</a></li>
         <li><a href="/admin/sydneytoday">今日悉尼</a></li>
+        <li><a href="/admin/page">页面</a></li>
         <li><a href="/logout">登出</a></li>
       </ul>
     </div>
