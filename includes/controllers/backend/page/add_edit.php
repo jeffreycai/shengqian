@@ -6,6 +6,8 @@ if (isset($_POST['submit'])) {
   $title = isset($_POST['title']) ? strip_tags($_POST['title']) : null;
   $slug = isset($_POST['slug']) ? strip_tags(trim($_POST['slug'])) : null;
   $content = isset($_POST['content']) ? $_POST['content'] : null;
+  $summary = isset($_POST['summary']) ? $_POST['summary'] : null;
+  $image = isset($_POST['image']) ? $_POST['image'] : null;
   $parent_id = isset($_POST['parent_id']) ? strip_tags($_POST['parent_id']) : null;
   $published = isset($_POST['published']) ? strip_tags($_POST['published']) : null;
   $order = isset($_POST['order']) ? strip_tags($_POST['order']) : 0;
@@ -26,6 +28,8 @@ if (isset($_POST['submit'])) {
     if (!empty($title)) $page->setTitle($title);
     if (!empty($slug)) $page->setSlug($slug);
     if (!empty($content)) $page->setContent($content);
+    if (!empty($summary)) $page->setSummary ($summary);
+    if (!empty($image)) $page->setImage ($image);
     if (!empty($parent_id)) $page->setParentId ($parent_id);
     if (!empty($published)) $page->setPublished($published); else $page->setPublished (0);
     if (!empty($order)) $page->setOrder ($order);

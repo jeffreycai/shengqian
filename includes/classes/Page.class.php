@@ -2,11 +2,12 @@
 require_once CLASS_DIR . DS . 'DBObject.class.php';
 
 /**
- * DB fields for Deal:
+ * DB fields for Page:
  * - id
  * - title
  * - slug
  * - content
+ * - summary
  * - parent_id
  * - created_at
  * - published
@@ -54,6 +55,18 @@ class Page extends DBObject {
   }
   public function getContent() {
     return $this->getDbFieldContent();
+  }
+  public function setSummary($s) {
+    $this->setDBFieldSummary($s);
+  }
+  public function getSummary() {
+    return $this->getDbFieldSummary();
+  }
+  public function setImage($i) {
+    $this->setDBFieldImage($i);
+  }
+  public function getImage() {
+    return $this->getDbFieldImage();
   }
   public function setParentId($id) {
     $this->setDBFieldParent_id($id);
@@ -105,8 +118,8 @@ class Page extends DBObject {
     }
     $result = $mysqli->query($query);
     if ($result && $record = $result->fetch_object()) {
-      $page = new Deal();
-      Deal::importQueryResultToDbObject($record, $page);
+      $page = new Page();
+      Page::importQueryResultToDbObject($record, $page);
       return $page;
     }
     return null;
@@ -116,6 +129,14 @@ class Page extends DBObject {
     return self::findById($this->getParentId());
   }
   
+  public function getParents() {
+    $parents = array();
+    while ($parent = $this->getParent()) {
+      $parents[] = $parent;
+    }
+    return $parents;
+  }
+
   public function getChildrenPages() {
     global $mysqli;
     $result = $mysqli->query('SELECT * FROM `page` WHERE parent_id=' . $this->getId() . ' AND published=1 ORDER BY order ASC');
@@ -149,5 +170,56 @@ class Page extends DBObject {
       return false;
     }
     return true;
+  }
+  
+  public function getThumbnailFolder() {
+    return CACHE_DIR . DS . 'page';
+  }
+  
+  private function makeThumbnailFilename() {
+    return 'page_' . $this->getId() . '.jpg';
+  }
+  
+  public function getThumbnail($size, $refill=true) {
+    // get thumbnail width and height
+    $matches = array();
+    if (!preg_match('/^(\d+)x(\d+)$/i', $size, $matches)) {
+      throw new Exception('Thumbnail file size provided not correct.');
+      return null;
+    }
+    $width = intval($matches[1]);
+    $height = intval($matches[2]);
+    
+    global $conf;
+    // create cache folder if not existed
+    $page_dir = $this->getThumbnailFolder();
+    if (!is_dir($page_dir)) {
+      mkdir($page_dir);
+    }
+    // create thumbnail file if not existed
+    $thumbnail = $page_dir . DS . $this->makeThumbnailFilename();
+    if (!is_file($thumbnail)) {
+      loadLibraryWideImage();
+      $image = WideImage::load($this->getImage());
+      $image = $image->resize($width, $height);
+      if ($refill) {
+        $w = $image->getWidth();
+        $h = $image->getHeight();
+        $bg_color = $image->allocateColor(255, 255, 255);
+        if ($w == $width) {
+          $delta = ($height - $h) / 2;
+          $image = $image->resizeCanvas($width, $height, 0, $delta, $bg_color);
+
+        } else {
+          $delta = ($width - $w) / 2;
+          $image = $image->resizeCanvas($width, $height, $delta, 0, $bg_color);
+        }
+      }
+//      if (!$this->getValid()) {
+//        $image = $image->applyFilter(IMG_FILTER_GRAYSCALE);
+//      }
+      $image->saveToFile($thumbnail);
+    }
+    return str_replace(WEBROOT, '', $thumbnail);
   }
 }

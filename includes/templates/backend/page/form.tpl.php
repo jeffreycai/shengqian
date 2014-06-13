@@ -29,6 +29,27 @@
     </div>
   </div>
   <div class="form-group">
+    <label for="image" class="col-sm-3 control-label">Image</label>
+    <div class="col-sm-9">
+      <input id="title" type="url" class="form-control" placeholder="Image url" name="image" 
+        <?php if (isset($_POST['image'])): ?>
+             value="<?php echo $_POST['image'] ?>"
+        <?php elseif ($page): ?>
+             value="<?php echo $page->getImage(); ?>"
+        <?php endif; ?> />
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="summary" class="col-sm-3 control-label">摘要 <span>*</span></label>
+    <div class="col-sm-9">
+      <textarea id="summary" class="form-control ckeditor" placeholder="摘要的内容" name="summary" required="" rows="15"><?php if (isset($_POST['summary'])) { 
+          echo $_POST['summary'];
+        } elseif ($page) {
+          echo $page->getSummary();
+        }?></textarea>
+    </div>
+  </div>
+  <div class="form-group">
     <label for="content" class="col-sm-3 control-label">内容 <span>*</span></label>
     <div class="col-sm-9">
       <textarea id="content" class="form-control ckeditor" placeholder="页面的内容" name="content" required="" rows="15"><?php if (isset($_POST['content'])) { 
